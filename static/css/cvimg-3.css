@@ -1,0 +1,118 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    direction: rtl;
+    background-color: #f4f4f4;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    width: 50%;
+    margin: auto;
+    color: #930532;
+}
+
+.container {
+    width: 70%;
+    margin-top: 3rem;
+    box-shadow: 5px 5px 5px 5px #7e7e7e45;
+    background-color: #fff;
+    padding: 1rem;
+    color: #0f2f59;
+    position: relative;
+}
+
+h1 {
+    font-size: 3.4rem;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 30px;
+    margin-top: 20px;
+
+}
+
+h4,
+h5 {
+    font-size: 25px;
+    font-weight: bold;
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+h6 {
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.col-md-7,
+.col-md-4 {
+    text-align: right;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+ul {
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
+
+.left-section {
+    background-color: #fff;
+    border-right: 2px solid black;
+}
+
+.right-section {
+    background-color: #fff;
+}
+
+.skill {
+    padding-right: 1rem;
+}
+
+.about,
+.education,
+.skills {
+    background-color: #f1f1f1;
+    padding: .5125rem;
+    margin: .7rem 0;
+    text-align: right;
+}
+
+.link {
+    margin-top: .6rem;
+}
+
+.information {
+    border-bottom: 2px solid #0f2f59;
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+    margin-right: 1rem;
+}
+
+.footer {
+    border-top: 2px solid #0f2f59;
+    padding: .625rem .3rem;
+}
+
+.logo {
+    width: 8rem;
+    margin: 2rem .625rem;
+}
