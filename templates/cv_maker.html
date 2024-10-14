@@ -128,7 +128,7 @@
 
                     <div id="card1" class="d-none w-100 mb-4 p-3">
                         <div class="row">
-                            <div class="col-sm-4 px-2">
+                            <div class="col-sm-4 ">
                                 <div class="img d-flex flex-column py-2">
                                     <div class="d-flex align-items-center mb-1">
                                         <label class="flex-grow-1 fw-medium text-secondary text-sm">صورة</label>
@@ -144,9 +144,9 @@
                                 </div>
 
                             </div>
-                            <div class="col-sm-8 px-2">
+                            <div class="col-sm-8">
                                 <div class="row">
-                                    <div class="col-sm-6 px-2 ">
+                                    <div class="col-sm-6  ">
                                         <div class="form-group py-2 text-right">
                                             <label for="focus-id-name-givenName"
                                                 class="form-label text-secondary text-end">الاسم
@@ -156,7 +156,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 px-2">
+                                    <div class="col-sm-6 ">
                                         <div class="form-group py-2 text-right">
                                             <label for="focus-id-name-familyName" class="form-label text-secondary">اسم
                                                 العائلة</label>
@@ -219,7 +219,7 @@
                             <div class="row">
                                 <div class="col-12 pt-5 pb-3 d-flex flex-wrap">
                                     <!-- Button 1 -->
-                                    <div class="col-4 col-lg-3 p-2">
+                                    <div class="col-12 col-md-4 col-lg-3 p-2">
                                         <button
                                             class="add-input-btn btn btn-outline-secondary d-flex align-items-center w-100"
                                             type="button" data-field-name="تاريخ الميلاد">
@@ -234,7 +234,7 @@
                                     </div>
 
                                     <!-- Button 2 -->
-                                    <div class="col-4 col-lg-3 p-2">
+                                    <div class="col-12 col-md-4 col-lg-3 p-2">
                                         <button
                                             class="add-input-btn btn btn-outline-secondary d-flex align-items-center w-100"
                                             type="button" data-field-name="محل الميلاد">
@@ -249,7 +249,7 @@
                                     </div>
 
                                     <!-- Button 3 -->
-                                    <div class="col-4 col-lg-3 p-2">
+                                    <div class="col-12 col-md-4 col-lg-3 p-2">
                                         <button
                                             class="add-input-btn btn btn-outline-secondary d-flex align-items-center w-100"
                                             type="button" data-field-name="رخصة القيادة">
@@ -264,7 +264,7 @@
                                     </div>
 
                                     <!-- Button 4 -->
-                                    <div class="col-4 col-lg-3 p-2">
+                                    <div class="col-12 col-md-4 col-lg-3 p-2">
                                         <button
                                             class="add-input-btn btn btn-outline-secondary d-flex align-items-center w-100"
                                             type="button" data-field-name="الجنس">
@@ -279,7 +279,7 @@
                                     </div>
 
                                     <!-- Button 5 -->
-                                    <div class="col-4 col-lg-3 p-2">
+                                    <div class="col-12 col-md-4 col-lg-3 p-2">
                                         <button
                                             class="add-input-btn btn btn-outline-secondary d-flex align-items-center w-100"
                                             type="button" data-field-name="الجنسية">
@@ -294,7 +294,7 @@
                                     </div>
 
                                     <!-- Button 6 -->
-                                    <div class="col-4 col-lg-3 p-2">
+                                    <div class="col-12 col-md-4 col-lg-3 p-2">
                                         <button
                                             class="add-input-btn btn btn-outline-secondary d-flex align-items-center w-100"
                                             type="button" data-field-name="الحالة الاجتماعية">
@@ -307,21 +307,9 @@
                                             الحالة الاجتماعية
                                         </button>
                                     </div>
-
-                                    <!-- <div class="col-4 col-lg-3 p-2">
-                                        <button
-                                            class="add-input-btn btn btn-outline-secondary d-flex align-items-center w-100"
-                                            type="button" data-field-name="نبذة عنك">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                                class="me-2" height="24" width="24">
-                                                <path fill="currentColor"
-                                                    d="M450.001-450.001h-200q-12.75 0-21.375-8.628t-8.625-21.384 8.625-21.371 21.375-8.615h200v-200q0-12.75 8.628-21.375t21.384-8.625 21.371 8.625 8.615 21.375v200h200q12.75 0 21.375 8.628t8.625 21.384-8.625 21.371-21.375 8.615h-200v200q0 12.75-8.628 21.375t-21.384 8.625-21.371-8.625-8.615-21.375z">
-                                                </path>
-                                            </svg>
-                                            نبذة عنك </button>
-                                    </div> -->
                                 </div>
                             </div>
+
 
 
 
@@ -376,224 +364,228 @@
                                             <input type="text" class="form-control" id="floatingInput" placeholder="">
                                         </div>
                                     </div>
-                                    <div class="col-12 pr-0">
+                                    <div class="col-12">
                                         <div
-                                            class="form-floating d-flex align-items-center justify-content-center my-4">
+                                            class="form-floating d-flex flex-column flex-sm-row align-items-center justify-content-around my-4">
 
-                                            <div class="col-6 p-0 pr-3">
-                                                <label for="country-select" class="d-flex label">اختر دولة:</label>
-                                                <select id="country-select"
-                                                    class="js-example-placeholder-single js-states form-control">
-                                                    <option value="" disabled selected>اختر الدولة</option>
-                                                    <option value="AF">أفغانستان</option>
-                                                    <option value="AL">ألبانيا</option>
-                                                    <option value="DZ">الجزائر</option>
-                                                    <option value="AD">أندورا</option>
-                                                    <option value="AO">أنغولا</option>
-                                                    <option value="AG">أنتيغوا وبربودا</option>
-                                                    <option value="AR">الأرجنتين</option>
-                                                    <option value="AM">أرمينيا</option>
-                                                    <option value="AU">أستراليا</option>
-                                                    <option value="AT">النمسا</option>
-                                                    <option value="AZ">أذربيجان</option>
-                                                    <option value="BS">الباهاما</option>
-                                                    <option value="BH">البحرين</option>
-                                                    <option value="BD">بنغلاديش</option>
-                                                    <option value="BB">بربادوس</option>
-                                                    <option value="BY">بيلاروس</option>
-                                                    <option value="BE">بلجيكا</option>
-                                                    <option value="BZ">بليز</option>
-                                                    <option value="BJ">بنين</option>
-                                                    <option value="BT">بوتان</option>
-                                                    <option value="BO">بوليفيا</option>
-                                                    <option value="BA">البوسنة والهرسك</option>
-                                                    <option value="BW">بوتسوانا</option>
-                                                    <option value="BR">البرازيل</option>
-                                                    <option value="BN">بروناي</option>
-                                                    <option value="BG">بلغاريا</option>
-                                                    <option value="BF">بوركينا فاسو</option>
-                                                    <option value="BI">بوروندي</option>
-                                                    <option value="KH">كمبوديا</option>
-                                                    <option value="CM">الكاميرون</option>
-                                                    <option value="CA">كندا</option>
-                                                    <option value="CV">الرأس الأخضر</option>
-                                                    <option value="CF">جمهورية أفريقيا الوسطى</option>
-                                                    <option value="TD">تشاد</option>
-                                                    <option value="CL">تشيلي</option>
-                                                    <option value="CN">الصين</option>
-                                                    <option value="CO">كولومبيا</option>
-                                                    <option value="KM">جزر القمر</option>
-                                                    <option value="CG">الكونغو</option>
-                                                    <option value="CD">الكونغو (جمهورية الديمقراطية)</option>
-                                                    <option value="CR">كوستاريكا</option>
-                                                    <option value="CI">ساحل العاج</option>
-                                                    <option value="HR">كرواتيا</option>
-                                                    <option value="CU">كوبا</option>
-                                                    <option value="CY">قبرص</option>
-                                                    <option value="CZ">التشيك</option>
-                                                    <option value="DK">الدنمارك</option>
-                                                    <option value="DJ">جيبوتي</option>
-                                                    <option value="DM">دومينيكا</option>
-                                                    <option value="DO">جمهورية الدومينيكان</option>
-                                                    <option value="EC">الإكوادور</option>
-                                                    <option value="EG">مصر</option>
-                                                    <option value="SV">السلفادور</option>
-                                                    <option value="GQ">غينيا الاستوائية</option>
-                                                    <option value="ER">إريتريا</option>
-                                                    <option value="EE">إستونيا</option>
-                                                    <option value="ET">إثيوبيا</option>
-                                                    <option value="FJ">فيجي</option>
-                                                    <option value="FI">فنلندا</option>
-                                                    <option value="FR">فرنسا</option>
-                                                    <option value="GA">الغابون</option>
-                                                    <option value="GM">غامبيا</option>
-                                                    <option value="GE">جورجيا</option>
-                                                    <option value="DE">ألمانيا</option>
-                                                    <option value="GH">غانا</option>
-                                                    <option value="GR">اليونان</option>
-                                                    <option value="GD">غرينادا</option>
-                                                    <option value="GT">غواتيمالا</option>
-                                                    <option value="GN">غينيا</option>
-                                                    <option value="GW">غينيا بيساو</option>
-                                                    <option value="GY">غيانا</option>
-                                                    <option value="HT">هايتي</option>
-                                                    <option value="HN">هندوراس</option>
-                                                    <option value="HU">هنغاريا</option>
-                                                    <option value="IS">أيسلندا</option>
-                                                    <option value="IN">الهند</option>
-                                                    <option value="ID">إندونيسيا</option>
-                                                    <option value="IR">إيران</option>
-                                                    <option value="IQ">العراق</option>
-                                                    <option value="IE">أيرلندا</option>
-                                                    <option value="IL">إسرائيل</option>
-                                                    <option value="IT">إيطاليا</option>
-                                                    <option value="JM">جامايكا</option>
-                                                    <option value="JP">اليابان</option>
-                                                    <option value="JO">الأردن</option>
-                                                    <option value="KZ">كازاخستان</option>
-                                                    <option value="KE">كينيا</option>
-                                                    <option value="KI">كيريباس</option>
-                                                    <option value="KP">كوريا الشمالية</option>
-                                                    <option value="KR">كوريا الجنوبية</option>
-                                                    <option value="KW">الكويت</option>
-                                                    <option value="KG">قيرغيزستان</option>
-                                                    <option value="LA">لاوس</option>
-                                                    <option value="LV">لاتفيا</option>
-                                                    <option value="LB">لبنان</option>
-                                                    <option value="LS">ليسوتو</option>
-                                                    <option value="LR">ليبيريا</option>
-                                                    <option value="LY">ليبيا</option>
-                                                    <option value="LI">ليختنشتاين</option>
-                                                    <option value="LT">ليتوانيا</option>
-                                                    <option value="LU">لوكسمبورغ</option>
-                                                    <option value="MG">مدغشقر</option>
-                                                    <option value="MW">مالاوي</option>
-                                                    <option value="MY">ماليزيا</option>
-                                                    <option value="MV">المالديف</option>
-                                                    <option value="ML">مالي</option>
-                                                    <option value="MT">مالطا</option>
-                                                    <option value="MH">جزر مارشال</option>
-                                                    <option value="MR">موريتانيا</option>
-                                                    <option value="MU">موريشيوس</option>
-                                                    <option value="MX">المكسيك</option>
-                                                    <option value="FM">ميكرونيسيا</option>
-                                                    <option value="MD">مولدوفا</option>
-                                                    <option value="MC">موناكو</option>
-                                                    <option value="MN">منغوليا</option>
-                                                    <option value="ME">الجبل الأسود</option>
-                                                    <option value="MA">المغرب</option>
-                                                    <option value="MZ">موزمبيق</option>
-                                                    <option value="MM">ميانمار</option>
-                                                    <option value="NA">ناميبيا</option>
-                                                    <option value="NR">ناورو</option>
-                                                    <option value="NP">نيبال</option>
-                                                    <option value="NL">هولندا</option>
-                                                    <option value="NZ">نيوزيلندا</option>
-                                                    <option value="NI">نيكاراغوا</option>
-                                                    <option value="NE">النيجر</option>
-                                                    <option value="NG">نيجيريا</option>
-                                                    <option value="NO">النرويج</option>
-                                                    <option value="OM">عمان</option>
-                                                    <option value="PK">باكستان</option>
-                                                    <option value="PW">بالاو</option>
-                                                    <option value="PS">فلسطين</option>
-                                                    <option value="PA">بنما</option>
-                                                    <option value="PG">بابوا غينيا الجديدة</option>
-                                                    <option value="PY">باراغواي</option>
-                                                    <option value="PE">بيرو</option>
-                                                    <option value="PH">الفلبين</option>
-                                                    <option value="PL">بولندا</option>
-                                                    <option value="PT">البرتغال</option>
-                                                    <option value="QA">قطر</option>
-                                                    <option value="RO">رومانيا</option>
-                                                    <option value="RU">روسيا</option>
-                                                    <option value="RW">رواندا</option>
-                                                    <option value="KN">سانت كيتس ونيفيس</option>
-                                                    <option value="LC">سانت لوسيا</option>
-                                                    <option value="VC">سانت فنسنت والغرينادين</option>
-                                                    <option value="WS">ساموا</option>
-                                                    <option value="SM">سان مارينو</option>
-                                                    <option value="ST">ساو تومي وبرينسيبي</option>
-                                                    <option value="SA">السعودية</option>
-                                                    <option value="SN">السنغال</option>
-                                                    <option value="RS">صربيا</option>
-                                                    <option value="SC">سيشل</option>
-                                                    <option value="SL">سيراليون</option>
-                                                    <option value="SG">سنغافورة</option>
-                                                    <option value="SK">سلوفاكيا</option>
-                                                    <option value="SI">سلوفينيا</option>
-                                                    <option value="SB">جزر سليمان</option>
-                                                    <option value="SO">الصومال</option>
-                                                    <option value="ZA">جنوب أفريقيا</option>
-                                                    <option value="SS">جنوب السودان</option>
-                                                    <option value="ES">إسبانيا</option>
-                                                    <option value="LK">سريلانكا</option>
-                                                    <option value="SD">السودان</option>
-                                                    <option value="SR">سورينام</option>
-                                                    <option value="SE">السويد</option>
-                                                    <option value="CH">سويسرا</option>
-                                                    <option value="SY">سوريا</option>
-                                                    <option value="TJ">طاجيكستان</option>
-                                                    <option value="TZ">تنزانيا</option>
-                                                    <option value="TH">تايلاند</option>
-                                                    <option value="TL">تيمور الشرقية</option>
-                                                    <option value="TG">توغو</option>
-                                                    <option value="TO">تونغا</option>
-                                                    <option value="TT">ترينيداد وتوباغو</option>
-                                                    <option value="TN">تونس</option>
-                                                    <option value="TR">تركيا</option>
-                                                    <option value="TM">تركمانستان</option>
-                                                    <option value="TV">توفالو</option>
-                                                    <option value="UG">أوغندا</option>
-                                                    <option value="UA">أوكرانيا</option>
-                                                    <option value="AE">الإمارات العربية المتحدة</option>
-                                                    <option value="GB">المملكة المتحدة</option>
-                                                    <option value="US">الولايات المتحدة</option>
-                                                    <option value="UY">أوروغواي</option>
-                                                    <option value="UZ">أوزبكستان</option>
-                                                    <option value="VU">فانواتو</option>
-                                                    <option value="VA">مدينة الفاتيكان</option>
-                                                    <option value="VE">فنزويلا</option>
-                                                    <option value="VN">فيتنام</option>
-                                                    <option value="YE">اليمن</option>
-                                                    <option value="ZM">زامبيا</option>
-                                                    <option value="ZW">زيمبابوي</option>
-                                                </select>
+                                            <div class="col-12 col-md-6 pr-0">
+                                                <div class="form-floating my-4">
+                                                    <label for="country-select" class="d-flex label">اختر دولة:</label>
+                                                    <select id="country-select"
+                                                        class="js-example-placeholder-single js-states form-control">
+
+                                                        <option value="" disabled selected>اختر الدولة</option>
+                                                        <option value="AF">أفغانستان</option>
+                                                        <option value="AL">ألبانيا</option>
+                                                        <option value="DZ">الجزائر</option>
+                                                        <option value="AD">أندورا</option>
+                                                        <option value="AO">أنغولا</option>
+                                                        <option value="AG">أنتيغوا وبربودا</option>
+                                                        <option value="AR">الأرجنتين</option>
+                                                        <option value="AM">أرمينيا</option>
+                                                        <option value="AU">أستراليا</option>
+                                                        <option value="AT">النمسا</option>
+                                                        <option value="AZ">أذربيجان</option>
+                                                        <option value="BS">الباهاما</option>
+                                                        <option value="BH">البحرين</option>
+                                                        <option value="BD">بنغلاديش</option>
+                                                        <option value="BB">بربادوس</option>
+                                                        <option value="BY">بيلاروس</option>
+                                                        <option value="BE">بلجيكا</option>
+                                                        <option value="BZ">بليز</option>
+                                                        <option value="BJ">بنين</option>
+                                                        <option value="BT">بوتان</option>
+                                                        <option value="BO">بوليفيا</option>
+                                                        <option value="BA">البوسنة والهرسك</option>
+                                                        <option value="BW">بوتسوانا</option>
+                                                        <option value="BR">البرازيل</option>
+                                                        <option value="BN">بروناي</option>
+                                                        <option value="BG">بلغاريا</option>
+                                                        <option value="BF">بوركينا فاسو</option>
+                                                        <option value="BI">بوروندي</option>
+                                                        <option value="KH">كمبوديا</option>
+                                                        <option value="CM">الكاميرون</option>
+                                                        <option value="CA">كندا</option>
+                                                        <option value="CV">الرأس الأخضر</option>
+                                                        <option value="CF">جمهورية أفريقيا الوسطى</option>
+                                                        <option value="TD">تشاد</option>
+                                                        <option value="CL">تشيلي</option>
+                                                        <option value="CN">الصين</option>
+                                                        <option value="CO">كولومبيا</option>
+                                                        <option value="KM">جزر القمر</option>
+                                                        <option value="CG">الكونغو</option>
+                                                        <option value="CD">الكونغو (جمهورية الديمقراطية)</option>
+                                                        <option value="CR">كوستاريكا</option>
+                                                        <option value="CI">ساحل العاج</option>
+                                                        <option value="HR">كرواتيا</option>
+                                                        <option value="CU">كوبا</option>
+                                                        <option value="CY">قبرص</option>
+                                                        <option value="CZ">التشيك</option>
+                                                        <option value="DK">الدنمارك</option>
+                                                        <option value="DJ">جيبوتي</option>
+                                                        <option value="DM">دومينيكا</option>
+                                                        <option value="DO">جمهورية الدومينيكان</option>
+                                                        <option value="EC">الإكوادور</option>
+                                                        <option value="EG">مصر</option>
+                                                        <option value="SV">السلفادور</option>
+                                                        <option value="GQ">غينيا الاستوائية</option>
+                                                        <option value="ER">إريتريا</option>
+                                                        <option value="EE">إستونيا</option>
+                                                        <option value="ET">إثيوبيا</option>
+                                                        <option value="FJ">فيجي</option>
+                                                        <option value="FI">فنلندا</option>
+                                                        <option value="FR">فرنسا</option>
+                                                        <option value="GA">الغابون</option>
+                                                        <option value="GM">غامبيا</option>
+                                                        <option value="GE">جورجيا</option>
+                                                        <option value="DE">ألمانيا</option>
+                                                        <option value="GH">غانا</option>
+                                                        <option value="GR">اليونان</option>
+                                                        <option value="GD">غرينادا</option>
+                                                        <option value="GT">غواتيمالا</option>
+                                                        <option value="GN">غينيا</option>
+                                                        <option value="GW">غينيا بيساو</option>
+                                                        <option value="GY">غيانا</option>
+                                                        <option value="HT">هايتي</option>
+                                                        <option value="HN">هندوراس</option>
+                                                        <option value="HU">هنغاريا</option>
+                                                        <option value="IS">أيسلندا</option>
+                                                        <option value="IN">الهند</option>
+                                                        <option value="ID">إندونيسيا</option>
+                                                        <option value="IR">إيران</option>
+                                                        <option value="IQ">العراق</option>
+                                                        <option value="IE">أيرلندا</option>
+                                                        <option value="IL">إسرائيل</option>
+                                                        <option value="IT">إيطاليا</option>
+                                                        <option value="JM">جامايكا</option>
+                                                        <option value="JP">اليابان</option>
+                                                        <option value="JO">الأردن</option>
+                                                        <option value="KZ">كازاخستان</option>
+                                                        <option value="KE">كينيا</option>
+                                                        <option value="KI">كيريباس</option>
+                                                        <option value="KP">كوريا الشمالية</option>
+                                                        <option value="KR">كوريا الجنوبية</option>
+                                                        <option value="KW">الكويت</option>
+                                                        <option value="KG">قيرغيزستان</option>
+                                                        <option value="LA">لاوس</option>
+                                                        <option value="LV">لاتفيا</option>
+                                                        <option value="LB">لبنان</option>
+                                                        <option value="LS">ليسوتو</option>
+                                                        <option value="LR">ليبيريا</option>
+                                                        <option value="LY">ليبيا</option>
+                                                        <option value="LI">ليختنشتاين</option>
+                                                        <option value="LT">ليتوانيا</option>
+                                                        <option value="LU">لوكسمبورغ</option>
+                                                        <option value="MG">مدغشقر</option>
+                                                        <option value="MW">مالاوي</option>
+                                                        <option value="MY">ماليزيا</option>
+                                                        <option value="MV">المالديف</option>
+                                                        <option value="ML">مالي</option>
+                                                        <option value="MT">مالطا</option>
+                                                        <option value="MH">جزر مارشال</option>
+                                                        <option value="MR">موريتانيا</option>
+                                                        <option value="MU">موريشيوس</option>
+                                                        <option value="MX">المكسيك</option>
+                                                        <option value="FM">ميكرونيسيا</option>
+                                                        <option value="MD">مولدوفا</option>
+                                                        <option value="MC">موناكو</option>
+                                                        <option value="MN">منغوليا</option>
+                                                        <option value="ME">الجبل الأسود</option>
+                                                        <option value="MA">المغرب</option>
+                                                        <option value="MZ">موزمبيق</option>
+                                                        <option value="MM">ميانمار</option>
+                                                        <option value="NA">ناميبيا</option>
+                                                        <option value="NR">ناورو</option>
+                                                        <option value="NP">نيبال</option>
+                                                        <option value="NL">هولندا</option>
+                                                        <option value="NZ">نيوزيلندا</option>
+                                                        <option value="NI">نيكاراغوا</option>
+                                                        <option value="NE">النيجر</option>
+                                                        <option value="NG">نيجيريا</option>
+                                                        <option value="NO">النرويج</option>
+                                                        <option value="OM">عمان</option>
+                                                        <option value="PK">باكستان</option>
+                                                        <option value="PW">بالاو</option>
+                                                        <option value="PS">فلسطين</option>
+                                                        <option value="PA">بنما</option>
+                                                        <option value="PG">بابوا غينيا الجديدة</option>
+                                                        <option value="PY">باراغواي</option>
+                                                        <option value="PE">بيرو</option>
+                                                        <option value="PH">الفلبين</option>
+                                                        <option value="PL">بولندا</option>
+                                                        <option value="PT">البرتغال</option>
+                                                        <option value="QA">قطر</option>
+                                                        <option value="RO">رومانيا</option>
+                                                        <option value="RU">روسيا</option>
+                                                        <option value="RW">رواندا</option>
+                                                        <option value="KN">سانت كيتس ونيفيس</option>
+                                                        <option value="LC">سانت لوسيا</option>
+                                                        <option value="VC">سانت فنسنت والغرينادين</option>
+                                                        <option value="WS">ساموا</option>
+                                                        <option value="SM">سان مارينو</option>
+                                                        <option value="ST">ساو تومي وبرينسيبي</option>
+                                                        <option value="SA">السعودية</option>
+                                                        <option value="SN">السنغال</option>
+                                                        <option value="RS">صربيا</option>
+                                                        <option value="SC">سيشل</option>
+                                                        <option value="SL">سيراليون</option>
+                                                        <option value="SG">سنغافورة</option>
+                                                        <option value="SK">سلوفاكيا</option>
+                                                        <option value="SI">سلوفينيا</option>
+                                                        <option value="SB">جزر سليمان</option>
+                                                        <option value="SO">الصومال</option>
+                                                        <option value="ZA">جنوب أفريقيا</option>
+                                                        <option value="SS">جنوب السودان</option>
+                                                        <option value="ES">إسبانيا</option>
+                                                        <option value="LK">سريلانكا</option>
+                                                        <option value="SD">السودان</option>
+                                                        <option value="SR">سورينام</option>
+                                                        <option value="SE">السويد</option>
+                                                        <option value="CH">سويسرا</option>
+                                                        <option value="SY">سوريا</option>
+                                                        <option value="TJ">طاجيكستان</option>
+                                                        <option value="TZ">تنزانيا</option>
+                                                        <option value="TH">تايلاند</option>
+                                                        <option value="TL">تيمور الشرقية</option>
+                                                        <option value="TG">توغو</option>
+                                                        <option value="TO">تونغا</option>
+                                                        <option value="TT">ترينيداد وتوباغو</option>
+                                                        <option value="TN">تونس</option>
+                                                        <option value="TR">تركيا</option>
+                                                        <option value="TM">تركمانستان</option>
+                                                        <option value="TV">توفالو</option>
+                                                        <option value="UG">أوغندا</option>
+                                                        <option value="UA">أوكرانيا</option>
+                                                        <option value="AE">الإمارات العربية المتحدة</option>
+                                                        <option value="GB">المملكة المتحدة</option>
+                                                        <option value="US">الولايات المتحدة</option>
+                                                        <option value="UY">أوروغواي</option>
+                                                        <option value="UZ">أوزبكستان</option>
+                                                        <option value="VU">فانواتو</option>
+                                                        <option value="VA">مدينة الفاتيكان</option>
+                                                        <option value="VE">فنزويلا</option>
+                                                        <option value="VN">فيتنام</option>
+                                                        <option value="YE">اليمن</option>
+                                                        <option value="ZM">زامبيا</option>
+                                                        <option value="ZW">زيمبابوي</option>
+                                                    </select>
+                                                </div>
                                             </div>
-
-
-                                            <div class="col-6 p-0 pr-3">
-                                                <label for="city-select" class="d-flex label">اختر مدينة:</label>
-                                                <select id="city-select"
-                                                    class="js-example-placeholder-single js-states form-control">
-                                                    <option value="">اختر المدينة</option>
-                                                </select>
+                                            <div class="col-12 col-md-6 pr-0">
+                                                <div class="form-floating my-4">
+                                                    <label for="city-select" class="d-flex label">اختر مدينة:</label>
+                                                    <select id="city-select"
+                                                        class="js-example-placeholder-single js-states form-control">
+                                                        <option value="">اختر المدينة</option>
+                                                    </select>
+                                                </div>
                                             </div>
 
 
                                         </div>
                                     </div>
-                                    <div class="col-12 mb-4 d-flex p-0 align-items-center justify-content-between">
+                                    <div
+                                        class="col-12 mb-4 d-flex p-0 align-items-center flex-column flex-sm-row  justify-content-between">
                                         <div class="col-md-6  ">
                                             <label for="birthday" class="d-flex label">تاريخ البدء :</label>
                                             <input type="date" class="form-control" id="birthday" name="birthday">
@@ -688,8 +680,8 @@
                                             <input type="text" class="form-control" id="floatingInput" placeholder="">
                                         </div>
                                     </div>
-                                    <div class="col-12 pt-4 d-flex p-0 my-3">
-                                        <div class="col-6">
+                                    <div class="col-12 pt-4 d-flex flex-column flex-sm-row my-0 p-0 my-lg-3">
+                                        <div class="col-md-6 ">
                                             <div class="form-floating ">
                                                 <label for="floatingInput" class="d-flex label "> جهه صاحب
                                                     الوظيفة</label>
@@ -698,7 +690,7 @@
                                                     placeholder="">
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class=" col-md-6 ">
                                             <div class="form-floating ">
                                                 <label for="floatingInput" class="d-flex label "> المدينة</label>
 
@@ -708,7 +700,8 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-12 mb-4 d-flex p-0 align-items-center justify-content-between">
+                                    <div
+                                        class="col-12 mb-4 d-flex flex-column flex-sm-row  p-0 align-items-center justify-content-between">
                                         <div class="col-md-6  ">
                                             <label for="birthday" class="d-flex label">تاريخ البدء :</label>
                                             <input type="date" class="form-control" id="birthday" name="birthday">
@@ -1035,7 +1028,7 @@
                                                 </div>
                                             </div>
                                             <div
-                                                class="col-12 mb-4 d-flex p-0 align-items-center justify-content-between">
+                                                class="col-12 mb-4 d-flex p-0 flex-column flex-sm-row  align-items-center justify-content-between">
                                                 <div class="col-md-6">
                                                     <label for="start-date" class="d-flex label">تاريخ البدء :</label>
                                                     <input type="date" class="form-control" id="start-date"
@@ -1141,7 +1134,7 @@
                                                 </div>
                                             </div>
                                             <div
-                                                class="col-12 mb-4 d-flex p-0 align-items-center justify-content-between">
+                                                class="col-12 mb-4 d-flex p-0 flex-column flex-sm-row  align-items-center justify-content-between">
                                                 <div class="col-md-6">
                                                     <label for="start-date" class="d-flex label">تاريخ البدء :</label>
                                                     <input type="date" class="form-control" id="start-date"
@@ -1298,9 +1291,9 @@
                                     <span> الباركود</span>
 
                                 </div>
-                                <div class="card-body" id="card-body">
+                                <div class="card-body w-100 " id="card-body">
                                     <label for="upload">رفع الباركود الخاص بك</label>
-                                    <input type="file" id="upload" accept="image/*" />
+                                    <input class="w-75 w-md-100" type="file" id="upload" accept="image/*" />
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                     <button class="btn btn-primary">

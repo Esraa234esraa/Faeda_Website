@@ -409,3 +409,21 @@ img {
     background-color: darkred;
 }
 
+/* Adjust padding and margins on smaller screens */
+@media (max-width: 576px) {
+    #card2 .card-det {
+        padding: 0 15px;
+    }
+
+    #card2 .form-floating {
+        margin-bottom: 1rem;
+    }
+
+    #card2 .toolbar button {
+        padding: 0.25rem;
+    }
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: 3rem;
+}

@@ -290,7 +290,7 @@ function createCard(type) {
                             <input type="text" class="form-control" id="floatingInput" placeholder="">
                         </div>
                     </div>
-                    <div class="col-12 mb-4 d-flex p-0 align-items-center justify-content-between">
+                    <div class="col-12 mb-4 d-flex p-0 flex-column flex-sm-row  align-items-center justify-content-between">
                         <div class="col-md-6">
                             <label for="start-date" class="d-flex label">تاريخ البدء :</label>
                             <input type="date" class="form-control" id="start-date" name="start-date">
@@ -470,7 +470,7 @@ document.getElementById('submitForm').addEventListener('click', function () {
 
     // البريد الإلكتروني
     const email = document.getElementById('emailVal').value.trim();
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailPattern = a = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
         document.getElementById('errorEmail').textContent = 'يرجى إدخال بريد إلكتروني صحيح';
         isValid = false;
@@ -532,7 +532,7 @@ document.getElementById('addWebSite').addEventListener('click', function () {
     newCard.innerHTML = `
         <div class="header d-flex justify-content-between align-items-center">
             <span>الموقع [${cardCount + 1}]</span>
-            <button class="btn btn-outline-secondary edit-btn d-none" id="editCard${cardCount + 1}">
+            <button class="btn btn-outline-secondary edit-btn d-none">
                 <i class="fa fa-pencil"></i>
             </button>
         </div>

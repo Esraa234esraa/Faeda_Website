@@ -84,7 +84,7 @@ body {
     margin-bottom: 2rem;
     width: 50%;
     margin: auto;
-    color: #930532;
+    color: #4A608F;
 }
 
 .back {
@@ -104,6 +104,7 @@ body {
     font-size: 20px;
     color: #555;
     margin-bottom: 1rem;
+    height: max-content;
 }
 
 .skills ul {
@@ -128,4 +129,40 @@ body {
     padding: 10px;
     border-bottom: 1px solid;
     margin-bottom: 10px;
+}
+
+/* Center the profile picture on smaller screens */
+@media (max-width: 576px) {
+    .profile-pic {
+        text-align: center;
+    }
+
+    .left-column,
+    .right-column {
+        padding: 0 15px;
+    }
+
+    .message {
+        width: 100%;
+    }
+
+}
+
+.contact-info p {
+    word-wrap: break-word;
+    /* يسمح بتقسيم النص الطويل على عدة أسطر */
+    white-space: normal;
+    /* تأكد من أن النص لا يبقى في سطر واحد */
+}
+
+@media (max-width: 768px) {
+    .contact-info p {
+        display: block;
+        /* يضمن أن يتم عرض النص على سطر منفصل */
+    }
+
+    .contact-info p:nth-child(2) {
+        word-break: break-all;
+        /* يسمح بتقسيم البريد الإلكتروني إذا كان طويلاً */
+    }
 }
