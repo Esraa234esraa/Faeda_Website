@@ -87,9 +87,15 @@ body {
     margin: auto;
     color: #4A608F;
 }
-.bar-code{
-    
+
+.bar-code {
+    width: 4rem;
 }
+
+img {
+    width: 100%;
+}
+
 .back {
     text-align: left;
 }
