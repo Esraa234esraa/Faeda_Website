@@ -409,6 +409,11 @@ img {
     background-color: darkred;
 }
 
+.license {
+    background-color: #f1f1f1;
+   
+}
+
 /* Adjust padding and margins on smaller screens */
 @media (max-width: 576px) {
     #card2 .card-det {

@@ -66,9 +66,10 @@ body {
 .education h2,
 .skills h2,
 .about-me h2,
-.experience h2 {
-    font-size: 22px;
-    margin: 20px 0;
+.experience h2,
+.achievement h2 {
+    font-size: 1.5rem;
+    margin: 1.25rem 0;
 
 }
 
@@ -86,19 +87,23 @@ body {
     margin: auto;
     color: #4A608F;
 }
-
+.bar-code{
+    
+}
 .back {
     text-align: left;
 }
 
-.about-me {
-    border-bottom: 2px solid;
+.about-me,
+.achievement {
+    border-bottom: 1px solid;
 }
 
 .contact-info p,
 .education p,
 .skills ul,
 .about-me p,
+.achievement p,
 .experience .job p,
 .experience .job ul {
     font-size: 20px;
@@ -155,7 +160,11 @@ body {
     /* تأكد من أن النص لا يبقى في سطر واحد */
 }
 
-@media (max-width: 768px) {
+a {
+    text-decoration: none;
+}
+
+@media (max-width: 760px) {
     .contact-info p {
         display: block;
         /* يضمن أن يتم عرض النص على سطر منفصل */
@@ -164,5 +173,10 @@ body {
     .contact-info p:nth-child(2) {
         word-break: break-all;
         /* يسمح بتقسيم البريد الإلكتروني إذا كان طويلاً */
+    }
+
+    .left-column {
+        border-left: none;
+        border-bottom: 1px solid rgb(184, 183, 183);
     }
 }

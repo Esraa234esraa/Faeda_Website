@@ -21,23 +21,26 @@ $(document).ready(function () {
     }
 });
 
-
 $('.add-input-btn').click(function (e) {
     const fieldName = $(this).data('field-name');
+    const inputId = `new-input-${fieldName}`;
 
-    const newInput = `
-                    <div class="form-group text-right small">
-                        <label for="new-input-${Date.now()}">${fieldName}</label>
-                        <input type="text" class="form-control" id="new-input-${Date.now()}">
-                        <button type="button" class="btn btn-danger remove-input-btn">ازالة</button>
-                    </div>
-
-                `;
-    $('#input-container').append(newInput);
+    if ($(`#${inputId}`).length === 0) {
+        const newInput = `
+                        <div class="form-group text-right small">
+                            <label for="${inputId}">${fieldName}</label>
+                            <input type="text" class="form-control" id="${inputId}">
+                            <button type="button" class="btn btn-danger remove-input-btn">ازالة</button>
+                        </div>
+                    `;
+        $('#input-container').append(newInput);
+    }
 });
+
 $('#input-container').on('click', '.remove-input-btn', function () {
     $(this).closest('.form-group').remove();
 });
+
 
 
 document.addEventListener('DOMContentLoaded', function () {

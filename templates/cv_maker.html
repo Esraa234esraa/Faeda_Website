@@ -174,7 +174,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <!-- <div class="col-12">
                                 <div class="form-group py-2 text-right">
                                     <label for="focus-id-name-mainAddress" class="form-label text-secondary">العنوان
                                         الرئيسي</label>
@@ -182,7 +182,7 @@
                                     <span id="errorMainAddress" class="text-danger"></span>
 
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-12">
                                 <div class="form-group py-2 text-right">
                                     <label for="focus-id-name-address" class="form-label text-secondary">
@@ -193,23 +193,35 @@
                                 </div>
                             </div>
 
-
                             <div class="col-12 col-sm-6 mb-2">
                                 <div class="form-group text-right">
-                                    <label for="focus-id-address-zipcode" class="form-label text-muted">الرمز
-                                        البريدي</label>
-                                    <input id="focus-id-address-zipcode" type="text" autocomplete="postal-code"
-                                        maxlength="1000" class="form-control">
-                                    <span id="errorZipcode" class="text-danger"></span>
+                                    <label for="focus-id-address-city" class="form-label text-muted ">المدينة</label>
+                                    <input id="focus-id-address-city" data-s="المدينة" type="text"
+                                        autocomple="address-level2" maxlength="1000" class="form-control">
+                                    <span id="errorCity" class="text-danger"></span>
 
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 mb-2">
                                 <div class="form-group text-right">
-                                    <label for="focus-id-address-city" class="form-label text-muted ">المدينة</label>
-                                    <input id="focus-id-address-city" data-s="المدينة" type="text"
-                                        autocomplete="address-level2" maxlength="1000" class="form-control">
-                                    <span id="errorCity" class="text-danger"></span>
+                                    <label for="focus-id-address-city" class="form-label text-muted ">رخصة
+                                        القيادة</label>
+                                    <div class="license  d-flex justify-content-around align-items-center ">
+                                        <div>
+                                            <label for="">نعم امتلك</label>
+                                            <input name="license" id="focus-id-address-city" data-s="رخصة القيادة"
+                                                type="radio" autocomplete="address-level2" maxlength="1000"
+                                                class="form-check">
+                                        </div>
+                                        <div>
+                                            <label for="">لا امتلك</label>
+                                            <input name="license" id="focus-id-address-city" data-s="رخصة القيادة"
+                                                type="radio" autocomplete="address-level2" maxlength="1000"
+                                                class="form-check">
+                                        </div>
+                                    </div>
+
+
 
                                 </div>
                             </div>
@@ -219,10 +231,10 @@
                             <div class="row">
                                 <div class="col-12 pt-5 pb-3 d-flex flex-wrap">
                                     <!-- Button 1 -->
-                                    <div class="col-12 col-md-4 col-lg-3 p-2">
+                                    <div class="col-12 col-md-4  p-2">
                                         <button
                                             class="add-input-btn btn btn-outline-secondary d-flex align-items-center w-100"
-                                            type="button" data-field-name="تاريخ الميلاد">
+                                            type="button" data-field-name="تاريخ-الميلاد">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
                                                 class="me-2" height="24" width="24">
                                                 <path fill="currentColor"
@@ -233,53 +245,12 @@
                                         </button>
                                     </div>
 
-                                    <!-- Button 2 -->
-                                    <div class="col-12 col-md-4 col-lg-3 p-2">
-                                        <button
-                                            class="add-input-btn btn btn-outline-secondary d-flex align-items-center w-100"
-                                            type="button" data-field-name="محل الميلاد">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                                class="me-2" height="24" width="24">
-                                                <path fill="currentColor"
-                                                    d="M450.001-450.001h-200q-12.75 0-21.375-8.628t-8.625-21.384 8.625-21.371 21.375-8.615h200v-200q0-12.75 8.628-21.375t21.384-8.625 21.371 8.625 8.615 21.375v200h200q12.75 0 21.375 8.628t8.625 21.384-8.625 21.371-21.375 8.615h-200v200q0 12.75-8.628 21.375t-21.384 8.625-21.371-8.625-8.615-21.375z">
-                                                </path>
-                                            </svg>
-                                            محل الميلاد
-                                        </button>
-                                    </div>
 
-                                    <!-- Button 3 -->
-                                    <div class="col-12 col-md-4 col-lg-3 p-2">
-                                        <button
-                                            class="add-input-btn btn btn-outline-secondary d-flex align-items-center w-100"
-                                            type="button" data-field-name="رخصة القيادة">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                                class="me-2" height="24" width="24">
-                                                <path fill="currentColor"
-                                                    d="M450.001-450.001h-200q-12.75 0-21.375-8.628t-8.625-21.384 8.625-21.371 21.375-8.615h200v-200q0-12.75 8.628-21.375t21.384-8.625 21.371 8.625 8.615 21.375v200h200q12.75 0 21.375 8.628t8.625 21.384-8.625 21.371-21.375 8.615h-200v200q0 12.75-8.628 21.375t-21.384 8.625-21.371-8.625-8.615-21.375z">
-                                                </path>
-                                            </svg>
-                                            رخصة القيادة
-                                        </button>
-                                    </div>
 
-                                    <!-- Button 4 -->
-                                    <div class="col-12 col-md-4 col-lg-3 p-2">
-                                        <button
-                                            class="add-input-btn btn btn-outline-secondary d-flex align-items-center w-100"
-                                            type="button" data-field-name="الجنس">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                                class="me-2" height="24" width="24">
-                                                <path fill="currentColor"
-                                                    d="M450.001-450.001h-200q-12.75 0-21.375-8.628t-8.625-21.384 8.625-21.371 21.375-8.615h200v-200q0-12.75 8.628-21.375t21.384-8.625 21.371 8.625 8.615 21.375v200h200q12.75 0 21.375 8.628t8.625 21.384-8.625 21.371-21.375 8.615h-200v200q0 12.75-8.628 21.375t-21.384 8.625-21.371-8.625-8.615-21.375z">
-                                                </path>
-                                            </svg>
-                                            الجنس
-                                        </button>
-                                    </div>
+
 
                                     <!-- Button 5 -->
-                                    <div class="col-12 col-md-4 col-lg-3 p-2">
+                                    <div class="col-12 col-md-4  p-2">
                                         <button
                                             class="add-input-btn btn btn-outline-secondary d-flex align-items-center w-100"
                                             type="button" data-field-name="الجنسية">
@@ -294,11 +265,11 @@
                                     </div>
 
                                     <!-- Button 6 -->
-                                    <div class="col-12 col-md-4 col-lg-3 p-2">
+                                    <div class="col-12 col-md-4  p-2">
                                         <button
                                             class="add-input-btn btn btn-outline-secondary d-flex align-items-center w-100"
-                                            type="button" data-field-name="الحالة الاجتماعية">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                            type="button" data-field-name="الحالة-الاجتماعية">
+                                            <svg xmlns=" http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
                                                 class="me-2" height="24" width="24">
                                                 <path fill="currentColor"
                                                     d="M450.001-450.001h-200q-12.75 0-21.375-8.628t-8.625-21.384 8.625-21.371 21.375-8.615h200v-200q0-12.75 8.628-21.375t21.384-8.625 21.371 8.625 8.615 21.375v200h200q12.75 0 21.375 8.628t8.625 21.384-8.625 21.371-21.375 8.615h-200v200q0 12.75-8.628 21.375t-21.384 8.625-21.371-8.625-8.615-21.375z">
@@ -307,6 +278,7 @@
                                             الحالة الاجتماعية
                                         </button>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -455,7 +427,6 @@
                                                         <option value="IR">إيران</option>
                                                         <option value="IQ">العراق</option>
                                                         <option value="IE">أيرلندا</option>
-                                                        <option value="IL">إسرائيل</option>
                                                         <option value="IT">إيطاليا</option>
                                                         <option value="JM">جامايكا</option>
                                                         <option value="JP">اليابان</option>
@@ -683,8 +654,8 @@
                                     <div class="col-12 pt-4 d-flex flex-column flex-sm-row my-0 p-0 my-lg-3">
                                         <div class="col-md-6 ">
                                             <div class="form-floating ">
-                                                <label for="floatingInput" class="d-flex label "> جهه صاحب
-                                                    الوظيفة</label>
+                                                <label for="floatingInput" class="d-flex label ">
+                                                    المسمى الوظيفي</label>
 
                                                 <input type="text" class="form-control" id="floatingInput"
                                                     placeholder="">
@@ -713,7 +684,7 @@
 
                                     </div>
                                     <div class="col-12 mb-4">
-                                        <label for='editor' class="d-flex label">الوصف :</label>
+                                        <label for='editor' class="d-flex label">المهام الوظيفية :</label>
 
                                         <div class="editor-container w-100  py-3">
                                             <div class="toolbar border-top pt-2">
@@ -757,7 +728,7 @@
                         <div
                             class="header position-relative d-flex align-items-center justify-content-between border-top mt-4">
 
-                            <input type="text" placeholder="المهارات"
+                            <input type="text" placeholder=" المهارات التخصصية"
                                 class="card-input form-control-plaintext w-100 border-bottom-0 bg-transparent p-0">
                             <span class="underline"></span>
 
@@ -814,68 +785,7 @@
                         </div>
                         <button class="btn btn-primary mt-3" id="addSkillBtn">إضافة مهارة</button>
                     </div>
-                    <!-- اللغات -->
-                    <div class="col-12 p-0 mb-4">
-                        <div
-                            class="header position-relative d-flex align-items-center justify-content-between border-top mt-4">
 
-                            <input type="text" placeholder="اللغات"
-                                class="card-input form-control-plaintext w-100 border-bottom-0 bg-transparent p-0">
-                            <span class="underline"></span>
-
-                            <div class="py-3 d-flex align-items-start">
-                                <div class="ml-2">
-
-                                </div>
-                                <button id="arrowUp5"
-                                    class="btn btn-outline-secondary d-flex align-items-center justify-content-center
-                                                                                                                                                                                        rounded p-2">
-                                    <i id="arrow5"
-                                        class="fa fa-arrow-down pointer-events-none flex-shrink-0 box-content "
-                                        aria-hidden="true"></i>
-
-                                </button>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div id="card5" class="d-none w-100 mb-4 p-2">
-                        <div id="skillsContainerLang">
-                            <div class="skill-card" id="cardLang-1">
-                                <div class="header d-flex justify-content-between align-items-center">
-                                    <span>اللغة [1]</span>
-                                    <button class="btn btn-outline-secondary edit-btn d-none" id="editCard2">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                </div>
-                                <div class="card-body" id="Lang-card-body">
-                                    <div class="form-group">
-                                        <label for="skill1">اللغة</label>
-                                        <input type="text" class="form-control" id="skill1" placeholder="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="level1">المستوى</label>
-                                        <select class="form-control" id="level1">
-                                            <option value="">اختر مستوى</option>
-                                            <option value="1">مبتدأ</option>
-                                            <option value="2">متوسط</option>
-                                            <option value="3">جيد</option>
-                                            <option value="4">قوي</option>
-                                        </select>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <button class="btn btn-primary">
-                                            <i class="fa fa-check"></i> تم بنجاح
-                                        </button>
-                                        <button class="btn btn-outline-secondary delete-btn">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary mt-3" id="addSkillBtnLang">إضافة لغة</button>
-                    </div>
                     <!-- الانجازات -->
                     <div id="achev" class="col-12 p-0 mb-4">
                         <div
@@ -986,6 +896,68 @@
                             </div>
                         </div>
                         <button class="btn btn-primary mt-3" id="addSkillBtnHop">اضافة هواية</button>
+                    </div>
+                    <!-- اللغات -->
+                    <div class="col-12 p-0 mb-4">
+                        <div
+                            class="header position-relative d-flex align-items-center justify-content-between border-top mt-4">
+
+                            <input type="text" placeholder="اللغات"
+                                class="card-input form-control-plaintext w-100 border-bottom-0 bg-transparent p-0">
+                            <span class="underline"></span>
+
+                            <div class="py-3 d-flex align-items-start">
+                                <div class="ml-2">
+
+                                </div>
+                                <button id="arrowUp5"
+                                    class="btn btn-outline-secondary d-flex align-items-center justify-content-center
+                                                                                                                                                                                                                rounded p-2">
+                                    <i id="arrow5"
+                                        class="fa fa-arrow-down pointer-events-none flex-shrink-0 box-content "
+                                        aria-hidden="true"></i>
+
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="card5" class="d-none w-100 mb-4 p-2">
+                        <div id="skillsContainerLang">
+                            <div class="skill-card" id="cardLang-1">
+                                <div class="header d-flex justify-content-between align-items-center">
+                                    <span>اللغة [1]</span>
+                                    <button class="btn btn-outline-secondary edit-btn d-none" id="editCard2">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </div>
+                                <div class="card-body" id="Lang-card-body">
+                                    <div class="form-group">
+                                        <label for="skill1">اللغة</label>
+                                        <input type="text" class="form-control" id="skill1" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="level1">المستوى</label>
+                                        <select class="form-control" id="level1">
+                                            <option value="">اختر مستوى</option>
+                                            <option value="1">مبتدأ</option>
+                                            <option value="2">متوسط</option>
+                                            <option value="3">جيد</option>
+                                            <option value="4">قوي</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <button class="btn btn-primary">
+                                            <i class="fa fa-check"></i> تم بنجاح
+                                        </button>
+                                        <button class="btn btn-outline-secondary delete-btn">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mt-3" id="addSkillBtnLang">إضافة لغة</button>
                     </div>
                     <!-- الدورات التدريبية -->
 
@@ -1314,7 +1286,7 @@
 
                         <div id="hopps" class="btn1"><a class="btn-plus">
                                 <i class="fas fa-plus"></i>
-                                الهوايات التخصصية </a></div>
+                                المهارات الشخصية </a></div>
                         <div class="btn2"><a id="training" class="btn-plus">
                                 <i class="fas fa-plus"></i>
                                 الدورات تدريبية </a></div>
@@ -1351,7 +1323,7 @@
                                             alt=""></a>
                                 </div>
                             </div>
-                            <div class=" col-md-4 col-sm-6">
+                            <!-- <div class=" col-md-4 col-sm-6">
                                 <div class="cv-img">
                                     <a href="./cvImg-3.html"> <img
                                             src="../static/images/blue Minimalist CV Resume (1).jpg" alt=""></a>
@@ -1380,7 +1352,7 @@
                                     <img src="../static/images/Purple and White Clean and Professional Resume.jpg"
                                         alt="">
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="col-12 mt-3 mt-md-1 border-top pt-4">
