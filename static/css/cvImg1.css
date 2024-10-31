@@ -80,6 +80,15 @@ ul li {
     margin-bottom: 30px;
 }
 
+.bar-code {
+    display: flex;
+    justify-content: end;
+}
+
+.bar-code img {
+    width: 2rem;
+}
+
 .contact-info h2,
 .education h3,
 .skills h3,
