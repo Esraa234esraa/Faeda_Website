@@ -23,9 +23,11 @@ button {
     color: rgb(97, 97, 97);
 }
 
-input {
+input,
+select {
     background-color: rgb(241, 241, 241) !important;
 }
+
 
 .select2-container .select2-selection--single {
     background-color: rgb(241, 241, 241) !important;
@@ -411,7 +413,7 @@ img {
 
 .license {
     background-color: #f1f1f1;
-   
+
 }
 
 /* Adjust padding and margins on smaller screens */
@@ -431,4 +433,41 @@ img {
 
 select.form-control:not([size]):not([multiple]) {
     height: 3rem;
+}
+
+@media (min-width: 778px) {
+    .left {
+        position: fixed;
+        left: 0;
+    }
+}
+
+.nav-bar {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    color: white;
+    transition: padding 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-bar.shrink {
+    padding: 10px;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.402);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+main {
+    margin-top: 5.25rem;
+}
+
+.summary-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 10px;
+    background-color: #f9f9f9;
 }

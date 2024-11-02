@@ -21,6 +21,211 @@ $(document).ready(function () {
     }
 });
 
+document.getElementById('add-edu').addEventListener('click', function () {
+    addNewCard();
+});
+
+function addNewCard() {
+    // استنساخ الكارد الأساسي
+    let newCard = document.getElementById('card-template').cloneNode(true);
+    newCard.style.display = 'block';
+    newCard.classList.remove('d-none'); // إزالة class للإخفاء
+    newCard.classList.add('open');
+
+    // إضافة زر "حفظ" إلى الكارد الجديد
+    let saveButton = document.createElement('button');
+    saveButton.classList.add('btn', 'btn-info', 'mt-2');
+    saveButton.innerText = 'حفظ';
+    newCard.querySelector('.card-det').appendChild(saveButton);
+
+    document.getElementById('card2').appendChild(newCard); // إضافة الكارد إلى الصفحة
+
+    saveButton.addEventListener('click', function () {
+        // عند الضغط على "حفظ"، نقوم بإنشاء ملخص الكارد
+        let summaryCard = createSummaryCard(newCard);
+        document.getElementById('card2').appendChild(summaryCard); // إضافة الملخص
+        newCard.remove(); // إزالة الكارد المفتوح
+    });
+}
+
+// function createSummaryCard(card) {
+//     // إنشاء كارد ملخص جديد مع زر "تعديل"
+//     let summaryCard = document.createElement('div');
+//     summaryCard.classList.add('card-summary', 'd-flex', 'justify-content-between', 'align-items-center', 'border', 'p-2', 'mb-3');
+//     summaryCard.innerHTML = `
+//         <span>المؤهلات الدراسية</span>
+//         <button type="button" class="btn btn-outline-secondary edit-card">
+//         <i class="fas fa-pencil-alt"></i> تعديل</button>
+//                     <button type="button" class="btn btn-outline-danger delete-card3"><i class="fas fa-trash-alt"></i> حذف</button>
+
+//     `;
+
+//     // وظيفة زر "تعديل"
+//     const editButton = summaryCard.querySelector('.edit-card');
+//     editButton.addEventListener('click', function () {
+//         editButton.style.display = 'none'; // إخفاء زر "تعديل" عند الضغط عليه
+
+//         // استنساخ الكارد للتعديل عليه
+//         let editableCard = card.cloneNode(true);
+//         editableCard.style.display = 'block';
+
+//         // تحديث زر "حفظ" ليكون "حفظ التعديل"
+//         let saveButton = editableCard.querySelector('.btn-info');
+//         saveButton.innerText = 'حفظ التعديل';
+
+//         // وظيفة زر "حفظ التعديل"
+//         saveButton.addEventListener('click', function () {
+//             summaryCard.style.display = 'block'; // إظهار الملخص مرة أخرى
+//             editableCard.remove(); // إزالة الكارد المعدل بعد الحفظ
+//             editButton.style.display = 'inline-block'; // إعادة إظهار زر "تعديل"
+//         });
+
+//         document.getElementById('card2').appendChild(editableCard); // عرض الكارد المعدل
+//         summaryCard.style.display = 'none'; // إخفاء الكارد الملخص
+//     });
+
+
+//     return summaryCard;
+// }
+
+// Function to add save functionality to each card
+
+function createSummaryCard(card) {
+    // إنشاء كارد ملخص جديد مع زر "تعديل" وزر "حذف"
+    let summaryCard = document.createElement('div');
+    summaryCard.classList.add('card-summary', 'd-flex', 'justify-content-between', 'align-items-center', 'border', 'p-2', 'mb-3');
+    summaryCard.innerHTML = `
+        <span>المؤهلات الدراسية</span>
+        <button type="button" class="btn btn-outline-secondary edit-card">
+            <i class="fas fa-pencil-alt"></i> تعديل
+        </button>
+        <button type="button" class="btn btn-outline-danger delete-card3">
+            <i class="fas fa-trash-alt"></i> حذف
+        </button>
+    `;
+
+    // وظيفة زر "تعديل"
+    const editButton = summaryCard.querySelector('.edit-card');
+    editButton.addEventListener('click', function () {
+        editButton.style.display = 'none'; // إخفاء زر "تعديل" عند الضغط عليه
+
+        // استنساخ الكارد للتعديل عليه
+        let editableCard = card.cloneNode(true);
+        editableCard.style.display = 'block';
+
+        // تحديث زر "حفظ" ليكون "حفظ التعديل"
+        let saveButton = editableCard.querySelector('.btn-info');
+        saveButton.innerText = 'حفظ التعديل';
+
+        // وظيفة زر "حفظ التعديل"
+        saveButton.addEventListener('click', function () {
+            summaryCard.style.display = 'block'; // إظهار الملخص مرة أخرى
+            editableCard.remove(); // إزالة الكارد المعدل بعد الحفظ
+            editButton.style.display = 'inline-block'; // إعادة إظهار زر "تعديل"
+        });
+
+        document.getElementById('card2').appendChild(editableCard); // عرض الكارد المعدل
+        summaryCard.style.display = 'none'; // إخفاء الكارد الملخص
+    });
+
+    // وظيفة زر "حذف"
+    const deleteButton = summaryCard.querySelector('.delete-card3');
+    deleteButton.addEventListener('click', function () {
+        // استخدام SweetAlert2 لرسالة التأكيد
+        Swal.fire({
+            title: 'هل أنت متأكد؟',
+            text: "لن تتمكن من استرجاع هذا الكارد!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'نعم، احذفها!',
+            cancelButtonText: 'إلغاء'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                summaryCard.remove(); // حذف كارد الملخص
+                card.remove(); // حذف الكارد المفتوح (إذا كان موجوداً)
+                Swal.fire(
+                    'تم الحذف!',
+                    'تم حذف الكارد بنجاح.',
+                    'success'
+                );
+            }
+        });
+    });
+
+    return summaryCard;
+}
+
+function addSaveFunctionality(card, summaryCard) {
+    card.querySelector('.save-card').addEventListener('click', function () {
+        const jobPosition = card.querySelector('.job-position').value;
+        const jobTitle = card.querySelector('.job-title').value;
+        const city = card.querySelector('.city').value;
+        const startDate = card.querySelector('.start-date').value;
+        const endDate = card.querySelector('.end-date').value;
+
+        // تحديث الملخص بالقيم
+        summaryCard.querySelector('.summary-job-position').textContent = jobPosition;
+        summaryCard.querySelector('.summary-job-title').textContent = jobTitle;
+        summaryCard.querySelector('.summary-city').textContent = city;
+        summaryCard.querySelector('.summary-start-date').textContent = startDate;
+        summaryCard.querySelector('.summary-end-date').textContent = endDate;
+
+        // إظهار الملخص وإخفاء الكارد
+        card.classList.add('d-none');
+        summaryCard.classList.remove('d-none');
+    });
+}
+
+// إضافة وظيفة "تعديل" للملخص
+function addEditFunctionality(card, summaryCard) {
+    summaryCard.querySelector('.edit-card').addEventListener('click', function () {
+        summaryCard.classList.add('d-none');
+        card.classList.remove('d-none');
+    });
+}
+
+
+
+
+
+
+
+
+
+// إظهار حقل إدخال الجنسية عند النقر على زر "إضافة جنسية جديدة"
+document.getElementById('addNationalityBtn').addEventListener('click', function () {
+    document.getElementById('newNationalityContainer').classList.toggle('d-none');
+    document.getElementById('newNationality').focus();
+});
+
+// إضافة الجنسية الجديدة إلى القائمة عند النقر على زر "إضافة"
+document.getElementById('confirmAddNationalityBtn').addEventListener('click', function () {
+    var newNationalityInput = document.getElementById('newNationality');
+    var nationality = newNationalityInput.value.trim();
+    if (nationality) {
+        var select = document.getElementById('nationality');
+        var option = document.createElement('option');
+        option.value = nationality;
+        option.textContent = nationality;
+        option.classList.add('custom-option'); // فئة خاصة للجنسية الجديدة
+        select.appendChild(option);
+        select.value = nationality; // تعيين الخيار الجديد كقيمة مختارة
+        newNationalityInput.value = ''; // إفراغ حقل الإدخال
+        document.getElementById('newNationalityContainer').classList.add('d-none'); // إخفاء حقل الإدخال
+    }
+});
+
+// حذف آخر جنسية تمت إضافتها يدويًا
+document.getElementById('deleteNationalityBtn').addEventListener('click', function () {
+    var select = document.getElementById('nationality');
+    var options = select.getElementsByClassName('custom-option');
+    if (options.length > 0) {
+        select.removeChild(options[options.length - 1]); // حذف آخر خيار مضاف
+    }
+    document.getElementById('newNationalityContainer').classList.add('d-none'); // إخفاء حقل الإدخال
+});
 $('.add-input-btn').click(function (e) {
     const fieldName = $(this).data('field-name');
     const inputId = `new-input-${fieldName}`;
@@ -615,3 +820,127 @@ document.querySelector('.delete-bar').addEventListener('click', function () {
 });
 
 
+
+
+
+
+function addNewCard3() {
+    // استنساخ الكارد الأساسي
+    let newCard = document.getElementById('card-template2').cloneNode(true);
+    newCard.style.display = 'block';
+    newCard.classList.remove('d-none'); // إزالة class للإخفاء
+    newCard.classList.add('open');
+
+    // إضافة زر "حفظ" إلى الكارد الجديد
+    let saveButton = document.createElement('button');
+    saveButton.classList.add('btn', 'btn-info', 'mt-2');
+    saveButton.innerText = 'حفظ';
+    newCard.querySelector('.card-det').appendChild(saveButton);
+
+    document.getElementById('card3').appendChild(newCard); // إضافة الكارد إلى الصفحة
+
+    saveButton.addEventListener('click', function () {
+        // عند الضغط على "حفظ"، نقوم بإنشاء ملخص الكارد
+        let summaryCard = createSummaryCard3(newCard);
+        document.getElementById('card3').appendChild(summaryCard); // إضافة الملخص
+        newCard.remove(); // إزالة الكارد المفتوح
+    });
+}
+
+
+function createSummaryCard3(card) {
+    // إنشاء كارد ملخص جديد مع زر "تعديل" وزر "حذف"
+    let summaryCard = document.createElement('div');
+    summaryCard.classList.add('card-summary', 'd-flex', 'justify-content-between', 'align-items-center', 'border', 'p-2', 'mb-3');
+    summaryCard.innerHTML = `
+        <span>المؤهلات الدراسية</span>
+        <div>
+            <button type="button" class="btn btn-outline-secondary edit-card3"><i class="fas fa-pencil-alt"></i> تعديل</button>
+            <button type="button" class="btn btn-outline-danger delete-card3"><i class="fas fa-trash-alt"></i> حذف</button>
+        </div>
+    `;
+
+    // وظيفة زر "تعديل"
+    const editButton = summaryCard.querySelector('.edit-card3');
+    editButton.addEventListener('click', function () {
+        editButton.style.display = 'none'; // إخفاء زر "تعديل" عند الضغط عليه
+
+        // استنساخ الكارد للتعديل عليه
+        let editableCard = card.cloneNode(true);
+        editableCard.style.display = 'block';
+
+        // تحديث زر "حفظ" ليكون "حفظ التعديل"
+        let saveButton = editableCard.querySelector('.btn-info');
+        saveButton.innerText = 'حفظ التعديل';
+
+        // وظيفة زر "حفظ التعديل"
+        saveButton.addEventListener('click', function () {
+            summaryCard.style.display = 'block'; // إظهار الملخص مرة أخرى
+            editableCard.remove(); // إزالة الكارد المعدل بعد الحفظ
+            editButton.style.display = 'inline-block'; // إعادة إظهار زر "تعديل"
+        });
+
+        document.getElementById('card3').appendChild(editableCard); // عرض الكارد المعدل
+        summaryCard.style.display = 'none'; // إخفاء الكارد الملخص
+    });
+
+    // وظيفة زر "حذف"
+    // وظيفة زر "حذف"
+    const deleteButton = summaryCard.querySelector('.delete-card3');
+    deleteButton.addEventListener('click', function () {
+        // استخدام SweetAlert2 لرسالة التأكيد
+        Swal.fire({
+            title: 'هل أنت متأكد؟',
+            text: "لن تتمكن من استرجاع هذا الكارد!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'نعم، احذفها!',
+            cancelButtonText: 'إلغاء'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                summaryCard.remove(); // حذف كارد الملخص
+                card.remove(); // حذف الكارد المفتوح (إذا كان موجوداً)
+                Swal.fire(
+                    'تم الحذف!',
+                    'تم حذف الكارد بنجاح.',
+                    'success'
+                );
+            }
+        });
+    });
+
+
+    return summaryCard;
+}
+
+
+function addSaveFunctionality3(card, summaryCard) {
+    card.querySelector('.save-card3').addEventListener('click', function () {
+        const jobPosition = card.querySelector('.job-position').value;
+        const jobTitle = card.querySelector('.job-title').value;
+        const city = card.querySelector('.city').value;
+        const startDate = card.querySelector('.start-date').value;
+        const endDate = card.querySelector('.end-date').value;
+
+        // تحديث الملخص بالقيم
+        summaryCard.querySelector('.summary-job-position').textContent = jobPosition;
+        summaryCard.querySelector('.summary-job-title').textContent = jobTitle;
+        summaryCard.querySelector('.summary-city').textContent = city;
+        summaryCard.querySelector('.summary-start-date').textContent = startDate;
+        summaryCard.querySelector('.summary-end-date').textContent = endDate;
+
+        // إظهار الملخص وإخفاء الكارد
+        card.classList.add('d-none');
+        summaryCard.classList.remove('d-none');
+    });
+}
+
+// إضافة وظيفة "تعديل" للملخص
+function addEditFunctionality3(card, summaryCard) {
+    summaryCard.querySelector('.edit-card3').addEventListener('click', function () {
+        summaryCard.classList.add('d-none');
+        card.classList.remove('d-none');
+    });
+}
