@@ -21,117 +21,90 @@ $(document).ready(function () {
     }
 });
 
+
 document.getElementById('add-edu').addEventListener('click', function () {
     addNewCard();
 });
 
 function addNewCard() {
-    // استنساخ الكارد الأساسي
     let newCard = document.getElementById('card-template').cloneNode(true);
     newCard.style.display = 'block';
-    newCard.classList.remove('d-none'); // إزالة class للإخفاء
+    newCard.classList.remove('d-none');
     newCard.classList.add('open');
 
-    // إضافة زر "حفظ" إلى الكارد الجديد
     let saveButton = document.createElement('button');
     saveButton.classList.add('btn', 'btn-info', 'mt-2');
     saveButton.innerText = 'حفظ';
     newCard.querySelector('.card-det').appendChild(saveButton);
 
-    document.getElementById('card2').appendChild(newCard); // إضافة الكارد إلى الصفحة
+    document.getElementById('card2').appendChild(newCard);
 
     saveButton.addEventListener('click', function () {
-        // عند الضغط على "حفظ"، نقوم بإنشاء ملخص الكارد
         let summaryCard = createSummaryCard(newCard);
-        document.getElementById('card2').appendChild(summaryCard); // إضافة الملخص
-        newCard.remove(); // إزالة الكارد المفتوح
+        updateSummaryCard(newCard, summaryCard); // تحديث الملخص من الكارد
+        document.getElementById('card2').appendChild(summaryCard);
+        newCard.remove();
     });
 }
 
-// function createSummaryCard(card) {
-//     // إنشاء كارد ملخص جديد مع زر "تعديل"
-//     let summaryCard = document.createElement('div');
-//     summaryCard.classList.add('card-summary', 'd-flex', 'justify-content-between', 'align-items-center', 'border', 'p-2', 'mb-3');
-//     summaryCard.innerHTML = `
-//         <span>المؤهلات الدراسية</span>
-//         <button type="button" class="btn btn-outline-secondary edit-card">
-//         <i class="fas fa-pencil-alt"></i> تعديل</button>
-//                     <button type="button" class="btn btn-outline-danger delete-card3"><i class="fas fa-trash-alt"></i> حذف</button>
-
-//     `;
-
-//     // وظيفة زر "تعديل"
-//     const editButton = summaryCard.querySelector('.edit-card');
-//     editButton.addEventListener('click', function () {
-//         editButton.style.display = 'none'; // إخفاء زر "تعديل" عند الضغط عليه
-
-//         // استنساخ الكارد للتعديل عليه
-//         let editableCard = card.cloneNode(true);
-//         editableCard.style.display = 'block';
-
-//         // تحديث زر "حفظ" ليكون "حفظ التعديل"
-//         let saveButton = editableCard.querySelector('.btn-info');
-//         saveButton.innerText = 'حفظ التعديل';
-
-//         // وظيفة زر "حفظ التعديل"
-//         saveButton.addEventListener('click', function () {
-//             summaryCard.style.display = 'block'; // إظهار الملخص مرة أخرى
-//             editableCard.remove(); // إزالة الكارد المعدل بعد الحفظ
-//             editButton.style.display = 'inline-block'; // إعادة إظهار زر "تعديل"
-//         });
-
-//         document.getElementById('card2').appendChild(editableCard); // عرض الكارد المعدل
-//         summaryCard.style.display = 'none'; // إخفاء الكارد الملخص
-//     });
-
-
-//     return summaryCard;
-// }
-
-// Function to add save functionality to each card
-
 function createSummaryCard(card) {
-    // إنشاء كارد ملخص جديد مع زر "تعديل" وزر "حذف"
     let summaryCard = document.createElement('div');
     summaryCard.classList.add('card-summary', 'd-flex', 'justify-content-between', 'align-items-center', 'border', 'p-2', 'mb-3');
     summaryCard.innerHTML = `
-        <span>المؤهلات الدراسية</span>
+        <span class="summary-content"> المؤهلات الدراسية: </span>
         <button type="button" class="btn btn-outline-secondary edit-card">
             <i class="fas fa-pencil-alt"></i> تعديل
         </button>
-        <button type="button" class="btn btn-outline-danger delete-card3">
+        <button type="button" class="btn btn-outline-danger delete-card">
             <i class="fas fa-trash-alt"></i> حذف
         </button>
     `;
 
-    // وظيفة زر "تعديل"
     const editButton = summaryCard.querySelector('.edit-card');
     editButton.addEventListener('click', function () {
-        editButton.style.display = 'none'; // إخفاء زر "تعديل" عند الضغط عليه
-
-        // استنساخ الكارد للتعديل عليه
+        editButton.style.display = 'none';
         let editableCard = card.cloneNode(true);
         editableCard.style.display = 'block';
 
-        // تحديث زر "حفظ" ليكون "حفظ التعديل"
+        // احصل على القيم الحالية من السمري
+        const summaryContentText = summaryCard.querySelector('.summary-content').textContent;
+
+        if (summaryContentText) { // تحقق مما إذا كانت القيمة موجودة
+            const experienceParts = summaryContentText.split(': ')[1]; // الحصول على الجزء بعد "الخبرة العملية: "
+            if (experienceParts) { // تحقق مما إذا كان الجزء موجودًا
+                const [jobPosition, jobTitle, city, dateRange] = experienceParts.split(', ');
+                const [startDate, endDate] = dateRange ? dateRange.replace('من ', '').split(' إلى ') : ["", ""];
+
+                editableCard.querySelector('.job-position').value = jobPosition || "";
+                editableCard.querySelector('.job-title').value = jobTitle || "";
+                editableCard.querySelector('.city').value = city || "";
+                editableCard.querySelector('.start-date').value = startDate || "";
+                editableCard.querySelector('.end-date').value = endDate || "";
+            } else {
+                console.warn('No experience data found in summaryContentText:', summaryContentText);
+            }
+        } else {
+            console.warn('summaryContentText is not valid:', summaryContentText);
+        }
+
         let saveButton = editableCard.querySelector('.btn-info');
         saveButton.innerText = 'حفظ التعديل';
 
-        // وظيفة زر "حفظ التعديل"
         saveButton.addEventListener('click', function () {
-            summaryCard.style.display = 'block'; // إظهار الملخص مرة أخرى
-            editableCard.remove(); // إزالة الكارد المعدل بعد الحفظ
-            editButton.style.display = 'inline-block'; // إعادة إظهار زر "تعديل"
+            updateSummaryCard(editableCard, summaryCard); // تحديث الملخص بالقيم الجديدة
+            updateCardFields(editableCard); // تحديث الحقول داخل الكارد المعدل
+            summaryCard.style.display = 'block';
+            editableCard.remove();
+            editButton.style.display = 'inline-block'; // إعادة عرض زر التعديل
         });
 
-        document.getElementById('card2').appendChild(editableCard); // عرض الكارد المعدل
-        summaryCard.style.display = 'none'; // إخفاء الكارد الملخص
+        document.getElementById('card2').appendChild(editableCard);
+        summaryCard.style.display = 'none';
     });
 
-    // وظيفة زر "حذف"
-    const deleteButton = summaryCard.querySelector('.delete-card3');
+    // كود deleteButton كما هو
+    const deleteButton = summaryCard.querySelector('.delete-card');
     deleteButton.addEventListener('click', function () {
-        // استخدام SweetAlert2 لرسالة التأكيد
         Swal.fire({
             title: 'هل أنت متأكد؟',
             text: "لن تتمكن من استرجاع هذا الكارد!",
@@ -143,8 +116,8 @@ function createSummaryCard(card) {
             cancelButtonText: 'إلغاء'
         }).then((result) => {
             if (result.isConfirmed) {
-                summaryCard.remove(); // حذف كارد الملخص
-                card.remove(); // حذف الكارد المفتوح (إذا كان موجوداً)
+                summaryCard.remove();
+                card.remove();
                 Swal.fire(
                     'تم الحذف!',
                     'تم حذف الكارد بنجاح.',
@@ -157,39 +130,33 @@ function createSummaryCard(card) {
     return summaryCard;
 }
 
-function addSaveFunctionality(card, summaryCard) {
-    card.querySelector('.save-card').addEventListener('click', function () {
-        const jobPosition = card.querySelector('.job-position').value;
-        const jobTitle = card.querySelector('.job-title').value;
-        const city = card.querySelector('.city').value;
-        const startDate = card.querySelector('.start-date').value;
-        const endDate = card.querySelector('.end-date').value;
+function updateSummaryCard(card, summaryCard) {
+    const jobPosition = card.querySelector('.job-position') ? card.querySelector('.job-position').value : "";
+    const jobTitle = card.querySelector('.job-title') ? card.querySelector('.job-title').value : "";
+    const city = card.querySelector('.city') ? card.querySelector('.city').value : "";
+    const startDate = card.querySelector('.start-date') ? card.querySelector('.start-date').value : "";
+    const endDate = card.querySelector('.end-date') ? card.querySelector('.end-date').value : "";
 
-        // تحديث الملخص بالقيم
-        summaryCard.querySelector('.summary-job-position').textContent = jobPosition;
-        summaryCard.querySelector('.summary-job-title').textContent = jobTitle;
-        summaryCard.querySelector('.summary-city').textContent = city;
-        summaryCard.querySelector('.summary-start-date').textContent = startDate;
-        summaryCard.querySelector('.summary-end-date').textContent = endDate;
-
-        // إظهار الملخص وإخفاء الكارد
-        card.classList.add('d-none');
-        summaryCard.classList.remove('d-none');
-    });
+    const summaryContent = summaryCard.querySelector('.summary-content');
+    summaryContent.textContent = `المؤهلات الدراسية: ${jobPosition}, ${jobTitle}, ${city}, من ${startDate} إلى ${endDate}`;
 }
 
-// إضافة وظيفة "تعديل" للملخص
-function addEditFunctionality(card, summaryCard) {
-    summaryCard.querySelector('.edit-card').addEventListener('click', function () {
-        summaryCard.classList.add('d-none');
-        card.classList.remove('d-none');
-    });
+function updateCardFields(card) {
+    // تحديث الحقول في الكارد بالقيم الجديدة
+    const jobPosition = card.querySelector('.job-position') ? card.querySelector('.job-position').value : "";
+    const jobTitle = card.querySelector('.job-title') ? card.querySelector('.job-title').value : "";
+    const city = card.querySelector('.city') ? card.querySelector('.city').value : "";
+    const startDate = card.querySelector('.start-date') ? card.querySelector('.start-date').value : "";
+    const endDate = card.querySelector('.end-date') ? card.querySelector('.end-date').value : "";
+    console.log(jobPosition);
+
+    // حفظ القيم المحدثة في الحقول نفسها
+    card.querySelector('.job-position').value = jobPosition;
+    card.querySelector('.job-title').value = jobTitle;
+    card.querySelector('.city').value = city;
+    card.querySelector('.start-date').value = startDate;
+    card.querySelector('.end-date').value = endDate;
 }
-
-
-
-
-
 
 
 
@@ -439,9 +406,7 @@ $(document).ready(function () {
                         </div>
                     ` : ''}
                     <div class="d-flex justify-content-between align-items-center mt-3">
-                        <button class="btn btn-primary">
-                            <i class="fa fa-check"></i> تم بنجاح
-                        </button>
+                        
                         <button class="btn btn-outline-secondary delete-btn">
                             <i class="fa fa-trash"></i>
                         </button>
@@ -529,9 +494,7 @@ function createCard(type) {
                     </div>
                 </div>
                 <div class="d-flex p-3">
-                    <button type="button" class="btn btn-success done-btn">تم بنجاح</button>
                     <button type="button" class="btn btn-danger delete-btn">حذف</button>
-                    <button type="button" class="edit-btn btn btn-secondary d-none"><i class="fas fa-pencil-alt"></i> تعديل</button>
                 </div>
             </div>
         </div>
@@ -541,35 +504,32 @@ function createCard(type) {
 }
 
 function handleCardActions(card) {
-    const doneBtn = card.querySelector('.done-btn');
-    doneBtn.addEventListener('click', () => {
-        alert('تم بنجاح!');
-    });
+
 
     const deleteBtn = card.querySelector('.delete-btn');
     deleteBtn.addEventListener('click', () => {
         card.remove();
     });
 
-    const editBtn = card.querySelector('.edit-btn');
-    editBtn.addEventListener('click', () => {
-        if (openCard) {
-            openCard.classList.remove('d-none');
-            const openEditBtn = openCard.querySelector('.edit-btn');
-            openEditBtn.classList.remove('d-none');
-        }
-        openCard = card;
-        card.classList.add('d-none');
-        editBtn.classList.add('d-none');
-    });
+    // const editBtn = card.querySelector('.edit-btn');
+    // editBtn.addEventListener('click', () => {
+    //     if (openCard) {
+    //         openCard.classList.remove('d-none');
+    //         const openEditBtn = openCard.querySelector('.edit-btn');
+    //         openEditBtn.classList.remove('d-none');
+    //     }
+    //     openCard = card;
+    //     card.classList.add('d-none');
+    //     editBtn.classList.add('d-none');
+    // });
 }
 
 addTrainingBtn.addEventListener('click', () => {
-    if (openCard) {
-        openCard.classList.remove('d-none');
-        const openEditBtn = openCard.querySelector('.edit-btn');
-        openEditBtn.classList.remove('d-none');
-    }
+    // if (openCard) {
+    //     openCard.classList.remove('d-none');
+    //     const openEditBtn = openCard.querySelector('.edit-btn');
+    //     openEditBtn.classList.remove('d-none');
+    // }
 
     const newCard = createCard('training');
     cardsContainer.appendChild(newCard);
@@ -754,9 +714,7 @@ document.getElementById('addWebSite').addEventListener('click', function () {
                                     <input type="text" class="form-control" id="websiteUrl" placeholder="">
                                </div>
             <div class="d-flex justify-content-between align-items-center mt-3">
-                <button class="btn btn-primary">
-                    <i class="fa fa-check"></i> تم بنجاح
-                </button>
+               
                 <button class="btn btn-outline-secondary delete-btn">
                     <i class="fa fa-trash"></i>
                 </button>
@@ -773,10 +731,10 @@ function addCardEventListeners(card) {
         card.remove();
     });
 
-    card.querySelector('.success-btn').addEventListener('click', function () {
-        card.querySelector('.card-body').classList.add('bg-success', 'text-white'); // Add success styles
-        this.disabled = true;
-    });
+    // card.querySelector('.success-btn').addEventListener('click', function () {
+    //     card.querySelector('.card-body').classList.add('bg-success', 'text-white'); // Add success styles
+    //     this.disabled = true;
+    // });
 }
 
 document.querySelectorAll('.webSite-card').forEach(addCardEventListeners);
@@ -824,71 +782,90 @@ document.querySelector('.delete-bar').addEventListener('click', function () {
 
 
 
-function addNewCard3() {
-    // استنساخ الكارد الأساسي
+
+
+
+
+function addNewCard2() {
     let newCard = document.getElementById('card-template2').cloneNode(true);
     newCard.style.display = 'block';
-    newCard.classList.remove('d-none'); // إزالة class للإخفاء
+    newCard.classList.remove('d-none');
     newCard.classList.add('open');
 
-    // إضافة زر "حفظ" إلى الكارد الجديد
     let saveButton = document.createElement('button');
     saveButton.classList.add('btn', 'btn-info', 'mt-2');
     saveButton.innerText = 'حفظ';
     newCard.querySelector('.card-det').appendChild(saveButton);
 
-    document.getElementById('card3').appendChild(newCard); // إضافة الكارد إلى الصفحة
+    document.getElementById('card3').appendChild(newCard);
 
     saveButton.addEventListener('click', function () {
-        // عند الضغط على "حفظ"، نقوم بإنشاء ملخص الكارد
-        let summaryCard = createSummaryCard3(newCard);
-        document.getElementById('card3').appendChild(summaryCard); // إضافة الملخص
-        newCard.remove(); // إزالة الكارد المفتوح
+        let summaryCard = createSummaryCard2(newCard);
+        updateSummaryCard2(newCard, summaryCard); // تحديث الملخص من الكارد
+        document.getElementById('card3').appendChild(summaryCard);
+        updateCardFields2(newCard); // تحديث الحقول في الكارد
+        newCard.remove();
     });
 }
 
-
-function createSummaryCard3(card) {
-    // إنشاء كارد ملخص جديد مع زر "تعديل" وزر "حذف"
+function createSummaryCard2(card) {
     let summaryCard = document.createElement('div');
     summaryCard.classList.add('card-summary', 'd-flex', 'justify-content-between', 'align-items-center', 'border', 'p-2', 'mb-3');
     summaryCard.innerHTML = `
-        <span>المؤهلات الدراسية</span>
-        <div>
-            <button type="button" class="btn btn-outline-secondary edit-card3"><i class="fas fa-pencil-alt"></i> تعديل</button>
-            <button type="button" class="btn btn-outline-danger delete-card3"><i class="fas fa-trash-alt"></i> حذف</button>
-        </div>
+        <span class="summary-content"> الخبرة العملية: </span>
+        <button type="button" class="btn btn-outline-secondary edit-card2">
+            <i class="fas fa-pencil-alt"></i> تعديل
+        </button>
+        <button type="button" class="btn btn-outline-danger delete-card2">
+            <i class="fas fa-trash-alt"></i> حذف
+        </button>
     `;
 
-    // وظيفة زر "تعديل"
-    const editButton = summaryCard.querySelector('.edit-card3');
+    const editButton = summaryCard.querySelector('.edit-card2');
     editButton.addEventListener('click', function () {
-        editButton.style.display = 'none'; // إخفاء زر "تعديل" عند الضغط عليه
-
-        // استنساخ الكارد للتعديل عليه
+        editButton.style.display = 'none';
         let editableCard = card.cloneNode(true);
         editableCard.style.display = 'block';
 
-        // تحديث زر "حفظ" ليكون "حفظ التعديل"
+        // احصل على القيم الحالية من السمري
+        const summaryContentText = summaryCard.querySelector('.summary-content').textContent;
+
+        if (summaryContentText) { // تحقق مما إذا كانت القيمة موجودة
+            const experienceParts = summaryContentText.split(': ')[1]; // الحصول على الجزء بعد "الخبرة العملية: "
+            if (experienceParts) { // تحقق مما إذا كان الجزء موجودًا
+                const [jobPosition, jobTitle, city, dateRange] = experienceParts.split(', ');
+                const [startDate, endDate] = dateRange ? dateRange.replace('من ', '').split(' إلى ') : ["", ""];
+
+                editableCard.querySelector('.job-position').value = jobPosition || "";
+                editableCard.querySelector('.job-title').value = jobTitle || "";
+                editableCard.querySelector('.city').value = city || "";
+                editableCard.querySelector('.start-date').value = startDate || "";
+                editableCard.querySelector('.end-date').value = endDate || "";
+            } else {
+                console.warn('No experience data found in summaryContentText:', summaryContentText);
+            }
+        } else {
+            console.warn('summaryContentText is not valid:', summaryContentText);
+        }
+
         let saveButton = editableCard.querySelector('.btn-info');
         saveButton.innerText = 'حفظ التعديل';
 
-        // وظيفة زر "حفظ التعديل"
         saveButton.addEventListener('click', function () {
-            summaryCard.style.display = 'block'; // إظهار الملخص مرة أخرى
-            editableCard.remove(); // إزالة الكارد المعدل بعد الحفظ
-            editButton.style.display = 'inline-block'; // إعادة إظهار زر "تعديل"
+            updateSummaryCard2(editableCard, summaryCard); // تحديث الملخص بالقيم الجديدة
+            updateCardFields2(editableCard); // تحديث الحقول داخل الكارد المعدل
+            summaryCard.style.display = 'block';
+            editableCard.remove();
+            editButton.style.display = 'inline-block'; // إعادة عرض زر التعديل
         });
 
-        document.getElementById('card3').appendChild(editableCard); // عرض الكارد المعدل
-        summaryCard.style.display = 'none'; // إخفاء الكارد الملخص
+        document.getElementById('card3').appendChild(editableCard);
+        summaryCard.style.display = 'none';
     });
 
-    // وظيفة زر "حذف"
-    // وظيفة زر "حذف"
-    const deleteButton = summaryCard.querySelector('.delete-card3');
+    // كود deleteButton كما هو
+    const deleteButton = summaryCard.querySelector('.delete-card2');
     deleteButton.addEventListener('click', function () {
-        // استخدام SweetAlert2 لرسالة التأكيد
         Swal.fire({
             title: 'هل أنت متأكد؟',
             text: "لن تتمكن من استرجاع هذا الكارد!",
@@ -900,8 +877,8 @@ function createSummaryCard3(card) {
             cancelButtonText: 'إلغاء'
         }).then((result) => {
             if (result.isConfirmed) {
-                summaryCard.remove(); // حذف كارد الملخص
-                card.remove(); // حذف الكارد المفتوح (إذا كان موجوداً)
+                summaryCard.remove();
+                card.remove();
                 Swal.fire(
                     'تم الحذف!',
                     'تم حذف الكارد بنجاح.',
@@ -911,36 +888,35 @@ function createSummaryCard3(card) {
         });
     });
 
-
     return summaryCard;
 }
 
 
-function addSaveFunctionality3(card, summaryCard) {
-    card.querySelector('.save-card3').addEventListener('click', function () {
-        const jobPosition = card.querySelector('.job-position').value;
-        const jobTitle = card.querySelector('.job-title').value;
-        const city = card.querySelector('.city').value;
-        const startDate = card.querySelector('.start-date').value;
-        const endDate = card.querySelector('.end-date').value;
+function updateSummaryCard2(card, summaryCard) {
+    const jobPosition = card.querySelector('.job-position').value || "";
+    const jobTitle = card.querySelector('.job-title').value || "";
+    const city = card.querySelector('.city').value || "";
+    const startDate = card.querySelector('.start-date').value || "";
+    const endDate = card.querySelector('.end-date').value || "";
 
-        // تحديث الملخص بالقيم
-        summaryCard.querySelector('.summary-job-position').textContent = jobPosition;
-        summaryCard.querySelector('.summary-job-title').textContent = jobTitle;
-        summaryCard.querySelector('.summary-city').textContent = city;
-        summaryCard.querySelector('.summary-start-date').textContent = startDate;
-        summaryCard.querySelector('.summary-end-date').textContent = endDate;
-
-        // إظهار الملخص وإخفاء الكارد
-        card.classList.add('d-none');
-        summaryCard.classList.remove('d-none');
-    });
+    const summaryContent = summaryCard.querySelector('.summary-content');
+    summaryContent.textContent = `الخبرة العملية: ${jobPosition}, ${jobTitle}, ${city}, من ${startDate} إلى ${endDate}`;
 }
+function updateCardFields2(card) {
+    // تحديث الحقول في الكارد بالقيم الجديدة
+    const jobPosition = card.querySelector('.job-position').value; // احصل على القيمة الحالية
+    const jobTitle = card.querySelector('.job-title').value;
+    const city = card.querySelector('.city').value;
+    const startDate = card.querySelector('.start-date').value;
+    const endDate = card.querySelector('.end-date').value;
 
-// إضافة وظيفة "تعديل" للملخص
-function addEditFunctionality3(card, summaryCard) {
-    summaryCard.querySelector('.edit-card3').addEventListener('click', function () {
-        summaryCard.classList.add('d-none');
-        card.classList.remove('d-none');
-    });
+    // طباعة القيم في الكونسل للتأكد من أنها صحيحة
+    console.log(`Job Position: ${jobPosition}, Job Title: ${jobTitle}, City: ${city}, Start Date: ${startDate}, End Date: ${endDate}`);
+
+    // حفظ القيم المحدثة في الحقول نفسها
+    card.querySelector('.job-position').value = jobPosition; // تأكد من أنها تحمل القيمة الصحيحة
+    card.querySelector('.job-title').value = jobTitle;
+    card.querySelector('.city').value = city;
+    card.querySelector('.start-date').value = startDate;
+    card.querySelector('.end-date').value = endDate;
 }

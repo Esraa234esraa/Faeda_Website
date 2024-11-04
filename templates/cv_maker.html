@@ -4,23 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+    <!-- ملفات CSS أولاً -->
     <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <!-- Font Awesome CSS (اختر أحد الإصدارات) -->
-    <!-- النسخة الأحدث من Font Awesome -->
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+    <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- أو يمكنك استخدام الإصدار الأقدم إذا كانت الأيقونات متوافقة -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-
-    <!-- ملفات CSS الخاصة بك -->
+    <!-- CSS الخاصة بك -->
     <link rel="stylesheet" href="../static/css/cv_maker.css">
-
     <title>انشاء سيرة ذاتية</title>
 </head>
 
@@ -136,7 +133,7 @@
                                 <div class="col-sm-4 ">
                                     <div class="img d-flex flex-column py-2">
                                         <div class="d-flex align-items-center mb-1">
-                                            <label class="flex-grow-1 fw-medium text-secondary text-sm">صورة</label>
+                                            <label class="flex-grow-1 fw-medium  text-sm">صورة</label>
                                         </div>
                                         <button id="uploadImageButton" type="button"
                                             class="btn btn-light border-secondary bg-light text-center w-100 h-100 p-3 rounded">
@@ -153,8 +150,7 @@
                                     <div class="row">
                                         <div class="col-sm-6  ">
                                             <div class="form-group py-2 text-right">
-                                                <label for="focus-id-name-givenName"
-                                                    class="form-label text-secondary text-end">الاسم
+                                                <label for="focus-id-name-givenName" class="form-label  text-end">الاسم
                                                     الأول</label>
                                                 <input id="focus-id-name-givenName" type="text" class="form-control"
                                                     esraa">
@@ -164,8 +160,7 @@
                                         </div>
                                         <div class="col-sm-6 ">
                                             <div class="form-group py-2 text-right">
-                                                <label for="focus-id-name-familyName"
-                                                    class="form-label text-secondary">اسم
+                                                <label for="focus-id-name-familyName" class="form-label ">اسم
                                                     العائلة</label>
                                                 <input id="focus-id-name-familyName" type="text" class="form-control"
                                                     اشرف">
@@ -175,7 +170,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group py-2 text-right">
-                                        <label for="emailVal" class="form-label text-secondary">عنوان البريد
+                                        <label for="emailVal" class="form-label">عنوان البريد
                                             الإلكتروني</label>
                                         <input id="emailVal" type="email" class="form-control">
                                         <span id="errorEmail" class="text-danger"></span>
@@ -185,7 +180,7 @@
 
                                 <div class="col-12">
                                     <div class="form-group py-2 text-right">
-                                        <label for="focus-id-name-address" class="form-label text-secondary">
+                                        <label for="focus-id-name-address" class="form-label">
                                             العنوان</label>
                                         <input id="focus-id-name-address" type="text" class="form-control">
                                         <span id="errorZipcode" class="text-danger"></span>
@@ -195,8 +190,7 @@
 
                                 <div class="col-12 col-sm-6 mb-2">
                                     <div class="form-group text-right">
-                                        <label for="focus-id-address-city"
-                                            class="form-label text-muted ">المدينة</label>
+                                        <label for="focus-id-address-city" class="form-label   ">المدينة</label>
                                         <input id="focus-id-address-city" data-s="المدينة" type="text"
                                             autocomple="address-level2" maxlength="1000" class="form-control">
                                         <span id="errorCity" class="text-danger"></span>
@@ -205,36 +199,23 @@
                                 </div>
                                 <div class="col-12 col-sm-6 mb-2">
                                     <div class="form-group text-right">
-                                        <label for="focus-id-address-city" class="form-label text-muted ">رخصة
-                                            القيادة</label>
-                                        <div class="license  d-flex justify-content-around align-items-center ">
-                                            <div>
-                                                <label for="">نعم امتلك</label>
-                                                <input name="license" id="focus-id-address-city" data-s="رخصة القيادة"
-                                                    type="radio" autocomplete="address-level2" maxlength="1000"
-                                                    class="form-check">
-                                            </div>
-                                            <div>
-                                                <label for="">لا امتلك</label>
-                                                <input name="license" id="focus-id-address-city" data-s="رخصة القيادة"
-                                                    type="radio" autocomplete="address-level2" maxlength="1000"
-                                                    class="form-check">
-                                            </div>
-                                        </div>
+                                        <label for="license" class="d-flex label  ">رخصة القيادة </label>
+                                        <select class="form-control" id="license" aria-label="Default select example">
+                                            <option selected>لا امتلك</option>
+                                            <option value="1">نعم امتلك</option>
 
-
-
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 mb-2">
                                     <div class="form-group text-right">
-                                        <label for="birthday" class="d-flex label text-muted">تاريخ الميلاد </label>
+                                        <label for="birthday" class="d-flex label  ">تاريخ الميلاد </label>
                                         <input type="date" class="form-control" id="birthday" name="birthday">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 mb-2">
                                     <div class="form-group text-right">
-                                        <label for="relation" class="d-flex label text-muted">الحالة الاجتماعية </label>
+                                        <label for="relation" class="d-flex label  ">الحالة الاجتماعية </label>
                                         <select class="form-control" id="relation" aria-label="Default select example">
                                             <option selected>حالتك الاجتماعية</option>
                                             <option value="1">اعزب/عزباء</option>
@@ -247,7 +228,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6 mb-2">
                                     <div class="form-group text-right">
-                                        <label for="nationality" class="d-flex label text-muted">الجنسية</label>
+                                        <label for="nationality" class="d-flex label  ">الجنسية</label>
 
                                         <!-- قائمة الجنسيات -->
                                         <select class="form-control mb-2" id="nationality"
@@ -286,6 +267,64 @@
                             </div>
                         </div>
 
+                        <!-- نبذة عني -->
+                        <div id="achev" class="col-12 p-0 mb-4">
+                            <div
+                                class="header position-relative d-flex align-items-center justify-content-between border-top mt-4">
+
+                                <input type="text" placeholder="نبذة عني"
+                                    class="card-input form-control-plaintext w-100 border-bottom-0 bg-transparent p-0">
+                                <span class="underline"></span>
+
+                                <div class="py-3 d-flex align-items-start">
+                                    <div class="ml-2">
+
+                                    </div>
+                                    <button id="arrowUp9"
+                                        class="btn btn-outline-secondary d-flex align-items-center justify-content-center
+                                                                                                                                                                                                                                                    rounded p-2">
+                                        <i id="arrow9"
+                                            class="fa fa-arrow-down pointer-events-none flex-shrink-0 box-content "
+                                            aria-hidden="true"></i>
+
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="card9" class="d-none w-100 mb-4 p-2">
+                            <div class="col-12 mb-4">
+                                <label for='editor' class="d-flex label">نبذة عني</label>
+                                <div class="editor-container w-100 py-3">
+                                    <div class="toolbar border-top pt-2">
+                                        <div class="toolbar pt-2">
+                                            <button class="format-btn" data-action="bold"><i
+                                                    class="fas fa-bold"></i></button>
+                                            <button class="format-btn" data-action="italic"><em><i
+                                                        class="fas fa-italic"></i></em></button>
+                                            <button class="format-btn" data-action="underline"><i
+                                                    class="fas fa-underline"></i></button>
+
+                                            <button class="format-btn" data-action="left-align"><i
+                                                    class="fas fa-align-left"></i></button>
+                                            <button class="format-btn" data-action="center-align"><i
+                                                    class="fas fa-align-center"></i></button>
+                                            <button class="format-btn" data-action="right-align"><i
+                                                    class="fas fa-align-right"></i></button>
+
+                                            <button class="format-btn" data-action="ordered-list"><i
+                                                    class="fas fa-list-ol"></i>
+                                            </button>
+                                            <button class="format-btn" data-action="unordered-list">
+                                                <i class="fas fa-list-ul"></i></button>
+                                        </div>
+                                    </div>
+                                    <div id="editor" contenteditable="true" class="editor"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <!-- المؤهلات الدراسية -->
                         <div class="col-12 p-0 mb-4">
                             <div
@@ -313,7 +352,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="card2" class="d-none">
+                        <div id="card2" class="">
                             <div id="card-template" class="card border-0 open w-100 mb-4 p-7" style="display: none;">
                                 <div class="row">
 
@@ -323,7 +362,7 @@
                                                 <label for="floatingInput" class="d-flex label ">المؤهلات
                                                     الدراسية</label>
 
-                                                <input type="text" class="form-control" id="floatingInput"
+                                                <input type="text" class="form-control job-title" id="floatingInput"
                                                     placeholder="">
                                             </div>
                                         </div>
@@ -332,7 +371,7 @@
 
                                                 <label for="floatingInput" class="d-flex label"> المؤسسة
                                                     التعليمية</label>
-                                                <input type="text" class="form-control" id="floatingInput"
+                                                <input type="text" class="form-control job-position" id="floatingInput"
                                                     placeholder="">
                                             </div>
                                         </div>
@@ -345,7 +384,7 @@
                                                         <label for="country-select" class="d-flex label">اختر
                                                             دولة:</label>
                                                         <select id="country-select"
-                                                            class="js-example-placeholder-single js-states form-control">
+                                                            class="js-example-placeholder-single js-states form-control city">
 
                                                             <option value="" disabled selected>اختر الدولة</option>
                                                             <option value="AF">أفغانستان</option>
@@ -549,7 +588,7 @@
                                                         <label for="city-select" class="d-flex label">اختر
                                                             مدينة:</label>
                                                         <select id="city-select"
-                                                            class="js-example-placeholder-single js-states form-control">
+                                                            class="js-example-placeholder-single  js-states form-control">
                                                             <option value="">اختر المدينة</option>
                                                         </select>
                                                     </div>
@@ -562,11 +601,13 @@
                                             class="col-12 mb-4 d-flex p-0 align-items-center flex-column flex-sm-row  justify-content-between">
                                             <div class="col-md-6  ">
                                                 <label for="birthday" class="d-flex label">تاريخ البدء :</label>
-                                                <input type="date" class="form-control" id="birthday" name="birthday">
+                                                <input type="date" class="form-control start-date" id="birthday"
+                                                    name="birthday">
                                             </div>
                                             <div class="col-md-6 ">
                                                 <label for="birthday" class="d-flex label">تاريخ الإنتهاء :</label>
-                                                <input type="date" class="form-control" id="birthday" name="birthday">
+                                                <input type="date" class="form-control end-date" id="birthday"
+                                                    name="birthday">
                                             </div>
 
                                         </div>
@@ -588,21 +629,16 @@
                                                             class="fas fa-align-center"></i></button>
                                                     <button class="format-btn" data-action="right-align"><i
                                                             class="fas fa-align-right"></i></button>
-                                                    <button class="format-btn" data-action="increase-size"><i
-                                                            class="fas fa-plus"></i>
-                                                    </button>
-                                                    <button class="format-btn" data-action="decrease-size"><i
-                                                            class="fas fa-minus"></i>
-                                                    </button>
+
                                                     <button class="format-btn" data-action="ordered-list"><i
                                                             class="fas fa-list-ol"></i>
                                                     </button>
                                                     <button class="format-btn" data-action="unordered-list">
                                                         <i class="fas fa-list-ul"></i></button>
                                                 </div>
-                                                <div id="editor" contenteditable="true" class="editor">
-
+                                                <div id="editor" contenteditable="true" class="editor Discription">
                                                 </div>
+
                                             </div>
 
 
@@ -688,7 +724,7 @@
                                         <div class="col-12 mb-4">
                                             <label class="d-flex label">المهام الوظيفية :</label>
                                             <div class="editor-container w-100 py-3">
-                                                <div id="editor" contenteditable="true" class="editor"></div>
+                                                <div id="editor2" contenteditable="true" class="editor"></div>
                                             </div>
                                         </div>
                                         <!-- <div class="d-flex justify-content-center mt-4">
@@ -700,8 +736,8 @@
                             </div>
                             <div class="d-flex justify-content-center mt-4">
 
-                                <button class="btn btn-info mb-3 d-flex align-items-center mt-4"
-                                    onclick="addNewCard3()">
+                                <button id="add-exp" class="btn btn-info mb-3 d-flex align-items-center mt-4"
+                                    onclick="addNewCard2()">
                                     إضافة خبرة <i class='fas fa-plus pr-2'></i>
                                 </button>
                             </div>
@@ -741,7 +777,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="card4" class="d-none w-100 mb-4 p-2">
+                        <!-- <div id="card4" class="d-none w-100 mb-4 p-2">
                             <div id="skillsContainer">
                                 <div class="skill-card" id="card-1">
                                     <div class="header d-flex justify-content-between align-items-center">
@@ -777,65 +813,44 @@
                                 </div>
                             </div>
                             <button class="btn btn-primary mt-3" id="addSkillBtn">إضافة مهارة</button>
-                        </div>
-
-                        <!-- الانجازات -->
-                        <div id="achev" class="col-12 p-0 mb-4">
-                            <div
-                                class="header position-relative d-flex align-items-center justify-content-between border-top mt-4">
-
-                                <input type="text" placeholder="الإنجازات"
-                                    class="card-input form-control-plaintext w-100 border-bottom-0 bg-transparent p-0">
-                                <span class="underline"></span>
-
-                                <div class="py-3 d-flex align-items-start">
-                                    <div class="ml-2">
-
+                        </div> -->
+                        <div id="card4" class="d-none w-100 mb-4 p-2">
+                            <div id="skillsContainer">
+                                <div class="skill-card" id="card-1">
+                                    <div class="header d-flex justify-content-between align-items-center">
+                                        <span>المهارة [1]</span>
+                                        <button class="btn btn-outline-secondary edit-btn d-none" id="editCard1">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
                                     </div>
-                                    <button id="arrowUp9"
-                                        class="btn btn-outline-secondary d-flex align-items-center justify-content-center
-                                                                                                                                                                                                                                            rounded p-2">
-                                        <i id="arrow9"
-                                            class="fa fa-arrow-down pointer-events-none flex-shrink-0 box-content "
-                                            aria-hidden="true"></i>
+                                    <div class="card-body" id="card-body">
+                                        <div class="form-group">
+                                            <label for="skill1">المهارة</label>
+                                            <input type="text" class="form-control" id="skill1" placeholder="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="level1">المستوى</label>
+                                            <select class="form-control" id="level1">
+                                                <option value="">اختر مستوى</option>
+                                                <option value="مبتدأ">مبتدأ</option>
+                                                <option value="متوسط">متوسط</option>
+                                                <option value="جيد">جيد</option>
+                                                <option value="قوي">قوي</option>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
 
-                                    </button>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div id="card9" class="d-none w-100 mb-4 p-2">
-                            <div class="col-12 mb-4">
-                                <label for='editor' class="d-flex label">اضافةإنجاز</label>
-                                <div class="editor-container w-100 py-3">
-                                    <div class="toolbar border-top pt-2">
-                                        <div class="toolbar border-top pt-2">
-                                            <button class="format-btn" data-action="bold"><i
-                                                    class="fas fa-bold"></i></button>
-                                            <button class="format-btn" data-action="italic"><em><i
-                                                        class="fas fa-italic"></i></em></button>
-                                            <button class="format-btn" data-action="underline"><i
-                                                    class="fas fa-underline"></i></button>
-
-                                            <button class="format-btn" data-action="left-align"><i
-                                                    class="fas fa-align-left"></i></button>
-                                            <button class="format-btn" data-action="center-align"><i
-                                                    class="fas fa-align-center"></i></button>
-                                            <button class="format-btn" data-action="right-align"><i
-                                                    class="fas fa-align-right"></i></button>
-
-                                            <button class="format-btn" data-action="ordered-list"><i
-                                                    class="fas fa-list-ol"></i>
+                                            <button class="btn btn-outline-secondary delete-btn">
+                                                <i class="fa fa-trash"></i>
                                             </button>
-                                            <button class="format-btn" data-action="unordered-list">
-                                                <i class="fas fa-list-ul"></i></button>
                                         </div>
                                     </div>
-                                    <div id="editor" contenteditable="true" class="editor"></div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary mt-3">اضافه</button>
+                            <button class="btn btn-primary mt-3" id="addSkillBtn">إضافة مهارة</button>
                         </div>
+
+
 
                         <!-- الهوايات -->
                         <div id="hop" class="d-none col-12 p-0 mb-4">
@@ -878,9 +893,7 @@
                                         </div>
 
                                         <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <button class="btn btn-primary">
-                                                <i class="fa fa-check"></i> تم بنجاح
-                                            </button>
+
                                             <button class="btn btn-outline-secondary delete-btn">
                                                 <i class="fa fa-trash"></i>
                                             </button>
@@ -940,9 +953,7 @@
                                             </select>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <button class="btn btn-primary">
-                                                <i class="fa fa-check"></i> تم بنجاح
-                                            </button>
+
                                             <button class="btn btn-outline-secondary delete-btn">
                                                 <i class="fa fa-trash"></i>
                                             </button>
@@ -1037,14 +1048,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="d-flex p-3">
-                                                    <button class="btn btn-success">
+                                                <!-- <div class="d-flex p-3">
+                                                    <button class="btn btn-success done-btn">
                                                         <i class="fa fa-check"></i> تم بنجاح
                                                     </button>
                                                     <button class="btn btn-outline-secondary delete-btn">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
-                                                </div>
+                                                </div> -->
 
                                             </div>
 
@@ -1146,14 +1157,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="d-flex p-3">
+                                                <!-- <div class="d-flex p-3">
                                                     <button class="btn btn-success">
                                                         <i class="fa fa-check"></i> تم بنجاح
                                                     </button>
                                                     <button class="btn btn-outline-secondary delete-btnn">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
-                                                </div>
+                                                </div> -->
 
                                             </div>
 
@@ -1217,9 +1228,7 @@
                                             <input type="text" class="form-control" id="websiteUrl" placeholder="">
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <button class="btn btn-primary">
-                                                <i class="fa fa-check"></i> تم بنجاح
-                                            </button>
+
                                             <button class="btn btn-outline-secondary delete-btn">
                                                 <i class="fa fa-trash"></i>
                                             </button>
@@ -1232,7 +1241,7 @@
 
                         <!-- parcode -->
 
-                        <div id="parcode" class=" col-12 p-0 mb-4">
+                        <!-- <div id="parcode" class=" col-12 p-0 mb-4">
                             <div
                                 class="header position-relative d-flex align-items-center justify-content-between border-top mt-4">
 
@@ -1276,7 +1285,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
 
@@ -1377,25 +1386,23 @@
 
 
 
-
-
+    <!-- ملفات JavaScript في نهاية body -->
+    <!-- jQuery -->
     <script src="../scripts/js/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- React -->
     <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-
+    <!-- Slick Carousel JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
     <script src="https://unpkg.com/react-slick@0.28.1/dist/react-slick.min.js"></script>
+    <!-- ملفات JS الخاصة بك -->
     <script src="../scripts/js/cv.js"></script>
-
 
 
 </body>
