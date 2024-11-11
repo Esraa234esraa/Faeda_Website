@@ -192,7 +192,7 @@ a {
 @media (max-width: 30rem) {
     .container {
         width: 95%;
-        height: 25.25rem;
+        height: 26em;
         padding: 0px;
     }
 
@@ -202,9 +202,11 @@ a {
         padding: 0px;
     }
 
+
+
     .profile-pic img {
-        width: 50%;
-        height: 70%;
+        width: 70%;
+        height: 0%;
     }
 
     .profile-info h1 {
@@ -217,11 +219,11 @@ a {
 
     .logo {
         width: 5rem;
-        margin: 2rem 1rem;
+        margin: 0;
     }
 
     .message h3 {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 
     .fa {
