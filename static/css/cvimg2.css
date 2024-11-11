@@ -189,7 +189,7 @@ a {
     }
 }
 
-@media (max-width: 20rem) {
+@media (max-width: 30rem) {
     .container {
         width: 95%;
         height: 25.25rem;
