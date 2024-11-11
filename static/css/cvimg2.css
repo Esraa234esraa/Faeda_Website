@@ -11,7 +11,7 @@ body {
 }
 
 .container {
-    width: 100%;
+    width: 80%;
     max-width: 1100px;
     margin: 0 auto;
     background-color: #fff;
@@ -67,7 +67,8 @@ body {
 .skills h2,
 .about-me h2,
 .experience h2,
-.achievement h2 {
+.achievement h2,
+.cong h2 {
     font-size: 1.5rem;
     margin: 1.25rem 0;
 
@@ -101,7 +102,9 @@ img {
 }
 
 .about-me,
-.achievement {
+.achievement,
+.cong,
+.experience {
     border-bottom: 1px solid;
 }
 
@@ -109,10 +112,9 @@ img {
 .education p,
 .skills ul,
 .about-me p,
-.achievement p,
 .experience .job p,
 .experience .job ul {
-    font-size: 20px;
+    font-size: 1.25rem;
     color: #555;
     margin-bottom: 1rem;
     height: max-content;
@@ -124,12 +126,12 @@ img {
 }
 
 .skills ul li {
-    margin-bottom: 10px;
+    margin-bottom: .625rem;
 }
 
 .experience .job ul {
     list-style-type: disc;
-    padding-left: 20px;
+    padding-left: 1.25rem;
 }
 
 .experience .job {
@@ -139,11 +141,11 @@ img {
 .header {
     padding: 10px;
     border-bottom: 1px solid;
-    margin-bottom: 10px;
+    margin-bottom: .625rem;
 }
 
 /* Center the profile picture on smaller screens */
-@media (max-width: 576px) {
+@media (max-width: 36rem) {
     .profile-pic {
         text-align: center;
     }
@@ -170,7 +172,7 @@ a {
     text-decoration: none;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 940px) {
     .contact-info p {
         display: block;
         /* يضمن أن يتم عرض النص على سطر منفصل */
@@ -185,4 +187,45 @@ a {
         border-left: none;
         border-bottom: 1px solid rgb(184, 183, 183);
     }
+}
+
+@media (max-width: 20rem) {
+    .container {
+        width: 95%;
+        height: 25.25rem;
+        padding: 0px;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: row !important;
+        padding: 0px;
+    }
+
+    .profile-pic img {
+        width: 50%;
+        height: 70%;
+    }
+
+    .profile-info h1 {
+        font-size: 1.1rem;
+    }
+
+    .profile-info p {
+        font-size: 0.7rem;
+    }
+
+    .logo {
+        width: 5rem;
+        margin: 2rem 1rem;
+    }
+
+    .message h3 {
+        font-size: 0.8rem;
+    }
+
+    .fa {
+        padding: 1px !important;
+    }
+
 }

@@ -22,141 +22,151 @@ $(document).ready(function () {
 });
 
 
-document.getElementById('add-edu').addEventListener('click', function () {
-    addNewCard();
-});
+// document.getElementById('add-edu').addEventListener('click', function () {
+//     addNewCard();
+// });
 
-function addNewCard() {
-    let newCard = document.getElementById('card-template').cloneNode(true);
-    newCard.style.display = 'block';
-    newCard.classList.remove('d-none');
-    newCard.classList.add('open');
+// function addNewCard() {
+//     let newCard = document.getElementById('card-template').cloneNode(true);
+//     newCard.style.display = 'block';
+//     newCard.classList.remove('d-none');
+//     newCard.classList.add('open');
 
-    let saveButton = document.createElement('button');
-    saveButton.classList.add('btn', 'btn-info', 'mt-2');
-    saveButton.innerText = 'حفظ';
-    newCard.querySelector('.card-det').appendChild(saveButton);
+//     let saveButton = document.createElement('button');
+//     saveButton.classList.add('btn', 'btn-info', 'mt-2');
+//     saveButton.innerText = 'حفظ';
+//     newCard.querySelector('.card-det').appendChild(saveButton);
 
-    document.getElementById('card2').appendChild(newCard);
+//     document.getElementById('card2').appendChild(newCard);
 
-    saveButton.addEventListener('click', function () {
-        let summaryCard = createSummaryCard(newCard);
-        updateSummaryCard(newCard, summaryCard); // تحديث الملخص من الكارد
-        document.getElementById('card2').appendChild(summaryCard);
-        newCard.remove();
-    });
-}
+//     saveButton.addEventListener('click', function () {
+//         let summaryCard = createSummaryCard(newCard);
+//         updateSummaryCard(newCard, summaryCard); // تحديث الملخص من الكارد
+//         document.getElementById('card2').appendChild(summaryCard);
+//         newCard.remove();
+//     });
+// }
 
-function createSummaryCard(card) {
-    let summaryCard = document.createElement('div');
-    summaryCard.classList.add('card-summary', 'd-flex', 'justify-content-between', 'align-items-center', 'border', 'p-2', 'mb-3');
-    summaryCard.innerHTML = `
-        <span class="summary-content"> المؤهلات الدراسية: </span>
-        <button type="button" class="btn btn-outline-secondary edit-card">
-            <i class="fas fa-pencil-alt"></i> تعديل
-        </button>
-        <button type="button" class="btn btn-outline-danger delete-card">
-            <i class="fas fa-trash-alt"></i> حذف
-        </button>
-    `;
+// function createSummaryCard(card) {
+//     let summaryCard = document.createElement('div');
+//     summaryCard.classList.add('card-summary', 'd-flex', 'justify-content-between', 'align-items-center', 'border', 'p-2', 'mb-3');
+//     summaryCard.innerHTML = `
+//         <span class="summary-content"> المؤهلات الدراسية: </span>
+//         <button type="button" class="btn btn-outline-secondary edit-card">
+//             <i class="fas fa-pencil-alt"></i> تعديل
+//         </button>
+//         <button type="button" class="btn btn-outline-danger delete-card">
+//             <i class="fas fa-trash-alt"></i> حذف
+//         </button>
+//     `;
 
-    const editButton = summaryCard.querySelector('.edit-card');
-    editButton.addEventListener('click', function () {
-        editButton.style.display = 'none';
-        let editableCard = card.cloneNode(true);
-        editableCard.style.display = 'block';
+//     const editButton = summaryCard.querySelector('.edit-card');
+//     editButton.addEventListener('click', function () {
+//         editButton.style.display = 'none';
+//         let editableCard = card.cloneNode(true);
+//         editableCard.style.display = 'block';
 
-        // احصل على القيم الحالية من السمري
-        const summaryContentText = summaryCard.querySelector('.summary-content').textContent;
+//         // احصل على القيم الحالية من السمري
+//         const summaryContentText = summaryCard.querySelector('.summary-content').textContent;
 
-        if (summaryContentText) { // تحقق مما إذا كانت القيمة موجودة
-            const experienceParts = summaryContentText.split(': ')[1]; // الحصول على الجزء بعد "الخبرة العملية: "
-            if (experienceParts) { // تحقق مما إذا كان الجزء موجودًا
-                const [jobPosition, jobTitle, city, dateRange] = experienceParts.split(', ');
-                const [startDate, endDate] = dateRange ? dateRange.replace('من ', '').split(' إلى ') : ["", ""];
+//         if (summaryContentText) { // تحقق مما إذا كانت القيمة موجودة
+//             const experienceParts = summaryContentText.split(': ')[1]; // الحصول على الجزء بعد "الخبرة العملية: "
+//             if (experienceParts) { // تحقق مما إذا كان الجزء موجودًا
+//                 const [jobPosition, jobTitle, city, dateRange] = experienceParts.split(', ');
+//                 const [startDate, endDate] = dateRange ? dateRange.replace('من ', '').split(' إلى ') : ["", ""];
 
-                editableCard.querySelector('.job-position').value = jobPosition || "";
-                editableCard.querySelector('.job-title').value = jobTitle || "";
-                editableCard.querySelector('.city').value = city || "";
-                editableCard.querySelector('.start-date').value = startDate || "";
-                editableCard.querySelector('.end-date').value = endDate || "";
-            } else {
-                console.warn('No experience data found in summaryContentText:', summaryContentText);
-            }
-        } else {
-            console.warn('summaryContentText is not valid:', summaryContentText);
-        }
+//                 editableCard.querySelector('.job-position').value = jobPosition || "";
+//                 editableCard.querySelector('.job-title').value = jobTitle || "";
+//                 editableCard.querySelector('.city').value = city || "";
+//                 editableCard.querySelector('.start-date').value = startDate || "";
+//                 editableCard.querySelector('.end-date').value = endDate || "";
+//             } else {
+//                 console.warn('No experience data found in summaryContentText:', summaryContentText);
+//             }
+//         } else {
+//             console.warn('summaryContentText is not valid:', summaryContentText);
+//         }
 
-        let saveButton = editableCard.querySelector('.btn-info');
-        saveButton.innerText = 'حفظ التعديل';
+//         let saveButton = editableCard.querySelector('.btn-info');
+//         saveButton.innerText = 'حفظ التعديل';
 
-        saveButton.addEventListener('click', function () {
-            updateSummaryCard(editableCard, summaryCard); // تحديث الملخص بالقيم الجديدة
-            updateCardFields(editableCard); // تحديث الحقول داخل الكارد المعدل
-            summaryCard.style.display = 'block';
-            editableCard.remove();
-            editButton.style.display = 'inline-block'; // إعادة عرض زر التعديل
-        });
+//         saveButton.addEventListener('click', function () {
+//             updateSummaryCard(editableCard, summaryCard); // تحديث الملخص بالقيم الجديدة
+//             updateCardFields(editableCard); // تحديث الحقول داخل الكارد المعدل
+//             summaryCard.style.display = 'block';
+//             editableCard.remove();
+//             editButton.style.display = 'inline-block'; // إعادة عرض زر التعديل
+//         });
 
-        document.getElementById('card2').appendChild(editableCard);
-        summaryCard.style.display = 'none';
-    });
+//         document.getElementById('card2').appendChild(editableCard);
+//         summaryCard.style.display = 'none';
+//     });
 
-    // كود deleteButton كما هو
-    const deleteButton = summaryCard.querySelector('.delete-card');
-    deleteButton.addEventListener('click', function () {
-        Swal.fire({
-            title: 'هل أنت متأكد؟',
-            text: "لن تتمكن من استرجاع هذا الكارد!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'نعم، احذفها!',
-            cancelButtonText: 'إلغاء'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                summaryCard.remove();
-                card.remove();
-                Swal.fire(
-                    'تم الحذف!',
-                    'تم حذف الكارد بنجاح.',
-                    'success'
-                );
-            }
-        });
-    });
+//     // كود deleteButton كما هو
+//     const deleteButton = summaryCard.querySelector('.delete-card');
+//     deleteButton.addEventListener('click', function () {
+//         Swal.fire({
+//             title: 'هل أنت متأكد؟',
+//             text: "لن تتمكن من استرجاع هذا الكارد!",
+//             icon: 'warning',
+//             showCancelButton: true,
+//             confirmButtonColor: '#3085d6',
+//             cancelButtonColor: '#d33',
+//             confirmButtonText: 'نعم، احذفها!',
+//             cancelButtonText: 'إلغاء'
+//         }).then((result) => {
+//             if (result.isConfirmed) {
+//                 summaryCard.remove();
+//                 card.remove();
+//                 Swal.fire(
+//                     'تم الحذف!',
+//                     'تم حذف الكارد بنجاح.',
+//                     'success'
+//                 );
+//             }
+//         });
+//     });
 
-    return summaryCard;
-}
+//     return summaryCard;
+// }
 
-function updateSummaryCard(card, summaryCard) {
-    const jobPosition = card.querySelector('.job-position') ? card.querySelector('.job-position').value : "";
-    const jobTitle = card.querySelector('.job-title') ? card.querySelector('.job-title').value : "";
-    const city = card.querySelector('.city') ? card.querySelector('.city').value : "";
-    const startDate = card.querySelector('.start-date') ? card.querySelector('.start-date').value : "";
-    const endDate = card.querySelector('.end-date') ? card.querySelector('.end-date').value : "";
+// function updateSummaryCard(card, summaryCard) {
+//     const jobPosition = card.querySelector('.job-position') ? card.querySelector('.job-position').value : "";
+//     const jobTitle = card.querySelector('.job-title') ? card.querySelector('.job-title').value : "";
+//     const city = card.querySelector('.city') ? card.querySelector('.city').value : "";
+//     const startDate = card.querySelector('.start-date') ? card.querySelector('.start-date').value : "";
+//     const endDate = card.querySelector('.end-date') ? card.querySelector('.end-date').value : "";
 
-    const summaryContent = summaryCard.querySelector('.summary-content');
-    summaryContent.textContent = `المؤهلات الدراسية: ${jobPosition}, ${jobTitle}, ${city}, من ${startDate} إلى ${endDate}`;
-}
+//     const summaryContent = summaryCard.querySelector('.summary-content');
+//     summaryContent.textContent = `المؤهلات الدراسية: ${jobPosition}, ${jobTitle}, ${city}, من ${startDate} إلى ${endDate}`;
+// }
 
-function updateCardFields(card) {
-    // تحديث الحقول في الكارد بالقيم الجديدة
-    const jobPosition = card.querySelector('.job-position') ? card.querySelector('.job-position').value : "";
-    const jobTitle = card.querySelector('.job-title') ? card.querySelector('.job-title').value : "";
-    const city = card.querySelector('.city') ? card.querySelector('.city').value : "";
-    const startDate = card.querySelector('.start-date') ? card.querySelector('.start-date').value : "";
-    const endDate = card.querySelector('.end-date') ? card.querySelector('.end-date').value : "";
-    console.log(jobPosition);
+// function updateCardFields(card) {
+//     // تحديث الحقول في الكارد بالقيم الجديدة
+//     const jobPosition = card.querySelector('.job-position') ? card.querySelector('.job-position').value : "";
+//     const jobTitle = card.querySelector('.job-title') ? card.querySelector('.job-title').value : "";
+//     const city = card.querySelector('.city') ? card.querySelector('.city').value : "";
+//     const startDate = card.querySelector('.start-date') ? card.querySelector('.start-date').value : "";
+//     const endDate = card.querySelector('.end-date') ? card.querySelector('.end-date').value : "";
+//     console.log(jobPosition);
 
-    // حفظ القيم المحدثة في الحقول نفسها
-    card.querySelector('.job-position').value = jobPosition;
-    card.querySelector('.job-title').value = jobTitle;
-    card.querySelector('.city').value = city;
-    card.querySelector('.start-date').value = startDate;
-    card.querySelector('.end-date').value = endDate;
-}
+//     // حفظ القيم المحدثة في الحقول نفسها
+//     card.querySelector('.job-position').value = jobPosition;
+//     card.querySelector('.job-title').value = jobTitle;
+//     card.querySelector('.city').value = city;
+//     card.querySelector('.start-date').value = startDate;
+//     card.querySelector('.end-date').value = endDate;
+// }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -261,126 +271,24 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-$(".js-example-placeholder-single").select2({
-    tags: true,
-    tokenSeparators: [',', ' ']
+$('#addSkillBtn').on('click', function () {
+    addCard('skill', '#skillsContainer');
 });
-const countryToCities = {
-    "SA": ["الرياض", "جدة", "مكة", "الدمام", "الظهران", "الخبر", "الطائف", "رابغ", "الليث", "القنفذة", "المدينة المنورة", "ينبع", "العلا", "بدر", "الحناكية", "مهد الذهب", "خيبر", "أبها", "خميس مشيط", "بيشة", "النماص", "أحد رفيدة", "رجال ألمع", "محايل عسير", "بلقرن", "بريدة", "عنيزة", "الرس", "البكيرية", "المذنب", "البدائع", "رياض الخبراء", "تبوك", "ضباء", "الوجه", "تيماء", "أملج", "حقل", "البدع", "حائل", "بقعاء", "الشنان", "الغزالة", "الشملي", "جازان", "صبيا", "أبو عريش", "صامطة", "بيش", "العارضة", "فرسان", "نجران", "شرورة", "حبونا", "الباحة", "المندق", "المخواة", "بلجرشي", "العقيق", "عرعر", "رفحاء", "طريف", "سكاكا", "القريات", "دومة الجندل"],
-    "EG": ["القاهرة", "الإسكندرية", "الجيزة", "طنطا", "المنصورة", "دمياط", "سوهاج", "أسيوط", "بني سويف", "الفيوم", "قنا", "الزقازيق", "السويس", "شرم الشيخ", "دمنهور", "المنيا", "سيدي عبد الرحمن", "أسوان", "العباسية"],
-    "JO": ["عمان", "الزرقاء", "إربد", "جرش", "الكرك", "السلط", "مأدبا", "عجلون", "الطفيلة", "البتراء", "وادي موسى", "معان", "الرمثا", "الأغوار", "الشوبك", "المفرق", "الجويدة", "وادي السير"],
-    "AE": ["دبي", "أبوظبي", "الشارقة", "عجمان", "رأس الخيمة", "الفجيرة", "أم القيوين", "الغيص", "الذيد", "الحمرية"],
-    "QA": ["الدوحة", "الريان", "الخور", "مسيمير", "الوكرة", "لوسيل", "الشيحانية", "الشمال", "الظعاين", "الضاحية"],
-    "AF": ["كابول", "هيرات", "مزار الشريف", "قندهار", "جلال آباد", "بادغيس", "جوزجان", "فارياب", "باميان", "نانجارهار", "تخار", "كابيسا", "لوجر", "غزني", "بلك", "سرابول", "زابل", "هرات", "غزني", "قندوز"],
-    "AL": ["تيرانا", "دورس", "فلاش", "شيروك", "بيرات", "كورشا", "لاغا", "فيير", "ساراندا", "ليش", "كافاجا", "هورش", "بيرا", "تيت", "كرويا", "سوبات", "لوشنيا", "فريس", "بونار", "مولج"],
-    "DZ": ["الجزائر العاصمة", "وهران", "قسنطينة", "البليدة", "عنابة", "سطيف", "تيزي وزو", "باتنة", "بسكرة", "البرج", "تيارت", "مدية", "الجلفة", "أم البواقي", "الشلف", "خنشلة", "سوق أهراس", "المسيلة", "أدرار", "بشار"],
-    "AD": ["أندورا لا فيلا", "إل كاسا", "سانت جولي", "كانييل", "كول ديز بورتس", "سانت بيري", "سانت ماريا", "سانت جوليان", "سانت أوغستين", "لا ماسانا", "كانيللي", "إنتيرلاكن", "بوسكا", "كاب ديل هوس", "أندورا", "سانت دانييل", "سانت مارتن", "سانت أوغستين", "إل كاسا", "كانيل"],
-    "AO": ["لواندا", "ناجولا", "سونو", "كابندا", "لوندا", "أونجوي", "موينج", "كابيندا", "كيساما", "مالانج", "غوتا", "سونيغو", "أمبولا", "جيجي", "موجيم", "بيلو", "سنتانا", "موسساكوسو", "جوسي", "توندوا"],
-    "AG": ["سانت جونز", "سانت ماري", "سانت جورج", "سانت فيليب", "سانت لويس", "سانت بول", "سانت جوليان", "سانت جيروم", "سانت بطرس", "سانت مارك", "سانت توماس", "سانت بتر", "سانت أندرو", "سانت ماريا", "سانت أنطونيو", "سانت مايكل", "سانت نيكولاس", "سانت كاترين", "سانت جوي", "سانت جوان"],
-    "AR": ["بوينس آيرس", "كوردوبا", "روساريو", "منتز", "لا بلاتا", "مار دل بلاتا", "سان ميغيل دي توكومان", "مندوزا", "سان خوان", "سانتافي", "راكفيل", "ريو كويرتو", "الكونكويستا", "باريلوش", "سالنكيس", "خنزت", "ريكا", "سان كروز", "شيلفليو", "الين"],
-    "AM": ["يريفان", "غومري", "فاجاراش", "ديلجان", "آرارات", "سيونيك", "خاباروفسك", "تاشين", "آرتاشات", "سيسيان", "كابان", "هرازدان", "سيفان", "هيرابش", "ستيبانافان", "ألفست", "تيبليز", "جيفري", "فيتاغا", "سارا"],
-    "AU": ["سيدني", "ملبورن", "بريسبان", "بيرث", "أديلايد", "هوبارت", "داروين", "كانبيرا", "جولد كوست", "نيوكاسل", "سنترال كوست", "لانكستر", "ويغن", "مارغريت ريفير", "بندigo", "ويغنز", "بروكن هيل", "ألبري", "تينده", "بيلينغتون"],
-    "AT": ["فيينا", "سالزبورغ", "إنسبروك", "غراتس", "كلاغنفورت", "فلورنس", "براغ", "ليوبن", "شتاينغاد", "تيرول", "جراز", "شيفيلد", "ميونيخ", "كريفيلد", "فيلينج", "وينير نيوشتات", "بادن", "ترين", "كوشينغن", "كولينز"],
-    "AZ": ["باكو", "غابالا", "غنجا", "لانكاران", "شيكي", "بيلقان", "سومغايت", "ماسالي", "يوليزي", "كنجة", "أغستافا", "لوكران", "تارتار", "خانلار", "زرداب", "لنكوران", "كولوسو", "أغجاباد", "شيرفان", "مردكان"],
-    "BS": ["ناسو", "فريبورت", "بالم بيتش", "غريت إكسوما", "سانت مايكل", "سانت جورج", "سانت أندرو", "سانت جيمس", "سانت لويس", "سانت مارك", "سانت توماس", "سانت فيليب", "سانت أوغستين", "سانت بيتر", "سانت لوسي", "سانت ديفيد", "سانت مايكل", "سانت بطرس", "سانت جيروم", "سانت هيلين"],
-    "BH": ["المنامة", "المحرق", "سلمانة", "الرفاع", "الحد", "جساسية", "عالي", "الزنج", "الحالة", "سار", "المحرق", "المنامة", "مقعق", "حلبة", "فقيه", "الداود", "الجديرة", "المطافئ", "المنصورية", "الشارقة"],
-    "BD": ["دكا", "تشيتاغونغ", "خولنا", "راجشاهي", "سليت", "باريسال", "مغورا", "بغورا", "كاور", "جوراي", "سانت مارتن", "رامجانج", "دورغات", "نامكان", "مايدا", "دكاري", "سونامجانج", "شايستاغانج", "كيسيج", "موجول", "بيلزار"],
-    "BB": ["بريدجتاون", "سانت مايكل", "سانت جيمس", "سانت لوسي", "سانت جورج", "سانت أندرو", "سانت توماس", "سانت فيليب", "سانت جون", "سانت بطرس", "سانت باتريك", "سانت كاترين", "سانت مارتن", "سانت جورج", "سانت جان", "سانت ماري", "سانت فيرناند", "سانت إدوارد", "سانت أندرو", "سانت بتر"],
-    "BY": ["مينسك", "غوميل", "بريست", "فتيبسك", "بريست", "موغيليف", "بارانوفيتش", "بريتش", "فيلينس", "بيشكاك", "تشيرنوسو", "ريفاس", "كوبينك", "جيليوف", "غوركي", "فتيبسك", "سيباليك", "شفوك", "سوزوف", "ساشيفو"],
-    "BE": ["بروكسل", "أنتويرب", "غنت", "شارلوروا", "نامور", "لييج", "ميز", "بروج", "دينانت", "أوفرسيس", "بورغس", "غيزينز", "لورين", "فلورين", "ماينيز", "تيرزير", "لوكارنو", "تشيفو", "فيلير", "فيلز"],
-    "BZ": ["بلموبان", "سان إغناسيو", "سان بيدرو", "كوروزال", "بلسمر", "سانت بتر", "سانت هيلين", "سانت جود", "سانت مارتن", "سانت جورج", "سانت كاترين", "سانت لويس", "سانت توماس", "سانت إدوارد", "سانت بطرس", "سانت جيمس", "سانت مايكل", "سانت ديفيد", "سانت لوسي", "سانت ماري"],
-    "BJ": ["بورتو نوفو", "كوتونو", "دجيوه", "بنكوي", "سوكوديه", "أبومي", "كلويكوتا", "تيشون", "تامالي", "زوان", "أبومي", "تندروك", "لا باتين", "سوكوديه", "أكيس", "ساحل النعام", "جودة", "نيريجو", "أشريفو", "بلاتسوس"],
-    "BT": ["تيمفو", "بورتو", "فونتسو", "بارو", "جاكيل", "مورغيلونغ", "جوروغ", "بيدبيني", "فورتوينغ", "غليوا", "نافا", "سامدرو", "مناو", "شينج", "كولاني", "باليجولغ", "بانغتس", "تشولمونغ", "زغاغ", "تامبرو"],
-    "BO": ["لاباز", "سانتا كروز", "كوتشابامبا", "سوكري", "ترينيداد", "بيني", "تشوكيساكا", "أورورو", "بيدرا", "كارانزابل", "سيربوكورو", "جيما", "جويجوي", "جيوميسو", "سانت أغسطين", "مانو", "أنغارا", "مونتو", "أجريد", "بولو"],
-    "BA": ["سراييفو", "بانيا لوكا", "توزلا", "زيلينجا", "بوجاس", "سوسكي", "سارايفا", "ترنوس", "سرايفو", "برودر", "بيلا", "فيسوكو", "فلاغ", "سبريتس", "باناكيتس", "جوردوك", "بوسنتو", "بوستسا", "غيب", "ديراي"],
-    "BW": ["غابورون", "بوتسوانا", "ماجوي", "سيروى", "كويكوي", "بولاو", "كاساندي", "نجامبوي", "غابات", "موساكوكو", "تسوديمو", "سيتوي", "موتشينغ", "غشونغ", "غوردون", "بيموينغ", "كيتابو", "بولاو", "غانا", "بوناك"],
-    "BR": ["ساو باولو", "ريو دي جانيرو", "سلفادور", "فورتاليزا", "ماناوس", "بيلو هوريزونتي", "ساو بيرناردو دو كامبو", "برازيليا", "ريو برانكو", "غوارولوس", "كونتاجورا", "ساساكو", "كويتزابل", "سيتوبال", "فيساو", "الساو", "سيرزا", "ريو دي جانيرو", "ساو جونسو", "ساو جوني"],
-    "BN": ["بندر سيري بيغاوان", "كوالا بيلوت", "بيلايت", "باندانغ", "تونغ", "سيكو", "غونغنغ", "فيتوم", "موتونغ", "تانجونغ", "كوانغ", "جورج تاون", "تيغو", "تنغول", "مالاي", "سيارا", "بولاو", "مالاي", "تيونغ", "كشول"],
-    "BG": ["صوفيا", "بلاگويفغراد", "فارنا", "بورغاس", "فليبوف", "بست", "بلغوغراد", "غرازدوف", "بوزوفا", "بنجسكا", "زافورسيا", "كازانلكا", "سوفيكا", "تريشينكا", "هالكوفيك", "يبدو", "ألبانو", "غوبرتش", "ساكليكا", "بلغاد"],
-    "BF": ["واغادوغو", "بوبا", "كوسيما", "سيسولا", "بوركينا فاسو", "كوسيما", "سيريه", "غوغا", "كاراغا", "نسا", "بوني", "بورغو", "بولج", "بوغو", "تونيغا", "سوسي", "كوك", "تودغوا", "بريتون", "بغيام"],
-    "BI": ["بوجومبورا", "جيتيغا", "رومونغ", "ساوتيم", "بورانغارو", "بروغوني", "مايامبو", "سيرفاي", "كياكو", "كانامو", "سياكو", "مونغا", "كوارغو", "بريارا", "جابورا", "راسي", "كونغو", "غابورا", "غومونغ", "غامبورا"],
-    "KH": ["بنوم بنه", "سيام ريب", "باتامبانغ", "سيناكفيل", "كومبونغ تشام", "تاتوك", "سرايف", "كومبونغ سبو", "كومبونغ ثوم", "كومبونغ شنج", "كومبونغ شايل", "بانغكوي", "تيفور", "سيهانوكفيل", "سيرين", "كومبونغ تشام", "بريه فاهان", "كانتشا", "بيكوت", "كامبوت"],
-    "CM": ["ياوندي", "دوالا", "غاروا", "بامندا", "إيبينغو", "كومبو", "ماروا", "نوكو", "لا ديوا", "بولا", "لامدوغو", "غونغ", "ماروا", "تاغونغ", "ليتونغ", "ساووا", "كرسونغ", "تشوبو", "كومبام", "بارمونغ"],
-    "CA": ["تورنتو", "فانكوفر", "مونتريال", "أوتاوا", "كالغاري", "إدمونتون", "هاليفاكس", "ريجينا", "ساسوكتون", "وينيبغ", "كيتشنر", "لندن", "كانور", "غويلف", "كافين", "ماربل هيل", "غالبا", "ألبرتا", "ستيفن كينغ", "باري"],
-    "CV": ["برايا", "ميناء غرافو", "سانتياغو", "فنشنك", "بلدانسانتو", "سالو", "أوغستا", "سانت كروز", "مينادوتا", "سالم", "سانتا كاتارينا", "بيدرا", "أندور", "سانت توماس", "فريسير", "كالا", "مارا", "فيسينس", "غوادالوبي", "باسور"],
-    "CF": ["بنكاسو", "بانغي", "بامبو", "بونجو", "باسوبول", "سايا", "بوغندا", "بوكوما", "بارا", "بوسانغو", "كوتيسا", "بانيا", "سونغو", "جوباندو", "كيسكا", "بوسكان", "بونجول", "موركي", "جولد", "خاتس"],
-    "TD": ["إنجامينا", "سيدار", "سليم", "باغازو", "كاشولا", "دالجا", "شاري", "سيدي", "غونغونغ", "ميديفان", "دوبا", "بورك", "الطينة", "تريدوك", "إنجمينا", "بيلغور", "بولوبو", "قرقندش", "بليغون", "كوكو"],
-    "CL": ["سانتياغو", "فالبارايسو", "كونسبسيون", "لا سيرينا", "أنتوفاغاستا", "تيموكو", "كوكيمبو", "سانتياغو", "أوسورنو", "بورتو مونت", "ماكوندو", "سان أنطونيو", "سان فرناندو", "لونيل", "لا نوسا", "أجوادا", "فوروغو", "أنتافاغاستا", "سانتياغو", "سيرينو"],
-    "CN": ["بكين", "شانغهاي", "غوانغزو", "شنتشن", "تيانجين", "شينزين", "شينغدو", "تشونغتشينغ", "نانجينغ", "تشينغداو", "تشنغدو", "سوتشو", "هانغتشو", "ووهان", "جوانغشي", "فووشان", "ووزهون", "جياشينغ", "جينان", "تاينغ"],
-    "CO": ["بوغوتا", "ميديلين", "كالي", "بارانكويلا", "بيلوكو", "بوكاسا", "باغوتا", "جواندا", "جويتيريمو", "سينكا", "سان أنطونيو", "كيوندو", "سيرانا", "سوجار", "سيسيل", "تشوكيمات", "بوجوتا", "باجاو", "أوسوروبا", "ترينيدا"],
-    "KM": ["موروني", "فومبوني", "موهيلي", "أنجوان", "موهيلي", "بنجا", "سالا", "كريني", "موسيندي", "موهيدا", "فومبوني", "كامبولي", "موروما", "فوتونغو", "ماريمبا", "سلا", "جناي", "بوريما", "موهيدا", "مانجي"],
-    "CG": ["برازافيل", "بول", "كومبولا", "غونغو", "ماكونو", "موالي", "بورا", "بونغو", "بانجي", "موكاسا", "سيروتي", "غونغو", "كوريا", "سكاندي", "موليندي", "تاتاكو", "ماكونو", "مورومبا", "سليتان", "كوكو"],
-    "CD": ["كينشاسا", "غاديسوك", "ليمبوبو", "ماتادي", "شامبولي", "ماتادي", "سيسبومبا", "لومي", "ماكوندو", "بابوا", "جنغال", "أوفانغو", "نيكو", "تشيكوي", "بولا", "بامبوا", "كاتند", "بوندو", "كوروسكوم", "بوينغو"],
-    "CR": ["سان خوسيه", "أليندي", "هيريديا", "جراسيا", "سانتا باربارا", "سجويراس", "ليبيريا", "فورو كولورادو", "ساراسا", "بوينجابي", "هيريدا", "بورازو", "سيرينديلا", "سانتوس", "سان ميغيل", "سوسو", "بورتا بونس", "توسكا", "أوتاوا", "مالتا"],
-    "CI": ["أبيدجان", "بواكي", "غران باسام", "ياموسوكرو", "سان بيدرو", "كورهوغو", "زانيابا", "بوموبو", "غابو", "سانت جولي", "كوموي", "تيرجيليو", "غابو", "سيرينديلا", "تونكين", "كونغو", "أبيني", "أبيدجان", "بواكي", "بيكتو"],
-    "HR": ["زغرب", "رييكا", "سبليت", "أوسييك", "زارا", "فوشيت", "فيكونيا", "تروغير", "بولا", "كراستوفك", "سيساك", "بيكا", "مارتين", "باريش", "زافيكا", "سيرينغو", "ماكونو", "بادا", "شتايك", "نوفي"],
-    "CU": ["هافانا", "سانتياغو دي كوبا", "كاماجوي", "سانتا كلارا", "غوانتانامو", "تارارا", "بونتيانا", "أسينسيو", "باريكويتو", "غريغاريو", "أونيفيريس", "سان تيريزا", "مانزانيلو", "ييلفا", "غوانتانامو", "ميرامار", "سانتا في", "أوفيتا", "سان ميغيل", "تارارا"],
-    "CY": ["نيقوسيا", "لارنكا", "ليمسول", "فاماغوستا", "بافوس", "أيا نابا", "أراديف", "بروتيون", "سراييفو", "كازاخستان", "كيرينيا", "سوروشين", "فاراكا", "جماعة الصوفية", "دماء تحت الماء", "ليماسول", "بافوس", "نيركا", "ناسايا", "بريفا"],
-    "CZ": ["براغ", "برنو", "أوسترافا", "بيلسن", "ليبيرك", "هراديك كرالوف", "تشيب", "أوبافا", "ترينتشين", "كولوي", "بونوفا", "كازيمير", "إنسبرك", "فوزن", "فيتكو", "سانت إيفز", "أولوموك", "بيليني", "ساندوتش", "ريكا"],
-    "DK": ["كوبنهاغن", "أرهوس", "أودنسه", "إلسينور", "هولباك", "سونديرب", "كورسلند", "فيبورج", "سيبنك", "ميلون", "ستفيديبورج", "شونر", "دوندس", "سليتس", "آرهوس", "ساندرينغ", "كوبنهاغن", "فيبورج", "سبير", "فيت"],
-    "DJ": ["جيبوتي", "عيرضة", "علي الصباح", "أرض الفقر", "الأمدرمان", "مينقبو", "الشجار", "مجرد طريء", "أكمانتس", "جابو", "مليح", "جماعة بوهدرة", "الشاري", "المجيرون", "القرب", "السوق", "الغور", "المنصورية", "جيبوتي", "غالي"],
-    "DM": ["روسو", "سانتياغو", "بواكيه", "سانت جونز", "ماريغوت", "جراند باي", "أنجوي", "بويتس", "بابي", "ريو كويزو", "سانت بطرس", "محمود", "جيما", "الكونكوت", "براجون", "الدامو", "فاسكي", "غراندي", "سانت كاترين", "مستشفى الصعيد"],
-    "DO": ["سانتو دومينغو", "سانتاغو", "سان فيليبي", "سانت كاترين", "بونتا كانا", "لا رومانا", "سان بيدرو", "باريشونا", "باسكال", "باكونتوجو", "مالانغو", "جراندي", "سان أندرو", "فوينتي", "سان كريستوبال", "جيرالدو", "ترينيداد", "تشيكاب", "باني"],
-    "EC": ["كيتو", "غواياكيل", "كوينكا", "مانابي", "لوجا", "أمباتو", "ريو بامبا", "تولا", "سانتو دومينغو", "مالابو", "كيتو", "كوسكوس", "سانتوس", "سينشا", "جواياكيل", "ألومو", "بيلا", "بورتو فيجو", "باجوار", "سانت بطرس"],
-    "EG": ["القاهرة", "الإسكندرية", "الجيزة", "سوهاج", "الأقصر", "أسوان", "بورسعيد", "دمياط", "طنطا", "المنصورة", "بني سويف", "الشرقية", "الفيوم", "المنيا", "أسيوط", "قنا", "محافظة البحر الأحمر", "كفر الشيخ", "السويس", "مرسى مطروح"],
-    "SV": ["سان سلفادور", "سان ميغيل", "أوتو", "سانتا آنا", "أسانسون", "سانت لوسيا", "جيسكو", "تودين", "فيراكروز", "غواتيمالا", "بيريرو", "ديمك", "سولا", "بلايا", "سان بيدرو", "بالمير", "بورتو", "سان أنطونيو", "لا بويرا", "السان"],
-    "GQ": ["مالابو", "باتا", "إيبيبي", "سيبونغ", "ريوش", "مالابو", "كولا", "أوجي", "كولا", "بينغو", "لوسكا", "إيبينغو", "غينغا", "تريندا", "أنغولا", "غابورون", "سان فيسينتي", "غيشيدو", "كاسابي", "تورينو", "بامباسو"],
-    "ER": ["أسمرة", "مسيلي", "كريم", "غابات", "قويديرا", "بري", "أسمرة", "مسيلي", "بنيامو", "ماركت", "تسوغيرا", "بلينغس", "سارونغو", "غابورون", "بيفر", "سودان", "بورتو غاسا", "سيراك", "أسمرة", "غشونغ", "موسيل"],
-    "EE": ["تالين", "تارتو", "نارفا", "فورس", "أوفا", "بورتوما", "ماردي", "سيتو", "سيرينتا", "سياكولم", "سيمتس", "فورتيك", "فوليس", "ترينوفو", "الأنجلو", "فالادور", "كوسي", "ريمس", "سكانديا", "فيسان", "مارموريكا"],
-    "ET": ["أديس أبابا", "ميكيلي", "ديرداوا", "بحر دار", "بوني", "غيندر", "سيدامو", "غوندر", "أديس أبابا", "بني شنجول", "الكواري", "بوريك", "باميدا", "فاجلا", "بيلي", "ماردو", "سيربا", "تمجيتو", "سومالي", "مانو"],
-    "FJ": ["سوغا", "لامباسي", "واتا", "فاكا", "مابوانو", "شاوكي", "ساوما", "غراسي", "نوكوتي", "جونا", "ترانجا", "باسكو", "ماتماتا", "مويا", "أوناجيا", "فينودا", "شاكرا", "ماتارودو", "لاوتا", "فوانا"],
-    "FI": ["هلسنكي", "تامبيري", "أولو", "فاسا", "يوفاسكولا", "روبي", "لويولا", "لا تولا", "أوتو", "بورتو", "باريتا", "مويرينغ", "أولو", "تايلا", "سيفو", "فاسا", "باسيلون", "سانت بارتيليموس", "هيلسونكي", "هويج", "كالافيس"],
-    "FR": ["باريس", "مارسيليا", "ليون", "ليل", "تولوز", "نيس", "مونبلييه", "نانت", "بوردو", "ستراسبورغ", "رين", "لييل", "تولوز", "أفينيون", "موازيون", "فرساي", "ناربون", "سينت إتيان", "باسكال", "مونتازا", "الآلزاس"],
-    "GA": ["ليبرفيل", "بورت جنتيل", "فرانس", "غابون", "باري", "يومو", "موغودو", "غابون", "باري", "بونغو", "شيمبو", "موريتس", "ليبرفيل", "تيمبواتو", "سينو", "تيمبو", "موغودو", "ليما", "بونغو", "فرانس"],
-    "GM": ["بانجول", "سيريكوندي", "ماتام", "سينيجال", "باسا", "جولن", "سيرافا", "باكري", "مودو", "كيمو", "كيندو", "جيفو", "كاندال", "بريمان", "سيريكوندي", "بورتو", "بانجول", "جيبون", "سيريكوندي", "غوياسو"],
-    "GE": ["تبليسي", "زورمغان", "كوتايسي", "روستافي", "غوري", "زغيديدي", "بوزاني", "تيلافي", "أوني", "تسودوغورا", "فاندي", "مورداني", "غومري", "باتومي", "كوليندي", "سخويتي", "سامتيز", "غورغاسالي", "تيلافي", "ساجري"],
-    "DE": ["برلين", "ميونيخ", "فرانكفورت", "هامبورغ", "كولونيا", "شتوتغارت", "دوسلدورف", "دورتموند", "بريمن", "هانوفر", "نورنبرغ", "ماينز", "فيسبادن", "أوجسبورغ", "لايبزيغ", "هيلدسهايم", "مانهايم", "ساربروكن", "بوخوم", "بون"],
-    "DJ": ["جيبوتي", "عيرضة", "علي الصباح", "أرض الفقر", "الأمدرمان", "مينقبو", "الشجار", "مجرد طريء", "أكمانتس", "جابو", "مليح", "جماعة بوهدرة", "الشاري", "المجيرون", "القرب", "السوق", "الغور", "المنصورية", "جيبوتي", "غالي"],
-    "DO": ["سانتو دومينغو", "سانتاغو", "سان فيليبي", "سانت كاترين", "بونتا كانا", "لا رومانا", "سان بيدرو", "باريشونا", "باسكال", "باكونتوجو", "مالانغو", "جراندي", "سان أندرو", "فوينتي", "سان كريستوبال", "جيرالدو", "ترينيداد", "تشيكاب", "باني"]
 
-};
+// Add Language Card
+$('#addSkillBtnLang').on('click', function () {
+    addCard('language', '#skillsContainerLang');
+});
 
+// Add Hobby Card
+$('#addSkillBtnHop').on('click', function () {
+    addCard('hobby', '#skillsContainerHop');
+});
 
-$(document).ready(function () {
-    $('#country-select').on('change', function () {
-        var selectedCountry = $(this).val();
-        var cities = countryToCities[selectedCountry] || [];
-
-        $('#city-select').empty().append('<option value="" disabled selected>اختر المدينة</option>');
-        $.each(cities, function (index, city) {
-            $('#city-select').append('<option value="' + city + '">' + city + '</option>');
-        });
-
-        $('#city-select').trigger('change');
-    });
-
-    $('#city-select').on('select2:select', function (e) {
-        var data = e.params.data;
-        if (data.newOption) {
-            alert('تمت إضافة المدينة الجديدة: ' + data.text);
-        }
-    });
-
-    // Add Skill Card
-    $('#addSkillBtn').on('click', function () {
-        addCard('skill', '#skillsContainer');
-    });
-
-    // Add Language Card
-    $('#addSkillBtnLang').on('click', function () {
-        addCard('language', '#skillsContainerLang');
-    });
-
-    // Add Hobby Card
-    $('#addSkillBtnHop').on('click', function () {
-        addCard('hobby', '#skillsContainerHop');
-    });
-
-    function addCard(type, containerSelector) {
-        const container = $(containerSelector);
-        const cardCount = container.find('.skill-card').length + 1;
-        const newCard = $(`
+function addCard(type, containerSelector) {
+    const container = $(containerSelector);
+    const cardCount = container.find('.skill-card').length + 1;
+    const newCard = $(`
             <div class="skill-card text-right" id="${type}Card-${cardCount}">
                 <div class="header d-flex justify-content-between align-items-center">
                     <span>${type === 'skill' ? 'المهارة' : type === 'language' ? 'اللغة' : 'الهوايات'} [${cardCount}]</span>
@@ -415,23 +323,23 @@ $(document).ready(function () {
             </div>
         `);
 
-        container.append(newCard);
-    }
+    container.append(newCard);
+}
 
-    // Delegate event handling for editing and deleting
-    $(document).on('click', '.edit-btn', function () {
-        const allCards = $('.skill-card');
-        allCards.removeClass('open').find('.edit-btn').removeClass('d-none');
+// Delegate event handling for editing and deleting
+$(document).on('click', '.edit-btn', function () {
+    const allCards = $('.skill-card');
+    allCards.removeClass('open').find('.edit-btn').removeClass('d-none');
 
-        const card = $(this).closest('.skill-card');
-        card.addClass('open');
-        $(this).addClass('d-none');
-    });
-
-    $(document).on('click', '.delete-btn', function () {
-        $(this).closest('.skill-card').remove();
-    });
+    const card = $(this).closest('.skill-card');
+    card.addClass('open');
+    $(this).addClass('d-none');
 });
+
+$(document).on('click', '.delete-btn', function () {
+    $(this).closest('.skill-card').remove();
+});
+
 
 
 
@@ -736,56 +644,50 @@ function addCardEventListeners(card) {
     //     this.disabled = true;
     // });
 }
-
 document.querySelectorAll('.webSite-card').forEach(addCardEventListeners);
 
-document.getElementById('upload').addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
 
-    reader.onload = function (e) {
-        const img = document.createElement('img');
-        img.src = e.target.result;
+// parcode
+// document.getElementById('upload').addEventListener('change', function (event) {
+//     const file = event.target.files[0];
+//     const reader = new FileReader();
 
-        const cardBody = document.getElementById('card-body');
-        cardBody.appendChild(img);
-    }
+//     reader.onload = function (e) {
+//         const img = document.createElement('img');
+//         img.src = e.target.result;
 
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-});
+//         const cardBody = document.getElementById('card-body');
+//         cardBody.appendChild(img);
+//     }
 
-document.getElementById('arrowUp11').addEventListener('click', function () {
-    const parcode = document.getElementById('parcode');
-    const card11 = document.getElementById('card11');
+//     if (file) {
+//         reader.readAsDataURL(file);
+//     }
+// });
 
-    if (parcode.style.display === 'none') {
-        parcode.style.display = 'block';
-        card11.style.display = 'block';
-    } else {
-        parcode.style.display = 'none';
-        card11.style.display = 'none';
-    }
-});
+// document.getElementById('arrowUp11').addEventListener('click', function () {
+//     const parcode = document.getElementById('parcode');
+//     const card11 = document.getElementById('card11');
 
-document.querySelector('.delete-bar').addEventListener('click', function () {
-    const cardBody = document.getElementById('card-body');
-    cardBody.innerHTML = `
-        <label for="upload">رفع الباركود الخاص بك</label>
-        <input type="file" id="upload" accept="image/*" />
-    `;
-});
+//     if (parcode.style.display === 'none') {
+//         parcode.style.display = 'block';
+//         card11.style.display = 'block';
+//     } else {
+//         parcode.style.display = 'none';
+//         card11.style.display = 'none';
+//     }
+// });
 
-
-
-
+// document.querySelector('.delete-bar').addEventListener('click', function () {
+//     const cardBody = document.getElementById('card-body');
+//     cardBody.innerHTML = `
+//         <label for="upload">رفع الباركود الخاص بك</label>
+//         <input type="file" id="upload" accept="image/*" />
+//     `;
+// });
 
 
-
-
-
-
+//skills---------------
 function addNewCard2() {
     let newCard = document.getElementById('card-template2').cloneNode(true);
     newCard.style.display = 'block';
@@ -806,7 +708,7 @@ function addNewCard2() {
         updateCardFields2(newCard); // تحديث الحقول في الكارد
         newCard.remove();
     });
-}
+};
 
 function createSummaryCard2(card) {
     let summaryCard = document.createElement('div');
@@ -889,8 +791,7 @@ function createSummaryCard2(card) {
     });
 
     return summaryCard;
-}
-
+};
 
 function updateSummaryCard2(card, summaryCard) {
     const jobPosition = card.querySelector('.job-position').value || "";
@@ -901,7 +802,7 @@ function updateSummaryCard2(card, summaryCard) {
 
     const summaryContent = summaryCard.querySelector('.summary-content');
     summaryContent.textContent = `الخبرة العملية: ${jobPosition}, ${jobTitle}, ${city}, من ${startDate} إلى ${endDate}`;
-}
+};
 function updateCardFields2(card) {
     // تحديث الحقول في الكارد بالقيم الجديدة
     const jobPosition = card.querySelector('.job-position').value; // احصل على القيمة الحالية
@@ -919,4 +820,536 @@ function updateCardFields2(card) {
     card.querySelector('.city').value = city;
     card.querySelector('.start-date').value = startDate;
     card.querySelector('.end-date').value = endDate;
+};
+
+
+
+
+
+
+
+
+
+
+//acheivments--------------
+
+document.getElementById('add-edu').addEventListener('click', function () {
+    addNewCard();
+});
+
+// function addNewCard() {
+//     let newCard = document.getElementById('card-template').cloneNode(true);
+//     newCard.style.display = 'block';
+//     newCard.classList.remove('d-none');
+//     newCard.classList.add('open');
+
+//     // إنشاء زر حفظ
+//     let saveButton = document.createElement('button');
+//     saveButton.classList.add('btn', 'btn-info', 'mt-2');
+//     saveButton.innerText = 'حفظ';
+//     newCard.querySelector('.card-det').appendChild(saveButton);
+
+//     document.getElementById('card2').appendChild(newCard);
+
+//     // تهيئة Select2 للقوائم المنسدلة
+//     const countrySelect = newCard.querySelector('#country-select');
+//     const citySelect = newCard.querySelector('#city-select');
+
+//     $(countrySelect).select2({
+//         placeholder: 'اختر الدولة',
+//         width: '100%'
+//     });
+
+//     $(citySelect).select2({
+//         placeholder: 'اختر المدينة',
+//         width: '100%'
+//     }).prop('disabled', true); // تعطيل قائمة المدن حتى يتم اختيار الدولة
+
+//     // إضافة حدث لتحديث خيارات المدينة عند تغيير الدولة
+//     $(countrySelect).on('change', function () {
+//         updateCityOptions(countrySelect.value, citySelect);
+//     });
+
+//     // إضافة حدث لحفظ البيانات
+//     saveButton.addEventListener('click', function () {
+//         let summaryCard = createSummaryCard(newCard);
+//         updateSummaryCard(newCard, summaryCard);
+//         document.getElementById('card2').appendChild(summaryCard);
+//         updateCardFields(newCard)
+//         newCard.remove();
+//     });
+// };
+
+// function createSummaryCard(card) {
+//     let summaryCard = document.createElement('div');
+//     summaryCard.classList.add('card-summary', 'd-flex', 'justify-content-between', 'align-items-center', 'border', 'p-2', 'mb-3');
+//     summaryCard.innerHTML = `
+//         <span class="summary-content"> المؤهلات الدراسية: </span>
+//         <button type="button" class="btn btn-outline-secondary edit-card">
+//             <i class="fas fa-pencil-alt"></i> تعديل
+//         </button>
+//         <button type="button" class="btn btn-outline-danger delete-card">
+//             <i class="fas fa-trash-alt"></i> حذف
+//         </button>
+//     `;
+
+//     const editButton = summaryCard.querySelector('.edit-card');
+//     editButton.addEventListener('click', function () {
+//         editButton.style.display = 'none';
+//         let editableCard = card.cloneNode(true);
+//         editableCard.style.display = 'block';
+
+//         $(editableCard.querySelector('.country')).select2();
+//         $(editableCard.querySelector('.city')).select2();
+
+//         const summaryContentText = summaryCard.querySelector('.summary-content').textContent;
+
+//         if (summaryContentText) { // تحقق مما إذا كانت القيمة موجودة
+//             const experienceParts = summaryContentText.split(': ')[1]; // الحصول على الجزء بعد "الخبرة العملية: "
+//             if (experienceParts) { // تحقق مما إذا كان الجزء موجودًا
+//                 const [jobPosition, jobTitle, city, country, dateRange] = experienceParts.split(', ');
+//                 const [startDate, endDate] = dateRange ? dateRange.replace('من ', '').split(' إلى ') : ["", ""];
+
+//                 editableCard.querySelector('.job-position').value = jobPosition || "";
+//                 editableCard.querySelector('.job-title').value = jobTitle || "";
+//                 editableCard.querySelector('.city').value = city || "";
+//                 editableCard.querySelector('.country').value = country || "";
+//                 editableCard.querySelector('.start-date').value = startDate || "";
+//                 editableCard.querySelector('.end-date').value = endDate || "";
+//             } else {
+//                 console.warn('No experience data found in summaryContentText:', summaryContentText);
+//             }
+//         } else {
+//             console.warn('summaryContentText is not valid:', summaryContentText);
+//         }
+
+
+//         let saveButton = editableCard.querySelector('.btn-info');
+//         saveButton.innerText = 'حفظ التعديل';
+
+//         saveButton.addEventListener('click', function () {
+//             updateSummaryCard(editableCard, summaryCard);
+//             updateCardFields(editableCard); // تحديث الحقول داخل الكارد المعدل
+
+//             summaryCard.style.display = 'block';
+//             editableCard.remove();
+//             editButton.style.display = 'inline-block';
+//         });
+
+//         document.getElementById('card2').appendChild(editableCard);
+//         summaryCard.style.display = 'none';
+//     });
+
+//     const deleteButton = summaryCard.querySelector('.delete-card');
+//     deleteButton.addEventListener('click', function () {
+//         Swal.fire({
+//             title: 'هل أنت متأكد؟',
+//             text: "لن تتمكن من استرجاع هذا الكارد!",
+//             icon: 'warning',
+//             showCancelButton: true,
+//             confirmButtonColor: '#3085d6',
+//             cancelButtonColor: '#d33',
+//             confirmButtonText: 'نعم، احذفها!',
+//             cancelButtonText: 'إلغاء'
+//         }).then((result) => {
+//             if (result.isConfirmed) {
+//                 summaryCard.remove();
+//                 card.remove();
+//                 Swal.fire(
+//                     'تم الحذف!',
+//                     'تم حذف الكارد بنجاح.',
+//                     'success'
+//                 );
+//             }
+//         });
+//     });
+
+//     return summaryCard;
+// }
+
+function addNewCard() {
+    let newCard = document.getElementById('card-template').cloneNode(true);
+    newCard.style.display = 'block';
+    newCard.classList.remove('d-none');
+    newCard.classList.add('open');
+
+    // إنشاء زر حفظ
+    let saveButton = document.createElement('button');
+    saveButton.classList.add('btn', 'btn-info', 'mt-2');
+    saveButton.innerText = 'حفظ';
+    newCard.querySelector('.card-det').appendChild(saveButton);
+
+    document.getElementById('card2').appendChild(newCard);
+
+    // تهيئة Select2 للقوائم المنسدلة
+    const countrySelect = newCard.querySelector('#country-select');
+    const citySelect = newCard.querySelector('#city-select');
+
+    $(countrySelect).select2({
+        placeholder: 'اختر الدولة',
+        width: '100%'
+    });
+
+    $(citySelect).select2({
+        placeholder: 'اختر المدينة',
+        width: '100%'
+    }).prop('disabled', true); // تعطيل قائمة المدن حتى يتم اختيار الدولة
+
+    // إضافة حدث لتحديث خيارات المدينة عند تغيير الدولة
+    $(countrySelect).on('change', function () {
+        updateCityOptions(countrySelect.value, citySelect);
+    });
+
+    // إضافة حدث لحفظ البيانات
+    saveButton.addEventListener('click', function () {
+        let summaryCard = createSummaryCard(newCard);
+        updateSummaryCard(newCard, summaryCard);
+        document.getElementById('card2').appendChild(summaryCard);
+        updateCardFields(newCard)
+        newCard.remove();
+    });
+};
+
+function createSummaryCard(card) {
+    let summaryCard = document.createElement('div');
+    summaryCard.classList.add('card-summary', 'd-flex', 'justify-content-between', 'align-items-center', 'border', 'p-2', 'mb-3');
+    summaryCard.innerHTML = `
+        <span class="summary-content"> المؤهلات الدراسية: </span>
+        <button type="button" class="btn btn-outline-secondary edit-card">
+            <i class="fas fa-pencil-alt"></i> تعديل
+        </button>
+        <button type="button" class="btn btn-outline-danger delete-card">
+            <i class="fas fa-trash-alt"></i> حذف
+        </button>
+    `;
+
+    const editButton = summaryCard.querySelector('.edit-card');
+    editButton.addEventListener('click', function () {
+        editButton.style.display = 'none';
+        $(card.querySelector('#city-select')).hide();
+        $(card.querySelector('#country-select')).hide();
+
+        let editableCard = card.cloneNode(true);
+        editableCard.style.display = 'block';
+
+        // إعادة تهيئة Select2 على القوائم المستنسخة
+        $(editableCard.querySelector('#country-select')).select2({
+            placeholder: 'اختر الدولة',
+            width: '100%'
+        });
+
+        $(editableCard.querySelector('#city-select')).select2({
+            placeholder: 'اختر المدينة',
+            width: '100%'
+        });
+
+
+
+        const summaryContentText = summaryCard.querySelector('.summary-content').textContent;
+
+        if (summaryContentText) { // تحقق مما إذا كانت القيمة موجودة
+            const experienceParts = summaryContentText.split(': ')[1]; // الحصول على الجزء بعد "الخبرة العملية: "
+            if (experienceParts) { // تحقق مما إذا كان الجزء موجودًا
+                const [jobPosition, jobTitle, city, country, dateRange] = experienceParts.split(', ');
+                const [startDate, endDate] = dateRange ? dateRange.replace('من ', '').split(' إلى ') : ["", ""];
+
+                editableCard.querySelector('.job-position').value = jobPosition || "";
+                editableCard.querySelector('.job-title').value = jobTitle || "";
+                editableCard.querySelector('.city').value = city || "";
+                editableCard.querySelector('.country').value = country || "";
+                editableCard.querySelector('.start-date').value = startDate || "";
+                editableCard.querySelector('.end-date').value = endDate || "";
+            } else {
+                console.warn('No experience data found in summaryContentText:', summaryContentText);
+            }
+        } else {
+            console.warn('summaryContentText is not valid:', summaryContentText);
+        }
+
+        let saveButton = editableCard.querySelector('.btn-info');
+        saveButton.innerText = 'حفظ التعديل';
+
+        saveButton.addEventListener('click', function () {
+            updateSummaryCard(editableCard, summaryCard);
+            updateCardFields(editableCard); // تحديث الحقول داخل الكارد المعدل
+
+            summaryCard.style.display = 'block';
+            editableCard.remove();
+            editButton.style.display = 'inline-block';
+        });
+
+        document.getElementById('card2').appendChild(editableCard);
+        summaryCard.style.display = 'none';
+    });
+
+    const deleteButton = summaryCard.querySelector('.delete-card');
+    deleteButton.addEventListener('click', function () {
+        Swal.fire({
+            title: 'هل أنت متأكد؟',
+            text: "لن تتمكن من استرجاع هذا الكارد!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'نعم، احذفها!',
+            cancelButtonText: 'إلغاء'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                summaryCard.remove();
+                card.remove();
+                Swal.fire(
+                    'تم الحذف!',
+                    'تم حذف الكارد بنجاح.',
+                    'success'
+                );
+            }
+        });
+    });
+
+    return summaryCard;
 }
+
+
+function updateSummaryCard(card, summaryCard) {
+    const jobTitle = card.querySelector('.job-title').value;
+    const jobPosition = card.querySelector('.job-position').value;
+    const country = $(card.querySelector('#country-select')).select2('data')[0]?.text || '';
+    const city = $(card.querySelector('#city-select')).select2('data')[0]?.text || '';
+    const startDate = card.querySelector('.start-date').value;
+    const endDate = card.querySelector('.end-date').value;
+
+    const summaryContent = summaryCard.querySelector('.summary-content');
+    summaryContent.textContent = `المؤهلات الدراسية: ${jobTitle}, ${jobPosition}, ${country}, ${city}, من ${startDate} إلى ${endDate}`;
+}
+
+function updateCityOptions(country, citySelect) {
+    const cities = {
+
+        "SA": ["الرياض", "جدة", "مكة", "الدمام", "الظهران", "الخبر", "الطائف", "رابغ", "الليث", "القنفذة", "المدينة المنورة", "ينبع", "العلا", "بدر", "الحناكية", "مهد الذهب", "خيبر", "أبها", "خميس مشيط", "بيشة", "النماص", "أحد رفيدة", "رجال ألمع", "محايل عسير", "بلقرن", "بريدة", "عنيزة", "الرس", "البكيرية", "المذنب", "البدائع", "رياض الخبراء", "تبوك", "ضباء", "الوجه", "تيماء", "أملج", "حقل", "البدع", "حائل", "بقعاء", "الشنان", "الغزالة", "الشملي", "جازان", "صبيا", "أبو عريش", "صامطة", "بيش", "العارضة", "فرسان", "نجران", "شرورة", "حبونا", "الباحة", "المندق", "المخواة", "بلجرشي", "العقيق", "عرعر", "رفحاء", "طريف", "سكاكا", "القريات", "دومة الجندل"],
+        "EG": ["القاهرة", "الإسكندرية", "الجيزة", "طنطا", "المنصورة", "دمياط", "سوهاج", "أسيوط", "بني سويف", "الفيوم", "قنا", "الزقازيق", "السويس", "شرم الشيخ", "دمنهور", "المنيا", "سيدي عبد الرحمن", "أسوان", "العباسية"],
+        "JO": ["عمان", "الزرقاء", "إربد", "جرش", "الكرك", "السلط", "مأدبا", "عجلون", "الطفيلة", "البتراء", "وادي موسى", "معان", "الرمثا", "الأغوار", "الشوبك", "المفرق", "الجويدة", "وادي السير"],
+        "AE": ["دبي", "أبوظبي", "الشارقة", "عجمان", "رأس الخيمة", "الفجيرة", "أم القيوين", "الغيص", "الذيد", "الحمرية"],
+        "QA": ["الدوحة", "الريان", "الخور", "مسيمير", "الوكرة", "لوسيل", "الشيحانية", "الشمال", "الظعاين", "الضاحية"],
+        "AF": ["كابول", "هيرات", "مزار الشريف", "قندهار", "جلال آباد", "بادغيس", "جوزجان", "فارياب", "باميان", "نانجارهار", "تخار", "كابيسا", "لوجر", "غزني", "بلك", "سرابول", "زابل", "هرات", "غزني", "قندوز"],
+        "AL": ["تيرانا", "دورس", "فلاش", "شيروك", "بيرات", "كورشا", "لاغا", "فيير", "ساراندا", "ليش", "كافاجا", "هورش", "بيرا", "تيت", "كرويا", "سوبات", "لوشنيا", "فريس", "بونار", "مولج"],
+        "DZ": ["الجزائر العاصمة", "وهران", "قسنطينة", "البليدة", "عنابة", "سطيف", "تيزي وزو", "باتنة", "بسكرة", "البرج", "تيارت", "مدية", "الجلفة", "أم البواقي", "الشلف", "خنشلة", "سوق أهراس", "المسيلة", "أدرار", "بشار"],
+        "AD": ["أندورا لا فيلا", "إل كاسا", "سانت جولي", "كانييل", "كول ديز بورتس", "سانت بيري", "سانت ماريا", "سانت جوليان", "سانت أوغستين", "لا ماسانا", "كانيللي", "إنتيرلاكن", "بوسكا", "كاب ديل هوس", "أندورا", "سانت دانييل", "سانت مارتن", "سانت أوغستين", "إل كاسا", "كانيل"],
+        "AO": ["لواندا", "ناجولا", "سونو", "كابندا", "لوندا", "أونجوي", "موينج", "كابيندا", "كيساما", "مالانج", "غوتا", "سونيغو", "أمبولا", "جيجي", "موجيم", "بيلو", "سنتانا", "موسساكوسو", "جوسي", "توندوا"],
+        "AG": ["سانت جونز", "سانت ماري", "سانت جورج", "سانت فيليب", "سانت لويس", "سانت بول", "سانت جوليان", "سانت جيروم", "سانت بطرس", "سانت مارك", "سانت توماس", "سانت بتر", "سانت أندرو", "سانت ماريا", "سانت أنطونيو", "سانت مايكل", "سانت نيكولاس", "سانت كاترين", "سانت جوي", "سانت جوان"],
+        "AR": ["بوينس آيرس", "كوردوبا", "روساريو", "منتز", "لا بلاتا", "مار دل بلاتا", "سان ميغيل دي توكومان", "مندوزا", "سان خوان", "سانتافي", "راكفيل", "ريو كويرتو", "الكونكويستا", "باريلوش", "سالنكيس", "خنزت", "ريكا", "سان كروز", "شيلفليو", "الين"],
+        "AM": ["يريفان", "غومري", "فاجاراش", "ديلجان", "آرارات", "سيونيك", "خاباروفسك", "تاشين", "آرتاشات", "سيسيان", "كابان", "هرازدان", "سيفان", "هيرابش", "ستيبانافان", "ألفست", "تيبليز", "جيفري", "فيتاغا", "سارا"],
+        "AU": ["سيدني", "ملبورن", "بريسبان", "بيرث", "أديلايد", "هوبارت", "داروين", "كانبيرا", "جولد كوست", "نيوكاسل", "سنترال كوست", "لانكستر", "ويغن", "مارغريت ريفير", "بندigo", "ويغنز", "بروكن هيل", "ألبري", "تينده", "بيلينغتون"],
+        "AT": ["فيينا", "سالزبورغ", "إنسبروك", "غراتس", "كلاغنفورت", "فلورنس", "براغ", "ليوبن", "شتاينغاد", "تيرول", "جراز", "شيفيلد", "ميونيخ", "كريفيلد", "فيلينج", "وينير نيوشتات", "بادن", "ترين", "كوشينغن", "كولينز"],
+        "AZ": ["باكو", "غابالا", "غنجا", "لانكاران", "شيكي", "بيلقان", "سومغايت", "ماسالي", "يوليزي", "كنجة", "أغستافا", "لوكران", "تارتار", "خانلار", "زرداب", "لنكوران", "كولوسو", "أغجاباد", "شيرفان", "مردكان"],
+        "BS": ["ناسو", "فريبورت", "بالم بيتش", "غريت إكسوما", "سانت مايكل", "سانت جورج", "سانت أندرو", "سانت جيمس", "سانت لويس", "سانت مارك", "سانت توماس", "سانت فيليب", "سانت أوغستين", "سانت بيتر", "سانت لوسي", "سانت ديفيد", "سانت مايكل", "سانت بطرس", "سانت جيروم", "سانت هيلين"],
+        "BH": ["المنامة", "المحرق", "سلمانة", "الرفاع", "الحد", "جساسية", "عالي", "الزنج", "الحالة", "سار", "المحرق", "المنامة", "مقعق", "حلبة", "فقيه", "الداود", "الجديرة", "المطافئ", "المنصورية", "الشارقة"],
+        "BD": ["دكا", "تشيتاغونغ", "خولنا", "راجشاهي", "سليت", "باريسال", "مغورا", "بغورا", "كاور", "جوراي", "سانت مارتن", "رامجانج", "دورغات", "نامكان", "مايدا", "دكاري", "سونامجانج", "شايستاغانج", "كيسيج", "موجول", "بيلزار"],
+        "BB": ["بريدجتاون", "سانت مايكل", "سانت جيمس", "سانت لوسي", "سانت جورج", "سانت أندرو", "سانت توماس", "سانت فيليب", "سانت جون", "سانت بطرس", "سانت باتريك", "سانت كاترين", "سانت مارتن", "سانت جورج", "سانت جان", "سانت ماري", "سانت فيرناند", "سانت إدوارد", "سانت أندرو", "سانت بتر"],
+        "BY": ["مينسك", "غوميل", "بريست", "فتيبسك", "بريست", "موغيليف", "بارانوفيتش", "بريتش", "فيلينس", "بيشكاك", "تشيرنوسو", "ريفاس", "كوبينك", "جيليوف", "غوركي", "فتيبسك", "سيباليك", "شفوك", "سوزوف", "ساشيفو"],
+        "BE": ["بروكسل", "أنتويرب", "غنت", "شارلوروا", "نامور", "لييج", "ميز", "بروج", "دينانت", "أوفرسيس", "بورغس", "غيزينز", "لورين", "فلورين", "ماينيز", "تيرزير", "لوكارنو", "تشيفو", "فيلير", "فيلز"],
+        "BZ": ["بلموبان", "سان إغناسيو", "سان بيدرو", "كوروزال", "بلسمر", "سانت بتر", "سانت هيلين", "سانت جود", "سانت مارتن", "سانت جورج", "سانت كاترين", "سانت لويس", "سانت توماس", "سانت إدوارد", "سانت بطرس", "سانت جيمس", "سانت مايكل", "سانت ديفيد", "سانت لوسي", "سانت ماري"],
+        "BJ": ["بورتو نوفو", "كوتونو", "دجيوه", "بنكوي", "سوكوديه", "أبومي", "كلويكوتا", "تيشون", "تامالي", "زوان", "أبومي", "تندروك", "لا باتين", "سوكوديه", "أكيس", "ساحل النعام", "جودة", "نيريجو", "أشريفو", "بلاتسوس"],
+        "BT": ["تيمفو", "بورتو", "فونتسو", "بارو", "جاكيل", "مورغيلونغ", "جوروغ", "بيدبيني", "فورتوينغ", "غليوا", "نافا", "سامدرو", "مناو", "شينج", "كولاني", "باليجولغ", "بانغتس", "تشولمونغ", "زغاغ", "تامبرو"],
+        "BO": ["لاباز", "سانتا كروز", "كوتشابامبا", "سوكري", "ترينيداد", "بيني", "تشوكيساكا", "أورورو", "بيدرا", "كارانزابل", "سيربوكورو", "جيما", "جويجوي", "جيوميسو", "سانت أغسطين", "مانو", "أنغارا", "مونتو", "أجريد", "بولو"],
+        "BA": ["سراييفو", "بانيا لوكا", "توزلا", "زيلينجا", "بوجاس", "سوسكي", "سارايفا", "ترنوس", "سرايفو", "برودر", "بيلا", "فيسوكو", "فلاغ", "سبريتس", "باناكيتس", "جوردوك", "بوسنتو", "بوستسا", "غيب", "ديراي"],
+        "BW": ["غابورون", "بوتسوانا", "ماجوي", "سيروى", "كويكوي", "بولاو", "كاساندي", "نجامبوي", "غابات", "موساكوكو", "تسوديمو", "سيتوي", "موتشينغ", "غشونغ", "غوردون", "بيموينغ", "كيتابو", "بولاو", "غانا", "بوناك"],
+        "BR": ["ساو باولو", "ريو دي جانيرو", "سلفادور", "فورتاليزا", "ماناوس", "بيلو هوريزونتي", "ساو بيرناردو دو كامبو", "برازيليا", "ريو برانكو", "غوارولوس", "كونتاجورا", "ساساكو", "كويتزابل", "سيتوبال", "فيساو", "الساو", "سيرزا", "ريو دي جانيرو", "ساو جونسو", "ساو جوني"],
+        "BN": ["بندر سيري بيغاوان", "كوالا بيلوت", "بيلايت", "باندانغ", "تونغ", "سيكو", "غونغنغ", "فيتوم", "موتونغ", "تانجونغ", "كوانغ", "جورج تاون", "تيغو", "تنغول", "مالاي", "سيارا", "بولاو", "مالاي", "تيونغ", "كشول"],
+        "BG": ["صوفيا", "بلاگويفغراد", "فارنا", "بورغاس", "فليبوف", "بست", "بلغوغراد", "غرازدوف", "بوزوفا", "بنجسكا", "زافورسيا", "كازانلكا", "سوفيكا", "تريشينكا", "هالكوفيك", "يبدو", "ألبانو", "غوبرتش", "ساكليكا", "بلغاد"],
+        "BF": ["واغادوغو", "بوبا", "كوسيما", "سيسولا", "بوركينا فاسو", "كوسيما", "سيريه", "غوغا", "كاراغا", "نسا", "بوني", "بورغو", "بولج", "بوغو", "تونيغا", "سوسي", "كوك", "تودغوا", "بريتون", "بغيام"],
+        "BI": ["بوجومبورا", "جيتيغا", "رومونغ", "ساوتيم", "بورانغارو", "بروغوني", "مايامبو", "سيرفاي", "كياكو", "كانامو", "سياكو", "مونغا", "كوارغو", "بريارا", "جابورا", "راسي", "كونغو", "غابورا", "غومونغ", "غامبورا"],
+        "KH": ["بنوم بنه", "سيام ريب", "باتامبانغ", "سيناكفيل", "كومبونغ تشام", "تاتوك", "سرايف", "كومبونغ سبو", "كومبونغ ثوم", "كومبونغ شنج", "كومبونغ شايل", "بانغكوي", "تيفور", "سيهانوكفيل", "سيرين", "كومبونغ تشام", "بريه فاهان", "كانتشا", "بيكوت", "كامبوت"],
+        "CM": ["ياوندي", "دوالا", "غاروا", "بامندا", "إيبينغو", "كومبو", "ماروا", "نوكو", "لا ديوا", "بولا", "لامدوغو", "غونغ", "ماروا", "تاغونغ", "ليتونغ", "ساووا", "كرسونغ", "تشوبو", "كومبام", "بارمونغ"],
+        "CA": ["تورنتو", "فانكوفر", "مونتريال", "أوتاوا", "كالغاري", "إدمونتون", "هاليفاكس", "ريجينا", "ساسوكتون", "وينيبغ", "كيتشنر", "لندن", "كانور", "غويلف", "كافين", "ماربل هيل", "غالبا", "ألبرتا", "ستيفن كينغ", "باري"],
+        "CV": ["برايا", "ميناء غرافو", "سانتياغو", "فنشنك", "بلدانسانتو", "سالو", "أوغستا", "سانت كروز", "مينادوتا", "سالم", "سانتا كاتارينا", "بيدرا", "أندور", "سانت توماس", "فريسير", "كالا", "مارا", "فيسينس", "غوادالوبي", "باسور"],
+        "CF": ["بنكاسو", "بانغي", "بامبو", "بونجو", "باسوبول", "سايا", "بوغندا", "بوكوما", "بارا", "بوسانغو", "كوتيسا", "بانيا", "سونغو", "جوباندو", "كيسكا", "بوسكان", "بونجول", "موركي", "جولد", "خاتس"],
+        "TD": ["إنجامينا", "سيدار", "سليم", "باغازو", "كاشولا", "دالجا", "شاري", "سيدي", "غونغونغ", "ميديفان", "دوبا", "بورك", "الطينة", "تريدوك", "إنجمينا", "بيلغور", "بولوبو", "قرقندش", "بليغون", "كوكو"],
+        "CL": ["سانتياغو", "فالبارايسو", "كونسبسيون", "لا سيرينا", "أنتوفاغاستا", "تيموكو", "كوكيمبو", "سانتياغو", "أوسورنو", "بورتو مونت", "ماكوندو", "سان أنطونيو", "سان فرناندو", "لونيل", "لا نوسا", "أجوادا", "فوروغو", "أنتافاغاستا", "سانتياغو", "سيرينو"],
+        "CN": ["بكين", "شانغهاي", "غوانغزو", "شنتشن", "تيانجين", "شينزين", "شينغدو", "تشونغتشينغ", "نانجينغ", "تشينغداو", "تشنغدو", "سوتشو", "هانغتشو", "ووهان", "جوانغشي", "فووشان", "ووزهون", "جياشينغ", "جينان", "تاينغ"],
+        "CO": ["بوغوتا", "ميديلين", "كالي", "بارانكويلا", "بيلوكو", "بوكاسا", "باغوتا", "جواندا", "جويتيريمو", "سينكا", "سان أنطونيو", "كيوندو", "سيرانا", "سوجار", "سيسيل", "تشوكيمات", "بوجوتا", "باجاو", "أوسوروبا", "ترينيدا"],
+        "KM": ["موروني", "فومبوني", "موهيلي", "أنجوان", "موهيلي", "بنجا", "سالا", "كريني", "موسيندي", "موهيدا", "فومبوني", "كامبولي", "موروما", "فوتونغو", "ماريمبا", "سلا", "جناي", "بوريما", "موهيدا", "مانجي"],
+        "CG": ["برازافيل", "بول", "كومبولا", "غونغو", "ماكونو", "موالي", "بورا", "بونغو", "بانجي", "موكاسا", "سيروتي", "غونغو", "كوريا", "سكاندي", "موليندي", "تاتاكو", "ماكونو", "مورومبا", "سليتان", "كوكو"],
+        "CD": ["كينشاسا", "غاديسوك", "ليمبوبو", "ماتادي", "شامبولي", "ماتادي", "سيسبومبا", "لومي", "ماكوندو", "بابوا", "جنغال", "أوفانغو", "نيكو", "تشيكوي", "بولا", "بامبوا", "كاتند", "بوندو", "كوروسكوم", "بوينغو"],
+        "CR": ["سان خوسيه", "أليندي", "هيريديا", "جراسيا", "سانتا باربارا", "سجويراس", "ليبيريا", "فورو كولورادو", "ساراسا", "بوينجابي", "هيريدا", "بورازو", "سيرينديلا", "سانتوس", "سان ميغيل", "سوسو", "بورتا بونس", "توسكا", "أوتاوا", "مالتا"],
+        "CI": ["أبيدجان", "بواكي", "غران باسام", "ياموسوكرو", "سان بيدرو", "كورهوغو", "زانيابا", "بوموبو", "غابو", "سانت جولي", "كوموي", "تيرجيليو", "غابو", "سيرينديلا", "تونكين", "كونغو", "أبيني", "أبيدجان", "بواكي", "بيكتو"],
+        "HR": ["زغرب", "رييكا", "سبليت", "أوسييك", "زارا", "فوشيت", "فيكونيا", "تروغير", "بولا", "كراستوفك", "سيساك", "بيكا", "مارتين", "باريش", "زافيكا", "سيرينغو", "ماكونو", "بادا", "شتايك", "نوفي"],
+        "CU": ["هافانا", "سانتياغو دي كوبا", "كاماجوي", "سانتا كلارا", "غوانتانامو", "تارارا", "بونتيانا", "أسينسيو", "باريكويتو", "غريغاريو", "أونيفيريس", "سان تيريزا", "مانزانيلو", "ييلفا", "غوانتانامو", "ميرامار", "سانتا في", "أوفيتا", "سان ميغيل", "تارارا"],
+        "CY": ["نيقوسيا", "لارنكا", "ليمسول", "فاماغوستا", "بافوس", "أيا نابا", "أراديف", "بروتيون", "سراييفو", "كازاخستان", "كيرينيا", "سوروشين", "فاراكا", "جماعة الصوفية", "دماء تحت الماء", "ليماسول", "بافوس", "نيركا", "ناسايا", "بريفا"],
+        "CZ": ["براغ", "برنو", "أوسترافا", "بيلسن", "ليبيرك", "هراديك كرالوف", "تشيب", "أوبافا", "ترينتشين", "كولوي", "بونوفا", "كازيمير", "إنسبرك", "فوزن", "فيتكو", "سانت إيفز", "أولوموك", "بيليني", "ساندوتش", "ريكا"],
+        "DK": ["كوبنهاغن", "أرهوس", "أودنسه", "إلسينور", "هولباك", "سونديرب", "كورسلند", "فيبورج", "سيبنك", "ميلون", "ستفيديبورج", "شونر", "دوندس", "سليتس", "آرهوس", "ساندرينغ", "كوبنهاغن", "فيبورج", "سبير", "فيت"],
+        "DJ": ["جيبوتي", "عيرضة", "علي الصباح", "أرض الفقر", "الأمدرمان", "مينقبو", "الشجار", "مجرد طريء", "أكمانتس", "جابو", "مليح", "جماعة بوهدرة", "الشاري", "المجيرون", "القرب", "السوق", "الغور", "المنصورية", "جيبوتي", "غالي"],
+        "DM": ["روسو", "سانتياغو", "بواكيه", "سانت جونز", "ماريغوت", "جراند باي", "أنجوي", "بويتس", "بابي", "ريو كويزو", "سانت بطرس", "محمود", "جيما", "الكونكوت", "براجون", "الدامو", "فاسكي", "غراندي", "سانت كاترين", "مستشفى الصعيد"],
+        "DO": ["سانتو دومينغو", "سانتاغو", "سان فيليبي", "سانت كاترين", "بونتا كانا", "لا رومانا", "سان بيدرو", "باريشونا", "باسكال", "باكونتوجو", "مالانغو", "جراندي", "سان أندرو", "فوينتي", "سان كريستوبال", "جيرالدو", "ترينيداد", "تشيكاب", "باني"],
+        "EC": ["كيتو", "غواياكيل", "كوينكا", "مانابي", "لوجا", "أمباتو", "ريو بامبا", "تولا", "سانتو دومينغو", "مالابو", "كيتو", "كوسكوس", "سانتوس", "سينشا", "جواياكيل", "ألومو", "بيلا", "بورتو فيجو", "باجوار", "سانت بطرس"],
+        "EG": ["القاهرة", "الإسكندرية", "الجيزة", "سوهاج", "الأقصر", "أسوان", "بورسعيد", "دمياط", "طنطا", "المنصورة", "بني سويف", "الشرقية", "الفيوم", "المنيا", "أسيوط", "قنا", "محافظة البحر الأحمر", "كفر الشيخ", "السويس", "مرسى مطروح"],
+        "SV": ["سان سلفادور", "سان ميغيل", "أوتو", "سانتا آنا", "أسانسون", "سانت لوسيا", "جيسكو", "تودين", "فيراكروز", "غواتيمالا", "بيريرو", "ديمك", "سولا", "بلايا", "سان بيدرو", "بالمير", "بورتو", "سان أنطونيو", "لا بويرا", "السان"],
+        "GQ": ["مالابو", "باتا", "إيبيبي", "سيبونغ", "ريوش", "مالابو", "كولا", "أوجي", "كولا", "بينغو", "لوسكا", "إيبينغو", "غينغا", "تريندا", "أنغولا", "غابورون", "سان فيسينتي", "غيشيدو", "كاسابي", "تورينو", "بامباسو"],
+        "ER": ["أسمرة", "مسيلي", "كريم", "غابات", "قويديرا", "بري", "أسمرة", "مسيلي", "بنيامو", "ماركت", "تسوغيرا", "بلينغس", "سارونغو", "غابورون", "بيفر", "سودان", "بورتو غاسا", "سيراك", "أسمرة", "غشونغ", "موسيل"],
+        "EE": ["تالين", "تارتو", "نارفا", "فورس", "أوفا", "بورتوما", "ماردي", "سيتو", "سيرينتا", "سياكولم", "سيمتس", "فورتيك", "فوليس", "ترينوفو", "الأنجلو", "فالادور", "كوسي", "ريمس", "سكانديا", "فيسان", "مارموريكا"],
+        "ET": ["أديس أبابا", "ميكيلي", "ديرداوا", "بحر دار", "بوني", "غيندر", "سيدامو", "غوندر", "أديس أبابا", "بني شنجول", "الكواري", "بوريك", "باميدا", "فاجلا", "بيلي", "ماردو", "سيربا", "تمجيتو", "سومالي", "مانو"],
+        "FJ": ["سوغا", "لامباسي", "واتا", "فاكا", "مابوانو", "شاوكي", "ساوما", "غراسي", "نوكوتي", "جونا", "ترانجا", "باسكو", "ماتماتا", "مويا", "أوناجيا", "فينودا", "شاكرا", "ماتارودو", "لاوتا", "فوانا"],
+        "FI": ["هلسنكي", "تامبيري", "أولو", "فاسا", "يوفاسكولا", "روبي", "لويولا", "لا تولا", "أوتو", "بورتو", "باريتا", "مويرينغ", "أولو", "تايلا", "سيفو", "فاسا", "باسيلون", "سانت بارتيليموس", "هيلسونكي", "هويج", "كالافيس"],
+        "FR": ["باريس", "مارسيليا", "ليون", "ليل", "تولوز", "نيس", "مونبلييه", "نانت", "بوردو", "ستراسبورغ", "رين", "لييل", "تولوز", "أفينيون", "موازيون", "فرساي", "ناربون", "سينت إتيان", "باسكال", "مونتازا", "الآلزاس"],
+        "GA": ["ليبرفيل", "بورت جنتيل", "فرانس", "غابون", "باري", "يومو", "موغودو", "غابون", "باري", "بونغو", "شيمبو", "موريتس", "ليبرفيل", "تيمبواتو", "سينو", "تيمبو", "موغودو", "ليما", "بونغو", "فرانس"],
+        "GM": ["بانجول", "سيريكوندي", "ماتام", "سينيجال", "باسا", "جولن", "سيرافا", "باكري", "مودو", "كيمو", "كيندو", "جيفو", "كاندال", "بريمان", "سيريكوندي", "بورتو", "بانجول", "جيبون", "سيريكوندي", "غوياسو"],
+        "GE": ["تبليسي", "زورمغان", "كوتايسي", "روستافي", "غوري", "زغيديدي", "بوزاني", "تيلافي", "أوني", "تسودوغورا", "فاندي", "مورداني", "غومري", "باتومي", "كوليندي", "سخويتي", "سامتيز", "غورغاسالي", "تيلافي", "ساجري"],
+        "DE": ["برلين", "ميونيخ", "فرانكفورت", "هامبورغ", "كولونيا", "شتوتغارت", "دوسلدورف", "دورتموند", "بريمن", "هانوفر", "نورنبرغ", "ماينز", "فيسبادن", "أوجسبورغ", "لايبزيغ", "هيلدسهايم", "مانهايم", "ساربروكن", "بوخوم", "بون"],
+        "DJ": ["جيبوتي", "عيرضة", "علي الصباح", "أرض الفقر", "الأمدرمان", "مينقبو", "الشجار", "مجرد طريء", "أكمانتس", "جابو", "مليح", "جماعة بوهدرة", "الشاري", "المجيرون", "القرب", "السوق", "الغور", "المنصورية", "جيبوتي", "غالي"],
+        "DO": ["سانتو دومينغو", "سانتاغو", "سان فيليبي", "سانت كاترين", "بونتا كانا", "لا رومانا", "سان بيدرو", "باريشونا", "باسكال", "باكونتوجو", "مالانغو", "جراندي", "سان أندرو", "فوينتي", "سان كريستوبال", "جيرالدو", "ترينيداد", "تشيكاب", "باني"]
+
+
+    };
+
+    $(citySelect).empty().append(new Option('اختر المدينة', '', true, true)).prop('disabled', !cities[country]);
+
+    if (cities[country]) {
+        cities[country].forEach(city => {
+            const option = new Option(city, city, false, false);
+            $(citySelect).append(option);
+        });
+        $(citySelect).prop('disabled', false).trigger('change');
+    } else {
+        $(citySelect).prop('disabled', true).trigger('change');
+    }
+};
+
+
+function updateCardFields(card) {
+    // تحديث الحقول في الكارد بالقيم الجديدة
+    const jobPosition = card.querySelector('.job-position') ? card.querySelector('.job-position').value : "";
+    const jobTitle = card.querySelector('.job-title') ? card.querySelector('.job-title').value : "";
+    const city = card.querySelector('.city') ? card.querySelector('.city').value : "";
+    const country = card.querySelector('.country') ? card.querySelector('.country').value : "";
+    const startDate = card.querySelector('.start-date') ? card.querySelector('.start-date').value : "";
+    const endDate = card.querySelector('.end-date') ? card.querySelector('.end-date').value : "";
+
+    // حفظ القيم المحدثة في الحقول نفسها
+    card.querySelector('.job-position').value = jobPosition;
+    card.querySelector('.job-title').value = jobTitle;
+    card.querySelector('.city').value = city;
+    card.querySelector('.country').value = country;
+    card.querySelector('.start-date').value = startDate;
+    card.querySelector('.end-date').value = endDate;
+}
+
+
+
+
+
+
+
+
+
+
+
+// $(document).ready(function () {
+//     $('#country-select').select2({
+//         placeholder: "اختر الدولة",
+//         allowClear: true
+//     });
+//     $('#city-select').select2({
+//         placeholder: "اختر المدينة",
+//         allowClear: true
+//     });
+// });
+// const countryToCities = {
+//     "SA": ["الرياض", "جدة", "مكة", "الدمام", "الظهران", "الخبر", "الطائف", "رابغ", "الليث", "القنفذة", "المدينة المنورة", "ينبع", "العلا", "بدر", "الحناكية", "مهد الذهب", "خيبر", "أبها", "خميس مشيط", "بيشة", "النماص", "أحد رفيدة", "رجال ألمع", "محايل عسير", "بلقرن", "بريدة", "عنيزة", "الرس", "البكيرية", "المذنب", "البدائع", "رياض الخبراء", "تبوك", "ضباء", "الوجه", "تيماء", "أملج", "حقل", "البدع", "حائل", "بقعاء", "الشنان", "الغزالة", "الشملي", "جازان", "صبيا", "أبو عريش", "صامطة", "بيش", "العارضة", "فرسان", "نجران", "شرورة", "حبونا", "الباحة", "المندق", "المخواة", "بلجرشي", "العقيق", "عرعر", "رفحاء", "طريف", "سكاكا", "القريات", "دومة الجندل"],
+//     "EG": ["القاهرة", "الإسكندرية", "الجيزة", "طنطا", "المنصورة", "دمياط", "سوهاج", "أسيوط", "بني سويف", "الفيوم", "قنا", "الزقازيق", "السويس", "شرم الشيخ", "دمنهور", "المنيا", "سيدي عبد الرحمن", "أسوان", "العباسية"],
+//     "JO": ["عمان", "الزرقاء", "إربد", "جرش", "الكرك", "السلط", "مأدبا", "عجلون", "الطفيلة", "البتراء", "وادي موسى", "معان", "الرمثا", "الأغوار", "الشوبك", "المفرق", "الجويدة", "وادي السير"],
+//     "AE": ["دبي", "أبوظبي", "الشارقة", "عجمان", "رأس الخيمة", "الفجيرة", "أم القيوين", "الغيص", "الذيد", "الحمرية"],
+//     "QA": ["الدوحة", "الريان", "الخور", "مسيمير", "الوكرة", "لوسيل", "الشيحانية", "الشمال", "الظعاين", "الضاحية"],
+//     "AF": ["كابول", "هيرات", "مزار الشريف", "قندهار", "جلال آباد", "بادغيس", "جوزجان", "فارياب", "باميان", "نانجارهار", "تخار", "كابيسا", "لوجر", "غزني", "بلك", "سرابول", "زابل", "هرات", "غزني", "قندوز"],
+//     "AL": ["تيرانا", "دورس", "فلاش", "شيروك", "بيرات", "كورشا", "لاغا", "فيير", "ساراندا", "ليش", "كافاجا", "هورش", "بيرا", "تيت", "كرويا", "سوبات", "لوشنيا", "فريس", "بونار", "مولج"],
+//     "DZ": ["الجزائر العاصمة", "وهران", "قسنطينة", "البليدة", "عنابة", "سطيف", "تيزي وزو", "باتنة", "بسكرة", "البرج", "تيارت", "مدية", "الجلفة", "أم البواقي", "الشلف", "خنشلة", "سوق أهراس", "المسيلة", "أدرار", "بشار"],
+//     "AD": ["أندورا لا فيلا", "إل كاسا", "سانت جولي", "كانييل", "كول ديز بورتس", "سانت بيري", "سانت ماريا", "سانت جوليان", "سانت أوغستين", "لا ماسانا", "كانيللي", "إنتيرلاكن", "بوسكا", "كاب ديل هوس", "أندورا", "سانت دانييل", "سانت مارتن", "سانت أوغستين", "إل كاسا", "كانيل"],
+//     "AO": ["لواندا", "ناجولا", "سونو", "كابندا", "لوندا", "أونجوي", "موينج", "كابيندا", "كيساما", "مالانج", "غوتا", "سونيغو", "أمبولا", "جيجي", "موجيم", "بيلو", "سنتانا", "موسساكوسو", "جوسي", "توندوا"],
+//     "AG": ["سانت جونز", "سانت ماري", "سانت جورج", "سانت فيليب", "سانت لويس", "سانت بول", "سانت جوليان", "سانت جيروم", "سانت بطرس", "سانت مارك", "سانت توماس", "سانت بتر", "سانت أندرو", "سانت ماريا", "سانت أنطونيو", "سانت مايكل", "سانت نيكولاس", "سانت كاترين", "سانت جوي", "سانت جوان"],
+//     "AR": ["بوينس آيرس", "كوردوبا", "روساريو", "منتز", "لا بلاتا", "مار دل بلاتا", "سان ميغيل دي توكومان", "مندوزا", "سان خوان", "سانتافي", "راكفيل", "ريو كويرتو", "الكونكويستا", "باريلوش", "سالنكيس", "خنزت", "ريكا", "سان كروز", "شيلفليو", "الين"],
+//     "AM": ["يريفان", "غومري", "فاجاراش", "ديلجان", "آرارات", "سيونيك", "خاباروفسك", "تاشين", "آرتاشات", "سيسيان", "كابان", "هرازدان", "سيفان", "هيرابش", "ستيبانافان", "ألفست", "تيبليز", "جيفري", "فيتاغا", "سارا"],
+//     "AU": ["سيدني", "ملبورن", "بريسبان", "بيرث", "أديلايد", "هوبارت", "داروين", "كانبيرا", "جولد كوست", "نيوكاسل", "سنترال كوست", "لانكستر", "ويغن", "مارغريت ريفير", "بندigo", "ويغنز", "بروكن هيل", "ألبري", "تينده", "بيلينغتون"],
+//     "AT": ["فيينا", "سالزبورغ", "إنسبروك", "غراتس", "كلاغنفورت", "فلورنس", "براغ", "ليوبن", "شتاينغاد", "تيرول", "جراز", "شيفيلد", "ميونيخ", "كريفيلد", "فيلينج", "وينير نيوشتات", "بادن", "ترين", "كوشينغن", "كولينز"],
+//     "AZ": ["باكو", "غابالا", "غنجا", "لانكاران", "شيكي", "بيلقان", "سومغايت", "ماسالي", "يوليزي", "كنجة", "أغستافا", "لوكران", "تارتار", "خانلار", "زرداب", "لنكوران", "كولوسو", "أغجاباد", "شيرفان", "مردكان"],
+//     "BS": ["ناسو", "فريبورت", "بالم بيتش", "غريت إكسوما", "سانت مايكل", "سانت جورج", "سانت أندرو", "سانت جيمس", "سانت لويس", "سانت مارك", "سانت توماس", "سانت فيليب", "سانت أوغستين", "سانت بيتر", "سانت لوسي", "سانت ديفيد", "سانت مايكل", "سانت بطرس", "سانت جيروم", "سانت هيلين"],
+//     "BH": ["المنامة", "المحرق", "سلمانة", "الرفاع", "الحد", "جساسية", "عالي", "الزنج", "الحالة", "سار", "المحرق", "المنامة", "مقعق", "حلبة", "فقيه", "الداود", "الجديرة", "المطافئ", "المنصورية", "الشارقة"],
+//     "BD": ["دكا", "تشيتاغونغ", "خولنا", "راجشاهي", "سليت", "باريسال", "مغورا", "بغورا", "كاور", "جوراي", "سانت مارتن", "رامجانج", "دورغات", "نامكان", "مايدا", "دكاري", "سونامجانج", "شايستاغانج", "كيسيج", "موجول", "بيلزار"],
+//     "BB": ["بريدجتاون", "سانت مايكل", "سانت جيمس", "سانت لوسي", "سانت جورج", "سانت أندرو", "سانت توماس", "سانت فيليب", "سانت جون", "سانت بطرس", "سانت باتريك", "سانت كاترين", "سانت مارتن", "سانت جورج", "سانت جان", "سانت ماري", "سانت فيرناند", "سانت إدوارد", "سانت أندرو", "سانت بتر"],
+//     "BY": ["مينسك", "غوميل", "بريست", "فتيبسك", "بريست", "موغيليف", "بارانوفيتش", "بريتش", "فيلينس", "بيشكاك", "تشيرنوسو", "ريفاس", "كوبينك", "جيليوف", "غوركي", "فتيبسك", "سيباليك", "شفوك", "سوزوف", "ساشيفو"],
+//     "BE": ["بروكسل", "أنتويرب", "غنت", "شارلوروا", "نامور", "لييج", "ميز", "بروج", "دينانت", "أوفرسيس", "بورغس", "غيزينز", "لورين", "فلورين", "ماينيز", "تيرزير", "لوكارنو", "تشيفو", "فيلير", "فيلز"],
+//     "BZ": ["بلموبان", "سان إغناسيو", "سان بيدرو", "كوروزال", "بلسمر", "سانت بتر", "سانت هيلين", "سانت جود", "سانت مارتن", "سانت جورج", "سانت كاترين", "سانت لويس", "سانت توماس", "سانت إدوارد", "سانت بطرس", "سانت جيمس", "سانت مايكل", "سانت ديفيد", "سانت لوسي", "سانت ماري"],
+//     "BJ": ["بورتو نوفو", "كوتونو", "دجيوه", "بنكوي", "سوكوديه", "أبومي", "كلويكوتا", "تيشون", "تامالي", "زوان", "أبومي", "تندروك", "لا باتين", "سوكوديه", "أكيس", "ساحل النعام", "جودة", "نيريجو", "أشريفو", "بلاتسوس"],
+//     "BT": ["تيمفو", "بورتو", "فونتسو", "بارو", "جاكيل", "مورغيلونغ", "جوروغ", "بيدبيني", "فورتوينغ", "غليوا", "نافا", "سامدرو", "مناو", "شينج", "كولاني", "باليجولغ", "بانغتس", "تشولمونغ", "زغاغ", "تامبرو"],
+//     "BO": ["لاباز", "سانتا كروز", "كوتشابامبا", "سوكري", "ترينيداد", "بيني", "تشوكيساكا", "أورورو", "بيدرا", "كارانزابل", "سيربوكورو", "جيما", "جويجوي", "جيوميسو", "سانت أغسطين", "مانو", "أنغارا", "مونتو", "أجريد", "بولو"],
+//     "BA": ["سراييفو", "بانيا لوكا", "توزلا", "زيلينجا", "بوجاس", "سوسكي", "سارايفا", "ترنوس", "سرايفو", "برودر", "بيلا", "فيسوكو", "فلاغ", "سبريتس", "باناكيتس", "جوردوك", "بوسنتو", "بوستسا", "غيب", "ديراي"],
+//     "BW": ["غابورون", "بوتسوانا", "ماجوي", "سيروى", "كويكوي", "بولاو", "كاساندي", "نجامبوي", "غابات", "موساكوكو", "تسوديمو", "سيتوي", "موتشينغ", "غشونغ", "غوردون", "بيموينغ", "كيتابو", "بولاو", "غانا", "بوناك"],
+//     "BR": ["ساو باولو", "ريو دي جانيرو", "سلفادور", "فورتاليزا", "ماناوس", "بيلو هوريزونتي", "ساو بيرناردو دو كامبو", "برازيليا", "ريو برانكو", "غوارولوس", "كونتاجورا", "ساساكو", "كويتزابل", "سيتوبال", "فيساو", "الساو", "سيرزا", "ريو دي جانيرو", "ساو جونسو", "ساو جوني"],
+//     "BN": ["بندر سيري بيغاوان", "كوالا بيلوت", "بيلايت", "باندانغ", "تونغ", "سيكو", "غونغنغ", "فيتوم", "موتونغ", "تانجونغ", "كوانغ", "جورج تاون", "تيغو", "تنغول", "مالاي", "سيارا", "بولاو", "مالاي", "تيونغ", "كشول"],
+//     "BG": ["صوفيا", "بلاگويفغراد", "فارنا", "بورغاس", "فليبوف", "بست", "بلغوغراد", "غرازدوف", "بوزوفا", "بنجسكا", "زافورسيا", "كازانلكا", "سوفيكا", "تريشينكا", "هالكوفيك", "يبدو", "ألبانو", "غوبرتش", "ساكليكا", "بلغاد"],
+//     "BF": ["واغادوغو", "بوبا", "كوسيما", "سيسولا", "بوركينا فاسو", "كوسيما", "سيريه", "غوغا", "كاراغا", "نسا", "بوني", "بورغو", "بولج", "بوغو", "تونيغا", "سوسي", "كوك", "تودغوا", "بريتون", "بغيام"],
+//     "BI": ["بوجومبورا", "جيتيغا", "رومونغ", "ساوتيم", "بورانغارو", "بروغوني", "مايامبو", "سيرفاي", "كياكو", "كانامو", "سياكو", "مونغا", "كوارغو", "بريارا", "جابورا", "راسي", "كونغو", "غابورا", "غومونغ", "غامبورا"],
+//     "KH": ["بنوم بنه", "سيام ريب", "باتامبانغ", "سيناكفيل", "كومبونغ تشام", "تاتوك", "سرايف", "كومبونغ سبو", "كومبونغ ثوم", "كومبونغ شنج", "كومبونغ شايل", "بانغكوي", "تيفور", "سيهانوكفيل", "سيرين", "كومبونغ تشام", "بريه فاهان", "كانتشا", "بيكوت", "كامبوت"],
+//     "CM": ["ياوندي", "دوالا", "غاروا", "بامندا", "إيبينغو", "كومبو", "ماروا", "نوكو", "لا ديوا", "بولا", "لامدوغو", "غونغ", "ماروا", "تاغونغ", "ليتونغ", "ساووا", "كرسونغ", "تشوبو", "كومبام", "بارمونغ"],
+//     "CA": ["تورنتو", "فانكوفر", "مونتريال", "أوتاوا", "كالغاري", "إدمونتون", "هاليفاكس", "ريجينا", "ساسوكتون", "وينيبغ", "كيتشنر", "لندن", "كانور", "غويلف", "كافين", "ماربل هيل", "غالبا", "ألبرتا", "ستيفن كينغ", "باري"],
+//     "CV": ["برايا", "ميناء غرافو", "سانتياغو", "فنشنك", "بلدانسانتو", "سالو", "أوغستا", "سانت كروز", "مينادوتا", "سالم", "سانتا كاتارينا", "بيدرا", "أندور", "سانت توماس", "فريسير", "كالا", "مارا", "فيسينس", "غوادالوبي", "باسور"],
+//     "CF": ["بنكاسو", "بانغي", "بامبو", "بونجو", "باسوبول", "سايا", "بوغندا", "بوكوما", "بارا", "بوسانغو", "كوتيسا", "بانيا", "سونغو", "جوباندو", "كيسكا", "بوسكان", "بونجول", "موركي", "جولد", "خاتس"],
+//     "TD": ["إنجامينا", "سيدار", "سليم", "باغازو", "كاشولا", "دالجا", "شاري", "سيدي", "غونغونغ", "ميديفان", "دوبا", "بورك", "الطينة", "تريدوك", "إنجمينا", "بيلغور", "بولوبو", "قرقندش", "بليغون", "كوكو"],
+//     "CL": ["سانتياغو", "فالبارايسو", "كونسبسيون", "لا سيرينا", "أنتوفاغاستا", "تيموكو", "كوكيمبو", "سانتياغو", "أوسورنو", "بورتو مونت", "ماكوندو", "سان أنطونيو", "سان فرناندو", "لونيل", "لا نوسا", "أجوادا", "فوروغو", "أنتافاغاستا", "سانتياغو", "سيرينو"],
+//     "CN": ["بكين", "شانغهاي", "غوانغزو", "شنتشن", "تيانجين", "شينزين", "شينغدو", "تشونغتشينغ", "نانجينغ", "تشينغداو", "تشنغدو", "سوتشو", "هانغتشو", "ووهان", "جوانغشي", "فووشان", "ووزهون", "جياشينغ", "جينان", "تاينغ"],
+//     "CO": ["بوغوتا", "ميديلين", "كالي", "بارانكويلا", "بيلوكو", "بوكاسا", "باغوتا", "جواندا", "جويتيريمو", "سينكا", "سان أنطونيو", "كيوندو", "سيرانا", "سوجار", "سيسيل", "تشوكيمات", "بوجوتا", "باجاو", "أوسوروبا", "ترينيدا"],
+//     "KM": ["موروني", "فومبوني", "موهيلي", "أنجوان", "موهيلي", "بنجا", "سالا", "كريني", "موسيندي", "موهيدا", "فومبوني", "كامبولي", "موروما", "فوتونغو", "ماريمبا", "سلا", "جناي", "بوريما", "موهيدا", "مانجي"],
+//     "CG": ["برازافيل", "بول", "كومبولا", "غونغو", "ماكونو", "موالي", "بورا", "بونغو", "بانجي", "موكاسا", "سيروتي", "غونغو", "كوريا", "سكاندي", "موليندي", "تاتاكو", "ماكونو", "مورومبا", "سليتان", "كوكو"],
+//     "CD": ["كينشاسا", "غاديسوك", "ليمبوبو", "ماتادي", "شامبولي", "ماتادي", "سيسبومبا", "لومي", "ماكوندو", "بابوا", "جنغال", "أوفانغو", "نيكو", "تشيكوي", "بولا", "بامبوا", "كاتند", "بوندو", "كوروسكوم", "بوينغو"],
+//     "CR": ["سان خوسيه", "أليندي", "هيريديا", "جراسيا", "سانتا باربارا", "سجويراس", "ليبيريا", "فورو كولورادو", "ساراسا", "بوينجابي", "هيريدا", "بورازو", "سيرينديلا", "سانتوس", "سان ميغيل", "سوسو", "بورتا بونس", "توسكا", "أوتاوا", "مالتا"],
+//     "CI": ["أبيدجان", "بواكي", "غران باسام", "ياموسوكرو", "سان بيدرو", "كورهوغو", "زانيابا", "بوموبو", "غابو", "سانت جولي", "كوموي", "تيرجيليو", "غابو", "سيرينديلا", "تونكين", "كونغو", "أبيني", "أبيدجان", "بواكي", "بيكتو"],
+//     "HR": ["زغرب", "رييكا", "سبليت", "أوسييك", "زارا", "فوشيت", "فيكونيا", "تروغير", "بولا", "كراستوفك", "سيساك", "بيكا", "مارتين", "باريش", "زافيكا", "سيرينغو", "ماكونو", "بادا", "شتايك", "نوفي"],
+//     "CU": ["هافانا", "سانتياغو دي كوبا", "كاماجوي", "سانتا كلارا", "غوانتانامو", "تارارا", "بونتيانا", "أسينسيو", "باريكويتو", "غريغاريو", "أونيفيريس", "سان تيريزا", "مانزانيلو", "ييلفا", "غوانتانامو", "ميرامار", "سانتا في", "أوفيتا", "سان ميغيل", "تارارا"],
+//     "CY": ["نيقوسيا", "لارنكا", "ليمسول", "فاماغوستا", "بافوس", "أيا نابا", "أراديف", "بروتيون", "سراييفو", "كازاخستان", "كيرينيا", "سوروشين", "فاراكا", "جماعة الصوفية", "دماء تحت الماء", "ليماسول", "بافوس", "نيركا", "ناسايا", "بريفا"],
+//     "CZ": ["براغ", "برنو", "أوسترافا", "بيلسن", "ليبيرك", "هراديك كرالوف", "تشيب", "أوبافا", "ترينتشين", "كولوي", "بونوفا", "كازيمير", "إنسبرك", "فوزن", "فيتكو", "سانت إيفز", "أولوموك", "بيليني", "ساندوتش", "ريكا"],
+//     "DK": ["كوبنهاغن", "أرهوس", "أودنسه", "إلسينور", "هولباك", "سونديرب", "كورسلند", "فيبورج", "سيبنك", "ميلون", "ستفيديبورج", "شونر", "دوندس", "سليتس", "آرهوس", "ساندرينغ", "كوبنهاغن", "فيبورج", "سبير", "فيت"],
+//     "DJ": ["جيبوتي", "عيرضة", "علي الصباح", "أرض الفقر", "الأمدرمان", "مينقبو", "الشجار", "مجرد طريء", "أكمانتس", "جابو", "مليح", "جماعة بوهدرة", "الشاري", "المجيرون", "القرب", "السوق", "الغور", "المنصورية", "جيبوتي", "غالي"],
+//     "DM": ["روسو", "سانتياغو", "بواكيه", "سانت جونز", "ماريغوت", "جراند باي", "أنجوي", "بويتس", "بابي", "ريو كويزو", "سانت بطرس", "محمود", "جيما", "الكونكوت", "براجون", "الدامو", "فاسكي", "غراندي", "سانت كاترين", "مستشفى الصعيد"],
+//     "DO": ["سانتو دومينغو", "سانتاغو", "سان فيليبي", "سانت كاترين", "بونتا كانا", "لا رومانا", "سان بيدرو", "باريشونا", "باسكال", "باكونتوجو", "مالانغو", "جراندي", "سان أندرو", "فوينتي", "سان كريستوبال", "جيرالدو", "ترينيداد", "تشيكاب", "باني"],
+//     "EC": ["كيتو", "غواياكيل", "كوينكا", "مانابي", "لوجا", "أمباتو", "ريو بامبا", "تولا", "سانتو دومينغو", "مالابو", "كيتو", "كوسكوس", "سانتوس", "سينشا", "جواياكيل", "ألومو", "بيلا", "بورتو فيجو", "باجوار", "سانت بطرس"],
+//     "EG": ["القاهرة", "الإسكندرية", "الجيزة", "سوهاج", "الأقصر", "أسوان", "بورسعيد", "دمياط", "طنطا", "المنصورة", "بني سويف", "الشرقية", "الفيوم", "المنيا", "أسيوط", "قنا", "محافظة البحر الأحمر", "كفر الشيخ", "السويس", "مرسى مطروح"],
+//     "SV": ["سان سلفادور", "سان ميغيل", "أوتو", "سانتا آنا", "أسانسون", "سانت لوسيا", "جيسكو", "تودين", "فيراكروز", "غواتيمالا", "بيريرو", "ديمك", "سولا", "بلايا", "سان بيدرو", "بالمير", "بورتو", "سان أنطونيو", "لا بويرا", "السان"],
+//     "GQ": ["مالابو", "باتا", "إيبيبي", "سيبونغ", "ريوش", "مالابو", "كولا", "أوجي", "كولا", "بينغو", "لوسكا", "إيبينغو", "غينغا", "تريندا", "أنغولا", "غابورون", "سان فيسينتي", "غيشيدو", "كاسابي", "تورينو", "بامباسو"],
+//     "ER": ["أسمرة", "مسيلي", "كريم", "غابات", "قويديرا", "بري", "أسمرة", "مسيلي", "بنيامو", "ماركت", "تسوغيرا", "بلينغس", "سارونغو", "غابورون", "بيفر", "سودان", "بورتو غاسا", "سيراك", "أسمرة", "غشونغ", "موسيل"],
+//     "EE": ["تالين", "تارتو", "نارفا", "فورس", "أوفا", "بورتوما", "ماردي", "سيتو", "سيرينتا", "سياكولم", "سيمتس", "فورتيك", "فوليس", "ترينوفو", "الأنجلو", "فالادور", "كوسي", "ريمس", "سكانديا", "فيسان", "مارموريكا"],
+//     "ET": ["أديس أبابا", "ميكيلي", "ديرداوا", "بحر دار", "بوني", "غيندر", "سيدامو", "غوندر", "أديس أبابا", "بني شنجول", "الكواري", "بوريك", "باميدا", "فاجلا", "بيلي", "ماردو", "سيربا", "تمجيتو", "سومالي", "مانو"],
+//     "FJ": ["سوغا", "لامباسي", "واتا", "فاكا", "مابوانو", "شاوكي", "ساوما", "غراسي", "نوكوتي", "جونا", "ترانجا", "باسكو", "ماتماتا", "مويا", "أوناجيا", "فينودا", "شاكرا", "ماتارودو", "لاوتا", "فوانا"],
+//     "FI": ["هلسنكي", "تامبيري", "أولو", "فاسا", "يوفاسكولا", "روبي", "لويولا", "لا تولا", "أوتو", "بورتو", "باريتا", "مويرينغ", "أولو", "تايلا", "سيفو", "فاسا", "باسيلون", "سانت بارتيليموس", "هيلسونكي", "هويج", "كالافيس"],
+//     "FR": ["باريس", "مارسيليا", "ليون", "ليل", "تولوز", "نيس", "مونبلييه", "نانت", "بوردو", "ستراسبورغ", "رين", "لييل", "تولوز", "أفينيون", "موازيون", "فرساي", "ناربون", "سينت إتيان", "باسكال", "مونتازا", "الآلزاس"],
+//     "GA": ["ليبرفيل", "بورت جنتيل", "فرانس", "غابون", "باري", "يومو", "موغودو", "غابون", "باري", "بونغو", "شيمبو", "موريتس", "ليبرفيل", "تيمبواتو", "سينو", "تيمبو", "موغودو", "ليما", "بونغو", "فرانس"],
+//     "GM": ["بانجول", "سيريكوندي", "ماتام", "سينيجال", "باسا", "جولن", "سيرافا", "باكري", "مودو", "كيمو", "كيندو", "جيفو", "كاندال", "بريمان", "سيريكوندي", "بورتو", "بانجول", "جيبون", "سيريكوندي", "غوياسو"],
+//     "GE": ["تبليسي", "زورمغان", "كوتايسي", "روستافي", "غوري", "زغيديدي", "بوزاني", "تيلافي", "أوني", "تسودوغورا", "فاندي", "مورداني", "غومري", "باتومي", "كوليندي", "سخويتي", "سامتيز", "غورغاسالي", "تيلافي", "ساجري"],
+//     "DE": ["برلين", "ميونيخ", "فرانكفورت", "هامبورغ", "كولونيا", "شتوتغارت", "دوسلدورف", "دورتموند", "بريمن", "هانوفر", "نورنبرغ", "ماينز", "فيسبادن", "أوجسبورغ", "لايبزيغ", "هيلدسهايم", "مانهايم", "ساربروكن", "بوخوم", "بون"],
+//     "DJ": ["جيبوتي", "عيرضة", "علي الصباح", "أرض الفقر", "الأمدرمان", "مينقبو", "الشجار", "مجرد طريء", "أكمانتس", "جابو", "مليح", "جماعة بوهدرة", "الشاري", "المجيرون", "القرب", "السوق", "الغور", "المنصورية", "جيبوتي", "غالي"],
+//     "DO": ["سانتو دومينغو", "سانتاغو", "سان فيليبي", "سانت كاترين", "بونتا كانا", "لا رومانا", "سان بيدرو", "باريشونا", "باسكال", "باكونتوجو", "مالانغو", "جراندي", "سان أندرو", "فوينتي", "سان كريستوبال", "جيرالدو", "ترينيداد", "تشيكاب", "باني"]
+
+// };
+
+
+// $(document).ready(function () {
+//     $('#country-select').on('change', function () {
+//         var selectedCountry = $(this).val();
+//         var cities = countryToCities[selectedCountry] || [];
+
+//         $('#city-select').empty().append('<option value="" disabled selected>اختر المدينة</option>');
+//         $.each(cities, function (index, city) {
+//             $('#city-select').append('<option value="' + city + '">' + city + '</option>');
+//         });
+
+//         $('#city-select').trigger('change');
+//     });
+
+//     $('#city-select').on('select2:select', function (e) {
+//         var data = e.params.data;
+//         if (data.newOption) {
+//             alert('تمت إضافة المدينة الجديدة: ' + data.text);
+//         }
+//     });
+
+
+
+
+// })
+
